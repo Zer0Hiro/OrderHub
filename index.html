@@ -3,11 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <div>
-        <p>YAKOV HOMO!</p>
+        <h1>OrderHub</h1>
+        <p>Manage food orders from all delivery partners in one place</p>
+        <div>
+        <select id="providerFilter" class="filter-select">
+            <option value="all">All providers</option>
+            <option value="Wolt">Wolt</option>
+            <option value="TenBis">TenBis</option>
+            <option value="Mishloha">Mishloha</option>
+            <option value="Manual">Manual</option>
+        </select>
+        <select id="statusFilter" class="filter-select">
+            <option value="all">All statuses</option>
+            <option value="pending">Pending</option>
+            <option value="accepted">Accepted</option>
+            <option value="cancelled">Cancelled</option>
+        </select>
+        </div>
     </div>
+    <!-- Incoming Orders part -->
+    <div class="tables"> 
+        <div>
+            <h1>Incoming Orders</h1>
+            <button>Simulate Order</button>
+            <button id="openBtn">New Order</button>
+        </div>
+        <div class="orders-table-wrapper">
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Provider</th>
+              <th>Order #</th>
+              <th>Customer</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Contact</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="ordersBodyActive">
+            <!--  -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!--Cancelled Orders-->
+      <div class="tables">
+        <div>
+            <h1>Cancelled Orders</h1>
+        </div>
+        <div class="orders-table-wrapper">
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Provider</th>
+              <th>Order #</th>
+              <th>Customer</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Contact</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="ordersBodyActive">
+            <!--  -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!--Completed Orders-->
+      <div class="tables">
+        <div>
+            <h1>Completed Orders</h1>
+        </div>
+        <div class="orders-table-wrapper">
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Provider</th>
+              <th>Order #</th>
+              <th>Customer</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Contact</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="ordersBodyActive">
+            <!--  -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span id="closeBtn" class="close">X</span>
+        <h2>New Order</h2>
+        <table>
+            <tr>
+            <th>Customer Name<br>
+                <input type="text" placeholder="Enter Customer Name">
+            </th>
+            
+            
+            </tr>
+            <tr>
+                <th>Phone Number</th>
+                <br>
+            </tr>
+            <tr>
+                <th>Items</th>
+            </tr>
+            <th>Delivery Address</th>
+            <th>Total Amount</th>
+            <th>Payment Method</th>
+            <th>Special Notes</th>
+        </table>
+    </div>
+</div>
+
+    <script src="order.js"></script>
 </body>
 </html>
