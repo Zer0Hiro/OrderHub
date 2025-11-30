@@ -2,6 +2,14 @@ const ordersBodyActive = document.getElementById("ordersBodyActive");
 const popup = document.getElementById("popup");
 const openBtn = document.getElementById("openBtn");
 const closeBtn = document.getElementById("closeBtn");
+const orderName = document.getElementById("name");
+const orderTel = document.getElementById("tel");
+const orderItems = document.getElementById("orderItems");
+const orderAddress = document.getElementById("orderAddress");
+const orderTotal = document.getElementById("orderTotal");
+const orderPayment = document.getElementById("orderPayment");
+
+
 
 //Empty Table
 if (ordersBodyActive) ordersBodyActive.innerHTML = "";
@@ -16,5 +24,21 @@ window.onclick = (e) => {
 
 //Create Order
 function NewOrder(order) {
-    const temp
+    const tableBody = document.getElementById("ordersBodyActive");
+    const rowTemplate = document.getElementById("orderRowTemplate");
+
+    const newRow = rowTemplate.content.cloneNode(true).querySelector('tr');
+    const cells = newRow.querySelectorAll('td');
+
+    cells[0].textContent = "";
+    cells[1].textContent = "Manual";
+    cells[2].textContent = "";
+    cells[3].textContent = orderName.value;
+    cells[4].textContent = orderItems.value;
+    cells[5].textContent = orderTotal.value;
+    cells[6].textContent = "Pending";
+
+
+    tableBody.appendChild(newRow);
+    //const temp
 }
