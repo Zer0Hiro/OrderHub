@@ -27,7 +27,7 @@ function NewOrder(order) {
     const tableBody = document.getElementById("ordersBodyActive");
     const rowTemplate = document.getElementById("orderRowTemplate");
 
-    const newRow = rowTemplate.content.cloneNode(true).querySelector('tr');
+    const newRow = document.importNode(rowTemplate.content, true);
     const cells = newRow.querySelectorAll('td');
 
     cells[0].textContent = "";
@@ -40,5 +40,14 @@ function NewOrder(order) {
 
 
     tableBody.appendChild(newRow);
-    //const temp
+    popup.style.display = "none";
+
+    orderName.value = "";
+    orderTel.value = "";
+    orderItems.value = "";
+    orderAddress.value = "";
+    orderTotal.value = "";
+    orderPayment.value = "";
+
+
 }
