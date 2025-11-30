@@ -60,6 +60,7 @@
   font-size: 0.85rem;
 }
 
+/* shit to do with the "New Order" popup*/
 .popup {
     display: none;
     position: fixed;
@@ -67,6 +68,7 @@
     background: rgba(0, 0, 0, 0.5);
 }
 
+/* shit to do with the "New Order" popup*/
 .popup-content {
     position: absolute;
     top: 50%;
@@ -79,6 +81,7 @@
     box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
+/* design for close button in the "New Order" popup*/
 .close {
     position: absolute;
     top: 10px;
