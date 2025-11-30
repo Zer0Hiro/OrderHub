@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>OrderHub</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body>
-    <div>
-      <h1>OrderHub</h1>
-      <p>Manage food orders from all delivery partners in one place</p>
-      <div>
-        <select id="providerFilter" class="filter-select">
-          <option value="all">All providers</option>
-          <option value="Wolt">Wolt</option>
-          <option value="TenBis">TenBis</option>
-          <option value="Mishloha">Mishloha</option>
-          <option value="Manual">Manual</option>
-        </select>
-        <select id="statusFilter" class="filter-select">
-          <option value="all">All statuses</option>
-          <option value="pending">Pending</option>
-          <option value="accepted">Accepted</option>
-          <option value="cancelled">Cancelled</option>
-        </select>
+    <link rel="icon" href="photos\\icon.png">
+</head>
+
+<body class="background">
+  <div class="header">
+      <div class="logo">
+          <img src="photos/icon.png" width="45" height="45">
+          
+          <div class="header-text">
+              <h1>OrderHub</h1>
+              Manage food orders from all delivery partners in one place!
+          </div>
       </div>
-    </div>
+      
+      <div class="header-actions">
+          <select id="providerFilter" class="filter-select">
+              <option value="all">All providers</option>
+              <option value="Wolt">Wolt</option>
+              <option value="TenBis">TenBis</option>
+              <option value="Mishloha">Mishloha</option>
+              <option value="Manual">Manual</option>
+          </select>
+          <select id="statusFilter" class="filter-select">
+              <option value="all">All statuses</option>
+              <option value="pending">Pending</option>
+              <option value="accepted">Accepted</option>
+              <option value="cancelled">Cancelled</option>
+          </select>
+      </div>
+  </div>
+  
     <!-- Incoming Orders part -->
     <div class="tables"> 
       <div>
