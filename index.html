@@ -5,35 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OrderHub</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="icon" type="images/png" href="icon.png">
+    <link rel="icon" href="photos\\icon.png">
 </head>
-<body>
-    <div>
-        <h1>OrderHub</h1>
-        <p>Manage food orders from all delivery partners in one place</p>
-        <div>
-        <select id="providerFilter" class="filter-select">
-            <option value="all">All providers</option>
-            <option value="Wolt">Wolt</option>
-            <option value="TenBis">TenBis</option>
-            <option value="Mishloha">Mishloha</option>
-            <option value="Manual">Manual</option>
-        </select>
-        <select id="statusFilter" class="filter-select">
-            <option value="all">All statuses</option>
-            <option value="pending">Pending</option>
-            <option value="accepted">Accepted</option>
-            <option value="cancelled">Cancelled</option>
-        </select>
-        </div>
-    </div>
-    <!-- Incoming Orders part -->
+
+<body class="background">
+  <div class="header">
+      <div class="logo">
+          <img src="photos/icon.png" width="45" height="45">
+          
+          <div class="header-text">
+              <h1>OrderHub</h1>
+              Manage food orders from all delivery partners in one place!
+          </div>
+      </div>
+      
+      <div class="header-actions">
+          <select id="providerFilter" class="filter-select">
+              <option value="all">All providers</option>
+              <option value="Wolt">Wolt</option>
+              <option value="TenBis">TenBis</option>
+              <option value="Mishloha">Mishloha</option>
+              <option value="Manual">Manual</option>
+          </select>
+          <select id="statusFilter" class="filter-select">
+              <option value="all">All statuses</option>
+              <option value="pending">Pending</option>
+              <option value="accepted">Accepted</option>
+              <option value="cancelled">Cancelled</option>
+          </select>
+      </div>
+  </div>
+
     <div class="tables"> 
         <div>
             <h1>Incoming Orders</h1>
             <button>Simulate Order</button>
             <button id="openBtn">New Order</button>
         </div>
+
         <div class="orders-table-wrapper">
         <table class="orders-table">
           <thead>
@@ -50,16 +59,16 @@
             </tr>
           </thead>
           <tbody id="ordersBodyActive">
-            <!--  -->
-          </tbody>
+            </tbody>
         </table>
       </div>
     </div>
-    <!--Cancelled Orders-->
-      <div class="tables">
+
+    <div class="tables">
         <div>
             <h1>Cancelled Orders</h1>
         </div>
+
         <div class="orders-table-wrapper">
         <table class="orders-table">
           <thead>
@@ -76,13 +85,11 @@
             </tr>
           </thead>
           <tbody id="ordersBodyActive">
-            <!--  -->
-          </tbody>
+            </tbody>
         </table>
       </div>
     </div>
-    <!--Completed Orders-->
-      <div class="tables">
+    <div class="tables">
         <div>
             <h1>Completed Orders</h1>
         </div>
@@ -102,11 +109,11 @@
             </tr>
           </thead>
           <tbody id="ordersBodyActive">
-            <!--  -->
-          </tbody>
+            </tbody>
         </table>
       </div>
     </div>
+
 <div id="popup" class="popup">
     <div class="popup-content">
         <span id="closeBtn" class="close">X</span>
