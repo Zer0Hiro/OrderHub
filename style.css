@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+=======
+/* Defines the background color */
+.background
+{
+  background-color: #ff990034;
+}
+
+/* Places the logo next to header */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Design for header */
+>>>>>>> b29371c0698bee237d929d92886a3789c8ee92c5
 .header
 {
   display: flex;
@@ -12,6 +29,10 @@
   padding-right: 40px;
 }
 
+<<<<<<< HEAD
+=======
+/* Design for header text */
+>>>>>>> b29371c0698bee237d929d92886a3789c8ee92c5
 .header-text
 {
   font-size: 13px;
@@ -20,6 +41,10 @@
   flex-direction: column;
 }
 
+<<<<<<< HEAD
+=======
+/* design for sub header */
+>>>>>>> b29371c0698bee237d929d92886a3789c8ee92c5
 .header-text h1
 {
   margin: 0;
@@ -77,20 +102,37 @@
     transform: translate(-50%, -50%);
     background: white;
 
+<<<<<<< HEAD
     padding: 0px 20px 30px 20px;
 
     height: 52%;
     width: 28%;
+=======
+    padding: 20px 20px 20px 20px;
+
+    height: 500px;
+    width: 500px;
+>>>>>>> b29371c0698bee237d929d92886a3789c8ee92c5
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
+<<<<<<< HEAD
+=======
+.popup-content h2 {
+  text-align: center;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+
+>>>>>>> b29371c0698bee237d929d92886a3789c8ee92c5
 .popup-content input,
 .popup-content textarea,
 .popup-content select {
     border-radius: 10px;
     border: 1px solid #ccc;
     padding: 10px;
+<<<<<<< HEAD
 }
 
 .popup-content h2 {
@@ -117,6 +159,47 @@
 #orderButton {
   margin-left: 90px;
   background-color: rgb(122, 245, 122);
+=======
+    box-sizing: border-box;
+    resize: none;
+}
+
+#orderName {
+    width: 48%;
+    float: left;
+    margin-bottom: 15px;
+}
+
+#orderTel {
+    width: 48%;
+    float: right;
+    margin-bottom: 15px;
+}
+
+#orderNumber {
+  float: right;
+  margin-right: 24%;
+  position: relative;
+}
+
+#orderItems, #orderAddress, #orderTotal{
+    width: 100%;
+    clear: both;
+}
+
+#orderButton {
+  display: block;
+  margin-left: auto;
+  background-color: rgb(122, 245, 122);
+  cursor: pointer;
+}
+
+#orderButton {
+  display: block;
+  margin-left: auto;
+  background-color: rgb(122, 245, 122);
+  cursor: pointer;
+>>>>>>> b29371c0698bee237d929d92886a3789c8ee92c5
 }
 
 /* design for close button in the "New Order" popup*/
@@ -128,11 +211,16 @@
     cursor: pointer;
 }
 
+<<<<<<< HEAD
 .filter-select, #orderButton
+=======
+button, select
+>>>>>>> b29371c0698bee237d929d92886a3789c8ee92c5
 {
   padding: 8px 12px;
   border-radius: 50px;
   border: 1px solid #616161;
+<<<<<<< HEAD
 }
 
 .background
@@ -148,4 +236,6 @@
 
 .orderName {
 
+=======
+>>>>>>> b29371c0698bee237d929d92886a3789c8ee92c5
 }
