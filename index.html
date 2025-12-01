@@ -119,7 +119,7 @@
     <div id="popup" class="popup">
       <div class="popup-content">
         <span id="closeBtn" class="close">x</span>
-        <form>
+        <form name="NewOrder">
           <h2>Create New Order</h2>
 
           <br><label id="customerName">Customer Name *</label> <label id="orderNumber">Phone Number *</label><br>
@@ -144,7 +144,7 @@
             <option value="Apple Pay">Apple Pay</option>
             <option value="Credit Card">Credit Card</option>
           </select>
-          <button type="submit" id="orderButton" onclick="NewOrder()">Create Order</button>
+          <button type="button" id="orderButton" onclick="validateForm()">Create Order</button>
           </form>
          
         </div>
