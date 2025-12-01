@@ -4,26 +4,14 @@ function chooseRandomOrder(a) {
     return a[randIndex];
 }
 
-let orders = [
+
+
+function simulateNewOrder() {
+    let orders = [
     { Provider: "Wolt", ID: "WO-1389", customer: "John", items: { Pizza: 2, Coke: 2}, sotal: 50, status: "pending" },
     { Provider: "Mishloha", ID: "MS-1399", customer: "John", items: { Burger: 1}, sotal: 500, status: "pending" }
 
-
-]
-
-function getCurrTime() {
-    // Returns the current time. Format : "HH:MM"
-    const time = new Date();
-
-    let hour = time.getHours();
-    let minute = time.getMinutes();
-
-    if (hour < 10) {
-    hour = "0" + hour;
-    }
-    if (minute < 10) {
-    minute = "0" + minute;
-    }
-    return hour + ":" + minute;
+    ]   
+    const newOrder = chooseRandomOrder(orders);
+    NewOrder(newOrder);
 }
-

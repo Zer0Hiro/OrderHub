@@ -16,5 +16,6 @@ window.onclick = (e) => {
 
 //Create Order
 function NewOrder(order) {
-    const temp
+    //const temp
 }
+
