@@ -40,7 +40,7 @@
     <div class="tables"> 
       <div>
         <h1>Incoming Orders</h1>
-        <button id="simulateBtn">Simulate Order</button>
+        <button id="simulateBtn", onclick="simulateNewOrder()">Simulate Order</button>
         <button id="openBtn">New Order</button>
       </div>
       <div class="orders-table-wrapper">
@@ -150,7 +150,7 @@
         </div>
       </div>
       <script src="order.js"></script>
-      
+      <script src="random.js"></script>
       <!-- Template of table elements-->
       <template id="orderRowTemplate">
         <tr class="order-row">
