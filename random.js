@@ -5,8 +5,8 @@ function chooseRandomOrder(a) {
 }
 
 let orders = [
-    { Provider: "Wolt", ID: "WO-1389", Customer: "John", items: { Pizza: 2, Coke: 2}, Total: 50, Status: "pending" },
-    { Provider: "Mishloha", ID: "MS-1399", Customer: "John", items: { Burger: 1}, Total: 500, status: "pending" }
+    { Provider: "Wolt", ID: "WO-1389", customer: "John", items: { Pizza: 2, Coke: 2}, sotal: 50, status: "pending" },
+    { Provider: "Mishloha", ID: "MS-1399", customer: "John", items: { Burger: 1}, sotal: 500, status: "pending" }
 
 
 ]
