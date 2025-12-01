@@ -16,11 +16,24 @@ if (ordersBodyActive) ordersBodyActive.innerHTML = "";
 
 //Popup
 openBtn.onclick = () => popup.style.display = "block";
-closeBtn.onclick = () => popup.style.display = "none";
-
+closeBtn.onclick = () => {
+    popup.style.display = "none";
+    cleanForm();
+}
 window.onclick = (e) => {
     if (e.target === popup) popup.style.display = "none";
 };
+
+//Clean Form
+function cleanForm()
+{
+    orderName.value = "";
+    orderTel.value = "";
+    orderItems.value = "";
+    orderAddress.value = "";
+    orderTotal.value = "";
+    orderPayment.value = "";
+}
 
 //Create Order
 function NewOrder(order) {
@@ -54,10 +67,5 @@ function NewOrder(order) {
 //    popup.style.display = "none";
 
     // Clear form fields
-    orderName.value = "";
-    orderTel.value = "";
-    orderItems.value = "";
-    orderAddress.value = "";
-    orderTotal.value = "";
-    orderPayment.value = "";
+    cleanForm();
 }
