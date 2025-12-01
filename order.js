@@ -2,8 +2,8 @@ const ordersBodyActive = document.getElementById("ordersBodyActive");
 const popup = document.getElementById("popup");
 const openBtn = document.getElementById("openBtn");
 const closeBtn = document.getElementById("closeBtn");
-const orderName = document.getElementById("name");
-const orderTel = document.getElementById("tel");
+const orderName = document.getElementById("orderName");
+const orderTel = document.getElementById("orderTel");
 const orderItems = document.getElementById("orderItems");
 const orderAddress = document.getElementById("orderAddress");
 const orderTotal = document.getElementById("orderTotal");
@@ -16,11 +16,24 @@ if (ordersBodyActive) ordersBodyActive.innerHTML = "";
 
 //Popup
 openBtn.onclick = () => popup.style.display = "block";
-closeBtn.onclick = () => popup.style.display = "none";
-
+closeBtn.onclick = () => {
+    popup.style.display = "none";
+    cleanForm();
+}
 window.onclick = (e) => {
     if (e.target === popup) popup.style.display = "none";
 };
+
+//Clean Form
+function cleanForm()
+{
+    orderName.value = "";
+    orderTel.value = "";
+    orderItems.value = "";
+    orderAddress.value = "";
+    orderTotal.value = "";
+    orderPayment.value = "";
+}
 
 //Create Order
 function NewOrder(order) {
@@ -30,9 +43,20 @@ function NewOrder(order) {
     const newRow = document.importNode(rowTemplate.content, true);
     const cells = newRow.querySelectorAll('td');
 
-    cells[0].textContent = "";
+    // Generate current time
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('en-US', { 
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: false 
+    });
+    
+    // Generate order ID
+    const orderId = "MAN-" + Date.now().toString().slice(-6);
+
+    cells[0].textContent = timeString;
     cells[1].textContent = "Manual";
-    cells[2].textContent = "";
+    cells[2].textContent = orderId;
     cells[3].textContent = orderName.value;
     cells[4].textContent = orderItems.value;
     cells[5].textContent = orderTotal.value;
@@ -40,14 +64,8 @@ function NewOrder(order) {
 
 
     tableBody.appendChild(newRow);
-    popup.style.display = "none";
+//    popup.style.display = "none";
 
-    orderName.value = "";
-    orderTel.value = "";
-    orderItems.value = "";
-    orderAddress.value = "";
-    orderTotal.value = "";
-    orderPayment.value = "";
-
-
+    // Clear form fields
+    cleanForm();
 }
