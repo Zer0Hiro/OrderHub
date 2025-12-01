@@ -1,3 +1,17 @@
+/* Defines the background color */
+.background
+{
+  background-color: #ff990034;
+}
+
+/* Places the logo next to header */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Design for header */
 .header
 {
   display: flex;
@@ -12,6 +26,7 @@
   padding-right: 40px;
 }
 
+/* Design for header text */
 .header-text
 {
   font-size: 13px;
@@ -20,6 +35,7 @@
   flex-direction: column;
 }
 
+/* design for sub header */
 .header-text h1
 {
   margin: 0;
@@ -131,6 +147,13 @@
   cursor: pointer;
 }
 
+#orderButton {
+  display: block;
+  margin-left: auto;
+  background-color: rgb(122, 245, 122);
+  cursor: pointer;
+}
+
 /* design for close button in the "New Order" popup*/
 .close {
     position: absolute;
@@ -140,20 +163,9 @@
     cursor: pointer;
 }
 
-.filter-select, #orderButton
+button, select
 {
   padding: 8px 12px;
   border-radius: 50px;
   border: 1px solid #616161;
-}
-
-.background
-{
-  background-color: #ff990034;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
 }
