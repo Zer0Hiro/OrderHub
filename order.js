@@ -85,16 +85,13 @@ function NewOrder() {
 
 // Form Validation
 function validateForm() {
-    var phone = document.getElementById('orderTel').value;
-    var items = document.getElementById('orderItems').value;
-    var amount = document.getElementById('orderTotal').value;
 
-    var alertms = ''
-    if(trim(phone).length != 10) {
+    var alertms = '';
+    if(trim(orderTel).length != 10) {
         alertms = alertms + "Please enter 10 digits phone number\n";
     }
 
-    if(amount == 0 && trim(items).length != 0) {
+    if(orderTotal == 0 && trim(orderItems).length != 0) {
         alertms = alertms + "False Amount";
     }
 
