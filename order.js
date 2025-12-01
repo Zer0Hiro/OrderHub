@@ -2,21 +2,13 @@ const ordersBodyActive = document.getElementById("ordersBodyActive");
 const popup = document.getElementById("popup");
 const openBtn = document.getElementById("openBtn");
 const closeBtn = document.getElementById("closeBtn");
-<<<<<<< HEAD
-const orderName = document.getElementById("name");
-const orderTel = document.getElementById("tel");
-=======
 const orderName = document.getElementById("orderName");
 const orderTel = document.getElementById("orderTel");
->>>>>>> b29371c0698bee237d929d92886a3789c8ee92c5
 const orderItems = document.getElementById("orderItems");
 const orderAddress = document.getElementById("orderAddress");
 const orderTotal = document.getElementById("orderTotal");
 const orderPayment = document.getElementById("orderPayment");
 
-<<<<<<< HEAD
-
-=======
 //Random Orders
 function chooseRandomOrder(a) {
     // Returns a random order from list a.
@@ -30,7 +22,6 @@ let orders = [
 
 
 ]
->>>>>>> b29371c0698bee237d929d92886a3789c8ee92c5
 
 //Empty Table
 if (ordersBodyActive) ordersBodyActive.innerHTML = "";
@@ -45,42 +36,15 @@ window.onclick = (e) => {
     if (e.target === popup) popup.style.display = "none";
 };
 
-<<<<<<< HEAD
-//Create Order
-function NewOrder(order) {
-    const tableBody = document.getElementById("ordersBodyActive");
-    const rowTemplate = document.getElementById("orderRowTemplate");
-
-    const newRow = document.importNode(rowTemplate.content, true);
-    const cells = newRow.querySelectorAll('td');
-
-    cells[0].textContent = "";
-    cells[1].textContent = "Manual";
-    cells[2].textContent = "";
-    cells[3].textContent = orderName.value;
-    cells[4].textContent = orderItems.value;
-    cells[5].textContent = orderTotal.value;
-    cells[6].textContent = "Pending";
-
-
-    tableBody.appendChild(newRow);
-    popup.style.display = "none";
-
-=======
 //Clean Form
 function cleanForm()
 {
->>>>>>> b29371c0698bee237d929d92886a3789c8ee92c5
     orderName.value = "";
     orderTel.value = "";
     orderItems.value = "";
     orderAddress.value = "";
     orderTotal.value = "";
     orderPayment.value = "";
-<<<<<<< HEAD
-
-
-=======
 }
 
 //Create Order
@@ -136,5 +100,4 @@ function validateForm() {
     }
 
     else {NewOrder();}
->>>>>>> b29371c0698bee237d929d92886a3789c8ee92c5
 }
