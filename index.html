@@ -122,8 +122,9 @@
         <form>
           <h2>Create New Order</h2>
 
-          <br><label>Customer Name *</label><label>Phone Number *</label><br>
+          <br><label id="customerName">Customer Name *</label> <label id="orderNumber">Phone Number *</label><br>
           <input id="orderName" type="text" required placeholder="Enter customer name">
+          
           <input id="orderTel" type="tel" required placeholder="05x-xxx-xxxx"><br><br>
 
           <label>Items *</label><br>
@@ -135,7 +136,7 @@
           <label for="orderTotal" id="orderAmount">Total Amount ($) *</label>
           <input type="number" id="orderTotal" name="total" step="0.01" min="0" required placeholder="0.00" /><br><br>
           
-          <label for="orderPayment">Payment Method *</label>
+          <label for="orderPayment">Payment Method *</label><br>
           <select id="orderPayment" name="paymentMethod" required>
             <option value="">Select payment method</option>
             <option value="Cash on delivery">Cash on delivery</option>
