@@ -40,11 +40,7 @@
     <div class="tables"> 
       <div>
         <h1>Incoming Orders</h1>
-<<<<<<< HEAD
-        <button>Simulate Order</button>
-=======
         <button id="simulateBtn">Simulate Order</button>
->>>>>>> b29371c0698bee237d929d92886a3789c8ee92c5
         <button id="openBtn">New Order</button>
       </div>
       <div class="orders-table-wrapper">
@@ -123,20 +119,12 @@
     <div id="popup" class="popup">
       <div class="popup-content">
         <span id="closeBtn" class="close">x</span>
-<<<<<<< HEAD
-        <form>
-          <h2>Create New Order</h2>
-
-          <br><label>Customer Name *</label><label>Phone Number *</label><br>
-          <input id="orderName" type="text" required placeholder="Enter customer name">
-=======
         <form name="NewOrder">
           <h2>Create New Order</h2>
 
           <br><label id="customerName">Customer Name *</label> <label id="orderNumber">Phone Number *</label><br>
           <input id="orderName" type="text" required placeholder="Enter customer name">
           
->>>>>>> b29371c0698bee237d929d92886a3789c8ee92c5
           <input id="orderTel" type="tel" required placeholder="05x-xxx-xxxx"><br><br>
 
           <label>Items *</label><br>
@@ -148,11 +136,7 @@
           <label for="orderTotal" id="orderAmount">Total Amount ($) *</label>
           <input type="number" id="orderTotal" name="total" step="0.01" min="0" required placeholder="0.00" /><br><br>
           
-<<<<<<< HEAD
-          <label for="orderPayment">Payment Method *</label>
-=======
           <label for="orderPayment">Payment Method *</label><br>
->>>>>>> b29371c0698bee237d929d92886a3789c8ee92c5
           <select id="orderPayment" name="paymentMethod" required>
             <option value="">Select payment method</option>
             <option value="Cash on delivery">Cash on delivery</option>
@@ -160,11 +144,7 @@
             <option value="Apple Pay">Apple Pay</option>
             <option value="Credit Card">Credit Card</option>
           </select>
-<<<<<<< HEAD
-          <button type="button" id="orderButton" onclick="NewOrder()">Create Order</button>
-=======
           <button type="button" id="orderButton" onclick="validateForm()">Create Order</button>
->>>>>>> b29371c0698bee237d929d92886a3789c8ee92c5
           </form>
          
         </div>
