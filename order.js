@@ -99,8 +99,8 @@ function chooseRandomOrder(a) {
 function simulateNewOrder() {
     // adds a new simulated order to the incoming orders list
     let orders = [
-    { provider: "Wolt", ID: "WO-1389", customer: "John", items: "Pizza: 2, Coke: 1", total: 50 },
-    { provider: "Mishloha", ID: "MS-1399", customer: "Leo", items: "Burger: 10", total: 500 }
+    { provider: "Wolt", customer: "John", items: "Pizza: 2, Coke: 1", total: 50 },
+    { provider: "Mishloha", customer: "Leo", items: "Burger: 10", total: 500 }
 
     ]   
     const tableBody = document.getElementById("ordersBodyActive");
@@ -108,6 +108,7 @@ function simulateNewOrder() {
     const newRow = document.importNode(rowTemplate.content, true);
     const cells = newRow.querySelectorAll('td');
     const simOrder = chooseRandomOrder(orders);
+
     // get the curr time as a string: `timeString`
     const now = new Date();
     const timeString = now.toLocaleTimeString('en-US', { 
@@ -116,7 +117,19 @@ function simulateNewOrder() {
         hour12: false 
     });
 
-    const orderId = simOrder.provider + "-" + Date.now().toString().slice(-6);
+
+    let prefix = "";
+    if(simOrder.provider === "Wolt") {
+        prefix = "WO";
+    }
+    else if (simOrder.provider === "Mishloha") {
+        prefix = "MS";
+    }
+    else if(simOrder.provider === "TenBis") {
+        prefix = "TB";
+    }
+
+    const orderId = prefix + "-" + Date.now().toString().slice(-6);
     
     cells[0].textContent = timeString;
     cells[1].textContent = simOrder.provider;
