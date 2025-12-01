@@ -1,3 +1,17 @@
+/* Defines the background color */
+.background
+{
+  background-color: #ff990034;
+}
+
+/* Places the logo next to header */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Design for header */
 .header
 {
   display: flex;
@@ -12,6 +26,7 @@
   padding-right: 40px;
 }
 
+/* Design for header text */
 .header-text
 {
   font-size: 13px;
@@ -20,6 +35,7 @@
   flex-direction: column;
 }
 
+/* design for sub header */
 .header-text h1
 {
   margin: 0;
@@ -77,12 +93,18 @@
     transform: translate(-50%, -50%);
     background: white;
 
-    padding: 0px 20px 30px 20px;
+    padding: 20px 20px 20px 20px;
 
-    height: 52%;
-    width: 28%;
+    height: 500px;
+    width: 500px;
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.popup-content h2 {
+  text-align: center;
+  margin: 0 0 10px 0;
+  padding: 0;
 }
 
 .popup-content input,
@@ -91,32 +113,45 @@
     border-radius: 10px;
     border: 1px solid #ccc;
     padding: 10px;
-}
-
-.popup-content h2 {
-  padding-left: 165px;
-}
-
-.popup-content label + label {
-    margin-left: 170px;
+    box-sizing: border-box;
+    resize: none;
 }
 
 #orderName {
-    width: 200px;
+    width: 48%;
+    float: left;
+    margin-bottom: 15px;
 }
 
 #orderTel {
-    margin-left: 70px;
-    width: 200px;
+    width: 48%;
+    float: right;
+    margin-bottom: 15px;
+}
+
+#orderNumber {
+  float: right;
+  margin-right: 24%;
+  position: relative;
 }
 
 #orderItems, #orderAddress, #orderTotal{
-    width: 92%;
+    width: 100%;
+    clear: both;
 }
 
 #orderButton {
-  margin-left: 90px;
+  display: block;
+  margin-left: auto;
   background-color: rgb(122, 245, 122);
+  cursor: pointer;
+}
+
+#orderButton {
+  display: block;
+  margin-left: auto;
+  background-color: rgb(122, 245, 122);
+  cursor: pointer;
 }
 
 /* design for close button in the "New Order" popup*/
@@ -128,24 +163,9 @@
     cursor: pointer;
 }
 
-.filter-select, #orderButton
+button, select
 {
   padding: 8px 12px;
   border-radius: 50px;
   border: 1px solid #616161;
-}
-
-.background
-{
-  background-color: #ff990034;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.orderName {
-
 }
