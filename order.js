@@ -10,6 +10,7 @@ const orderItems = document.getElementById("orderItems");
 const orderAddress = document.getElementById("orderAddress");
 const orderTotal = document.getElementById("orderTotal");
 const orderPayment = document.getElementById("orderPayment");
+const orderNotes = document.getElementById("orderNotes");
 //Table
 const incomingTableBody = document.getElementById("ordersBodyActive");
 
@@ -34,6 +35,7 @@ function cleanForm() {
     orderAddress.value = "";
     orderTotal.value = "";
     orderPayment.value = "";
+    orderNotes.value = "";
 }
 
 //Time func
@@ -53,20 +55,26 @@ function statusBtn(cells) {
     let compbtn = cells[8].querySelector("#completedBtn");
     compbtn.style.display = "none";
     compbtn.onclick = () => {
-        cells[6].textContent = "Completed";
+        cells[6].innerHTML = '<span class="status-pill status-completed">Completed</span>';
+        cbtn.style.display = "none";
         filter();
     }
     //Accept Button
     let abtn = cells[8].querySelector("#acceptBtn");
     abtn.onclick = () => {
-        cells[6].textContent = "Accepted";
+        cells[6].innerHTML = '<span class="status-pill status-accepted">Accepted</span>';
         abtn.style.display = "none";
         compbtn.style.display = "";
         filter();
     }
     //Cancel Button
     let cbtn = cells[8].querySelector("#cancelBtn");
-    cbtn.onclick = () => cells[6].textContent = "Cancelled";
+    cbtn.onclick = () => {
+        cells[6].innerHTML = '<span class="status-pill status-cancelled">Cancelled</span>';
+        abtn.style.display = "none";
+        compbtn.style.display = "none";
+        filter();
+    }
 }
 
 //Simulate Order
@@ -123,17 +131,8 @@ function simulateNewOrder() {
 
     incomingTableBody.appendChild(newRow);
 
-    //Accept Button
-    let abtn = cells[8].querySelector("#acceptBtn");
-    abtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-accepted">Accepted</span>';
-
-    //Cancel Button
-    let cbtn = cells[8].querySelector("#cancelBtn");
-    cbtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-cancelled">Cancelled</span>';
-
-    //Completed Button
-    let compbtn = cells[8].querySelector("#completedBtn");
-    compbtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-completed">Completed</span>';
+    //Status Buttons
+    statusBtn(cells);
 }
 
 
@@ -160,10 +159,10 @@ function NewOrder() {
 
     incomingTableBody.appendChild(newRow);
     popup.style.display = "none";
-    
+
     //Status Buttons
     statusBtn(cells);
-    
+
     // Clear form fields
     cleanForm();
 
@@ -180,8 +179,8 @@ function validateForm() {
 
     //Check price of items
     const total = parseFloat(orderTotal.value);
-    if (total == 0 && orderItems.value.trim().length != 0) {
-        alertms = alertms + "False Amount";
+    if ((typeof orderTotal.value === 'string') || (total == 0 && orderItems.value.trim().length != 0)) {
+        alertms = alertms + "Invalid Amount";
     }
 
     if (orderPayment.value == "") {
@@ -191,7 +190,6 @@ function validateForm() {
     if (alertms != "") {
         alert(alertms);
     }
-
 
     else {
         NewOrder();
@@ -211,7 +209,7 @@ function filter() {
                 cells[i].style.display = '';
             }
             else if ((cells[i].querySelectorAll("td")[1].innerHTML == filterProvider || filterProvider == 'all')
-                && (cells[i].querySelectorAll("td")[6].innerHTML.toLowerCase() == filterStatus || filterStatus == 'all')) {
+                && (cells[i].querySelectorAll("td")[6].textContent.toLowerCase() == filterStatus || filterStatus == 'all')) {
                 cells[i].style.display = '';
             }
             else {

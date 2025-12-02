@@ -102,18 +102,55 @@ select {
 }
 
 /* Defines the size for each column */
-.orders-table th:nth-child(1) { width: 2%; } /* Time */
-.orders-table th:nth-child(2) { width: 2%; } /* Provider */
-.orders-table th:nth-child(3) { width: 2%; } /* Order # */
-.orders-table th:nth-child(4) { width: 2%; } /* Customer */
-.orders-table th:nth-child(5) { width: 9%; } /* Items */
-.orders-table th:nth-child(6) { width: 2%; } /* Total */
-.orders-table th:nth-child(7) { width: 2.2%; min-width: 90px; } /* Status */
-.orders-table th:nth-child(8) { width: 2.2%; } /* Contact */
-.orders-table th:nth-child(9) { width: 7%; } /* Actions */
+.orders-table th:nth-child(1) {
+    width: 2%;
+}
+
+/* Time */
+.orders-table th:nth-child(2) {
+    width: 2%;
+}
+
+/* Provider */
+.orders-table th:nth-child(3) {
+    width: 2%;
+}
+
+/* Order # */
+.orders-table th:nth-child(4) {
+    width: 2%;
+}
+
+/* Customer */
+.orders-table th:nth-child(5) {
+    width: 9%;
+}
+
+/* Items */
+.orders-table th:nth-child(6) {
+    width: 2%;
+}
+
+/* Total */
+.orders-table th:nth-child(7) {
+    width: 2.2%;
+    min-width: 90px;
+}
+
+/* Status */
+.orders-table th:nth-child(8) {
+    width: 2.2%;
+}
+
+/* Contact */
+.orders-table th:nth-child(9) {
+    width: 7%;
+}
+
+/* Actions */
 
 /* This aligns entires with the table columns and adds a dividing line*/
-.orders-table th, 
+.orders-table th,
 .orders-table td {
     text-align: left;
     padding: 10px 15px 10px 10px;
