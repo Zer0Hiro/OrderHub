@@ -119,15 +119,9 @@ select {
     border-right: 1px solid #e0e0e0;
 }
 
-.orders-table td:nth-child(6) {
-    font-weight: 650;
-}
-
-/* The next 4 classes control the color of the buttons */
-.btn-accept {
-    background-color: #7af57a;
-    border-color: #0f4b0f;
-    color: rgb(0, 0, 0);
+/* Adds a color to the first row of each table */
+.orders-table-color {
+    background-color: rgb(230, 230, 230);
 }
 
 .orders-table td:nth-child(6) {
