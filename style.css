@@ -1,11 +1,11 @@
-/* Defines the background color */
-.background {
-    background-color: #ff990034;
-}
-
 /* Universal design for font */
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Defines the background color */
+.background {
+    background-color: #ff990034;
 }
 
 /* Universal design for buttons */
@@ -49,15 +49,15 @@ select {
     margin: 0;
 }
 
+/* Design for the tables */
 .tables {
     max-width: 1380px;
     margin: 20px auto;
     background: #ffffff;
-    border-radius: 1.25rem;
-    padding: 1.5rem 1.75rem 1.75rem;
-    box-shadow:
-        0 24px 60px rgba(78, 91, 49, 0.1),
-        0 0 0 1px rgba(78, 91, 49, 0.15);
+    border-radius: 20px;
+    border: 1px solid #61616181;
+    padding: 24px 20px 20px;
+
 }
 
 /* This class and the next one align the Order buttons correctly */
@@ -75,60 +75,120 @@ select {
 /* This id and the next one stylize the Order buttons */
 #openBtn {
     background-color: #7af57a;
+    border-color: #0f4b0f;
+    color: #000000;
     cursor: pointer;
 }
 
 #simulateBtn {
-    background-color: rgba(122, 245, 122, 0.397);
+    background-color: #7af57a65;
     cursor: pointer;
     margin-left: 10px;
 }
 
 /* Defines the style of the top of the table */
 .orders-table-wrapper {
-    margin-top: 0.75rem;
-    border-radius: 0.75rem;
+    border-radius: 12px;
     overflow: auto;
-    border: 1px solid rgba(78, 91, 49, 0.15);
-    background: #ffffff;
 }
 
 /* Defines the style of each column in the table */
 .orders-table {
-    width: 100%;
-    min-width: 900px;
+    width: 1380px;
+    table-layout: fixed;
     border-collapse: collapse;
-    font-size: 0.85rem;
+    font-size: 13.6px;
+    white-space: nowrap;
 }
 
-/* This aligns entires with the table columns*/
+/* Defines the size for each column */
+.orders-table th:nth-child(1) { width: 2%; } /* Time */
+.orders-table th:nth-child(2) { width: 2%; } /* Provider */
+.orders-table th:nth-child(3) { width: 2%; } /* Order # */
+.orders-table th:nth-child(4) { width: 2%; } /* Customer */
+.orders-table th:nth-child(5) { width: 9%; } /* Items */
+.orders-table th:nth-child(6) { width: 2%; } /* Total */
+.orders-table th:nth-child(7) { width: 2.2%; min-width: 90px; } /* Status */
+.orders-table th:nth-child(8) { width: 2.2%; } /* Contact */
+.orders-table th:nth-child(9) { width: 7%; } /* Actions */
+
+/* This aligns entires with the table columns and adds a dividing line*/
 .orders-table th, 
 .orders-table td {
     text-align: left;
-    padding: 10px 15px 10px 45px; /* Top Right Bottom LEFT */
+    padding: 10px 15px 10px 10px;
+    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+
 }
 
-.btn-accept {
-    background-color: #7af57a;
-    border-color: #0f4b0f;
-    color: rgb(0, 0, 0);
+/* Adds a color to the first row of each table */
+.orders-table-color {
+    background-color: #e6e6e6;
 }
+
+/* BOOOOLD */
+.orders-table td:nth-child(6) {
+    font-weight: 650;
+}
+
+/* Defines a pill style for the order status */
+.status-pill {
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 12px;
+    display: inline-block;
+}
+
+/* Defines the design for each status */
+.status-pending {
+    background-color: #ffeeba;
+    color: #856404;
+}
+
+.status-accepted {
+    background-color: #cce5ff;
+    color: #004085;
+}
+
+.status-cancelled {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.status-completed {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* The next 4 classes control the color of the buttons */
+.btn-accept {
+    background-color: #ffeeba;
+    border-color: #856404;
+    color: black;
+}
+
 .btn-cancel {
-    background-color: rgb(255, 205, 205);
-    border-color: red;
-    color: rgb(255, 0, 0);
+    background-color: #f8d7da;
+    border-color: #991b28;
+    color: #ff0000;
+    margin-left: 5px;
 }
 
 .btn-complete {
-    background-color: #ff990034;
-    border-color: rgb(160, 123, 0);
-    color: black;
+    background-color: #d4edda;
+    border-color: #155724;
+    color: #000000;
+    margin-left: 5px;
 }
 
 .btn-more {
-    background-color: rgb(204, 204, 204);
-    border-color: rgb(78, 78, 78);
-    color: black;
+    background-color: transparent;
+    border-color: transparent;
+    color: #000000;
+    font-weight: 600;
+    float: right;
 }
 
 /* Hides new order popup and fades background*/
@@ -136,7 +196,7 @@ select {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: #00000080;
 }
 
 /* Defines the entire layout of the popup window*/
@@ -145,12 +205,13 @@ select {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: white;
+    background: #ffffff;
     padding: 20px 20px 20px 20px;
-    height: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
     width: 500px;
     border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 20px #0000004d;
 }
 
 /* Fixes the popup header in place */
@@ -177,7 +238,7 @@ select {
     border: 1px solid #ccc;
     padding: 10px;
     box-sizing: border-box;
-    resize: none;
+    resize: vertical;
 }
 
 /* Stylizes the 7 ids seen below. Mainly possitions the fields in a certain way*/
@@ -201,7 +262,8 @@ select {
 
 #orderItems,
 #orderAddress,
-#orderTotal {
+#orderTotal,
+#orderNotes {
     width: 100%;
     clear: both;
 }
@@ -209,6 +271,6 @@ select {
 #orderButton {
     display: block;
     margin-left: auto;
-    background-color: rgb(122, 245, 122);
+    background-color: #7af57a;
     cursor: pointer;
 }

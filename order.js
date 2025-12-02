@@ -11,7 +11,7 @@ const orderAddress = document.getElementById("orderAddress");
 const orderTotal = document.getElementById("orderTotal");
 const orderPayment = document.getElementById("orderPayment");
 //Table
-const tableBody = document.getElementById("ordersBodyActive");
+const incomingTableBody = document.getElementById("ordersBodyActive");
 
 //Empty Table
 if (ordersBodyActive) ordersBodyActive.innerHTML = "";
@@ -45,6 +45,28 @@ function timeATM() {
         hour12: false
     });
     return time;
+}
+
+//Status Buttons
+function statusBtn(cells) {
+    //Completed Button
+    let compbtn = cells[8].querySelector("#completedBtn");
+    compbtn.style.display = "none";
+    compbtn.onclick = () => {
+        cells[6].textContent = "Completed";
+        filter();
+    }
+    //Accept Button
+    let abtn = cells[8].querySelector("#acceptBtn");
+    abtn.onclick = () => {
+        cells[6].textContent = "Accepted";
+        abtn.style.display = "none";
+        compbtn.style.display = "";
+        filter();
+    }
+    //Cancel Button
+    let cbtn = cells[8].querySelector("#cancelBtn");
+    cbtn.onclick = () => cells[6].textContent = "Cancelled";
 }
 
 //Simulate Order
@@ -97,11 +119,21 @@ function simulateNewOrder() {
     cells[3].textContent = simOrder.customer;
     cells[4].textContent = simOrder.items;
     cells[5].textContent = simOrder.total.toFixed(2) + "₪";
-    cells[6].textContent = "Pending";
+    cells[6].innerHTML = '<span class="status-pill status-pending">Pending</span>';
 
-    tableBody.appendChild(newRow);
+    incomingTableBody.appendChild(newRow);
 
+    //Accept Button
+    let abtn = cells[8].querySelector("#acceptBtn");
+    abtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-accepted">Accepted</span>';
 
+    //Cancel Button
+    let cbtn = cells[8].querySelector("#cancelBtn");
+    cbtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-cancelled">Cancelled</span>';
+
+    //Completed Button
+    let compbtn = cells[8].querySelector("#completedBtn");
+    compbtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-completed">Completed</span>';
 }
 
 
@@ -126,11 +158,15 @@ function NewOrder() {
     cells[6].textContent = "Pending";
 
 
-    tableBody.appendChild(newRow);
+    incomingTableBody.appendChild(newRow);
     popup.style.display = "none";
-
+    
+    //Status Buttons
+    statusBtn(cells);
+    
     // Clear form fields
     cleanForm();
+
 }
 
 // Form Validation
@@ -159,5 +195,28 @@ function validateForm() {
 
     else {
         NewOrder();
+    }
+}
+
+
+function filter() {
+    const filterProvider = document.getElementById("providerFilter").value;
+    const filterStatus = document.getElementById("statusFilter").value;
+    const tables = document.getElementsByClassName("orderBody");
+
+    for (let j = 0; j < tables.length; j++) {
+        const cells = tables[j].querySelectorAll("tr")
+        for (let i = 0; i < cells.length; i++) {
+            if (filterProvider == "all" && filterStatus == "all") {
+                cells[i].style.display = '';
+            }
+            else if ((cells[i].querySelectorAll("td")[1].innerHTML == filterProvider || filterProvider == 'all')
+                && (cells[i].querySelectorAll("td")[6].innerHTML.toLowerCase() == filterStatus || filterStatus == 'all')) {
+                cells[i].style.display = '';
+            }
+            else {
+                cells[i].style.display = 'none';
+            }
+        }
     }
 }
