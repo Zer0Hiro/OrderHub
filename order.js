@@ -57,9 +57,19 @@ function chooseRandomOrder(a) {
 function simulateNewOrder() {
     // adds a new simulated order to the incoming orders list
     let orders = [
-        { provider: "Wolt", ID: "WO-1389", customer: "John", items: "Pizza: 2, Coke: 1", total: 50 },
-        { provider: "Mishloha", ID: "MS-1399", customer: "Leo", items: "Burger: 10", total: 500 }
-    ]
+        { provider: "Wolt", customer: "John", items: "Pizza: 2, Coke: 1", total: 89.50 },
+        { provider: "Mishloha", customer: "Sarah", items: "Sushi Set: 1", total: 62.20 },
+        { provider: "Tenbis", customer: "Adam", items: "Falafel: 3, Water: 2", total: 38.75 },
+        { provider: "Wolt", customer: "Emily", items: "Pasta: 1, Salad: 1", total: 72.30 },
+        { provider: "Mishloha", customer: "Daniel", items: "Burger: 2, Fries: 1", total: 96.90 },
+        { provider: "Tenbis", customer: "Lior", items: "Shawarma: 1", total: 38.40 },
+        { provider: "Wolt", customer: "Maya", items: "Sushi: 8 pcs", total: 48.60 },
+        { provider: "Mishloha", customer: "Tom", items: "Steak Meal: 1", total: 135.75 },
+        { provider: "Tenbis", customer: "Omer", items: "Sandwich: 2, Juice: 1", total: 52.50 },
+        { provider: "Wolt", customer: "Noa", items: "Pad Thai: 1", total: 58.20 }
+    ];
+
+
     const rowTemplate = document.getElementById("orderRowTemplate");
     const newRow = document.importNode(rowTemplate.content, true);
     const cells = newRow.querySelectorAll('td');
@@ -68,14 +78,25 @@ function simulateNewOrder() {
     //Time stamp for order
     timeString = timeATM();
 
-    const orderId = simOrder.provider + "-" + Date.now().toString().slice(-6);
+    let prefix = "";
+    if (simOrder.provider === "Wolt") {
+        prefix = "WO";
+    }
+    else if (simOrder.provider === "Mishloha") {
+        prefix = "MS";
+    }
+    else if (simOrder.provider === "Tenbis") {
+        prefix = "TB";
+    }
+
+    const orderId = prefix + "-" + Date.now().toString().slice(-6);
 
     cells[0].textContent = timeString;
     cells[1].textContent = simOrder.provider;
     cells[2].textContent = orderId;
     cells[3].textContent = simOrder.customer;
     cells[4].textContent = simOrder.items;
-    cells[5].textContent = simOrder.total;
+    cells[5].textContent = simOrder.total.toFixed(2) + "₪";
     cells[6].textContent = "Pending";
 
     tableBody.appendChild(newRow);
@@ -127,9 +148,15 @@ function validateForm() {
         alertms = alertms + "False Amount";
     }
 
+    if (orderPayment.value == "") {
+        alertms = alertms + "Please select a payment method";
+    }
+
     if (alertms != "") {
         alert(alertms);
     }
+
+
     else {
         NewOrder();
     }
