@@ -1,27 +1,17 @@
+//Popup
 const ordersBodyActive = document.getElementById("ordersBodyActive");
 const popup = document.getElementById("popup");
 const openBtn = document.getElementById("openBtn");
 const closeBtn = document.getElementById("closeBtn");
+//Form
 const orderName = document.getElementById("orderName");
 const orderTel = document.getElementById("orderTel");
 const orderItems = document.getElementById("orderItems");
 const orderAddress = document.getElementById("orderAddress");
 const orderTotal = document.getElementById("orderTotal");
 const orderPayment = document.getElementById("orderPayment");
-
-//Random Orders
-function chooseRandomOrder(a) {
-    // Returns a random order from list a.
-    const randIndex = Math.floor(Math.random() * a.length); // Math.random() returns  a float between 0 to 1
-    return a[randIndex];
-}
-
-let orders = [
-    { Provider: "Wolt", ID: "WO-1389", Customer: "John", items: { Pizza: 2, Coke: 2}, Total: 50, Status: "pending" },
-    { Provider: "Mishloha", ID: "MS-1399", Customer: "John", items: { Burger: 1}, Total: 500, status: "pending" }
-
-
-]
+//Table
+const tableBody = document.getElementById("ordersBodyActive");
 
 //Empty Table
 if (ordersBodyActive) ordersBodyActive.innerHTML = "";
@@ -37,8 +27,7 @@ window.onclick = (e) => {
 };
 
 //Clean Form
-function cleanForm()
-{
+function cleanForm() {
     orderName.value = "";
     orderTel.value = "";
     orderItems.value = "";
@@ -47,26 +36,66 @@ function cleanForm()
     orderPayment.value = "";
 }
 
-//Create Order
-function NewOrder() {
-    const tableBody = document.getElementById("ordersBodyActive");
+//Time func
+function timeATM() {
+    const now = new Date();
+    const time = now.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    });
+    return time;
+}
+
+//Simulate Order
+function chooseRandomOrder(a) {
+    // Returns a random order from list a.
+    const randIndex = Math.floor(Math.random() * a.length); // Math.random() returns  a float between 0 to 1
+    return a[randIndex];
+}
+
+function simulateNewOrder() {
+    // adds a new simulated order to the incoming orders list
+    let orders = [
+        { provider: "Wolt", ID: "WO-1389", customer: "John", items: "Pizza: 2, Coke: 1", total: 50 },
+        { provider: "Mishloha", ID: "MS-1399", customer: "Leo", items: "Burger: 10", total: 500 }
+    ]
     const rowTemplate = document.getElementById("orderRowTemplate");
-    
     const newRow = document.importNode(rowTemplate.content, true);
     const cells = newRow.querySelectorAll('td');
-    
-    
-    // Generate current time
-    const now = new Date();
-    const timeString = now.toLocaleTimeString('en-US', { 
-        hour: '2-digit', 
-        minute: '2-digit',
-        hour12: false 
-    });
-    
+    const simOrder = chooseRandomOrder(orders);
+
+    //Time stamp for order
+    timeString = timeATM();
+
+    const orderId = simOrder.provider + "-" + Date.now().toString().slice(-6);
+
+    cells[0].textContent = timeString;
+    cells[1].textContent = simOrder.provider;
+    cells[2].textContent = orderId;
+    cells[3].textContent = simOrder.customer;
+    cells[4].textContent = simOrder.items;
+    cells[5].textContent = simOrder.total;
+    cells[6].textContent = "Pending";
+
+    tableBody.appendChild(newRow);
+
+
+}
+
+
+//Create Order
+function NewOrder() {
+    const rowTemplate = document.getElementById("orderRowTemplate");
+    const newRow = document.importNode(rowTemplate.content, true);
+    const cells = newRow.querySelectorAll('td');
+
+    //Time stamp for order
+    timeString = timeATM();
+
     // Generate order ID
     const orderId = "MAN-" + Date.now().toString().slice(-6);
-    
+
     cells[0].textContent = timeString;
     cells[1].textContent = "Manual";
     cells[2].textContent = orderId;
@@ -74,11 +103,11 @@ function NewOrder() {
     cells[4].textContent = orderItems.value;
     cells[5].textContent = orderTotal.value;
     cells[6].textContent = "Pending";
-    
-    
+
+
     tableBody.appendChild(newRow);
     popup.style.display = "none";
-    
+
     // Clear form fields
     cleanForm();
 }
@@ -87,16 +116,18 @@ function NewOrder() {
 function validateForm() {
 
     let alertms = "";
-    if(orderTel.value.trim().length != 10) {
+    //Check phone number 
+    if (orderTel.value.trim().length != 10) {
         alertms = alertms + "Please enter 10 digits phone number\n";
     }
-    const total = parseFloat(orderTotal.value);
 
-    if(total == 0 && orderItems.value.trim().length != 0) {
+    //Check price of items
+    const total = parseFloat(orderTotal.value);
+    if (total == 0 && orderItems.value.trim().length != 0) {
         alertms = alertms + "False Amount";
     }
 
-    if(alertms != ''){
+    if (alertms != "") {
         alert(alertms);
     }
     else {

@@ -1,23 +1,21 @@
 /* Defines the background color */
-.background
-{
+.background {
   background-color: #ff990034;
 }
 
 /* Places the logo next to header */
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 /* Design for header */
-.header
-{
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+
   border-bottom: 2px solid #d1d1d1;
   padding-bottom: 15px;
   background-color: #ffffff;
@@ -27,8 +25,7 @@
 }
 
 /* Design for header text */
-.header-text
-{
+.header-text {
   font-size: 13px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   display: flex;
@@ -36,15 +33,13 @@
 }
 
 /* design for sub header */
-.header-text h1
-{
+.header-text h1 {
   margin: 0;
 }
 
-.header-actions
-{
+.header-actions {
   display: flex;
-  gap: 10px; 
+  gap: 10px;
 }
 
 .tables {
@@ -78,27 +73,27 @@
 
 /* shit to do with the "New Order" popup*/
 .popup {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 /* shit to do with the "New Order" popup*/
 .popup-content {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
 
-    padding: 20px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
 
-    height: 500px;
-    width: 500px;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  height: 500px;
+  width: 500px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .popup-content h2 {
@@ -110,23 +105,23 @@
 .popup-content input,
 .popup-content textarea,
 .popup-content select {
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-sizing: border-box;
-    resize: none;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
+  resize: none;
 }
 
 #orderName {
-    width: 48%;
-    float: left;
-    margin-bottom: 15px;
+  width: 48%;
+  float: left;
+  margin-bottom: 15px;
 }
 
 #orderTel {
-    width: 48%;
-    float: right;
-    margin-bottom: 15px;
+  width: 48%;
+  float: right;
+  margin-bottom: 15px;
 }
 
 #orderNumber {
@@ -135,9 +130,11 @@
   position: relative;
 }
 
-#orderItems, #orderAddress, #orderTotal{
-    width: 100%;
-    clear: both;
+#orderItems,
+#orderAddress,
+#orderTotal {
+  width: 100%;
+  clear: both;
 }
 
 #orderButton {
@@ -156,15 +153,15 @@
 
 /* design for close button in the "New Order" popup*/
 .close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 22px;
-    cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
 }
 
-button, select
-{
+button,
+select {
   padding: 8px 12px;
   border-radius: 50px;
   border: 1px solid #616161;
