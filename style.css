@@ -56,7 +56,7 @@ select {
     border-radius: 1.25rem;
     padding: 1.5rem 1.75rem 1.75rem;
     box-shadow:
-        0 24px 60px rgba(78, 91, 49, 0.1),
+        0 24px 60px hsla(79, 30%, 27%, 0.1),
         0 0 0 1px rgba(78, 91, 49, 0.15);
 }
 
@@ -86,38 +86,52 @@ select {
 
 /* Defines the style of the top of the table */
 .orders-table-wrapper {
-    margin-top: 0.75rem;
-    border-radius: 0.75rem;
+    border-radius: 12px;
     overflow: auto;
-    border: 1px solid rgba(78, 91, 49, 0.15);
-    background: #ffffff;
 }
 
 /* Defines the style of each column in the table */
 .orders-table {
     width: 100%;
-    min-width: 900px;
     border-collapse: collapse;
-    font-size: 0.85rem;
+    font-size: 13.6px;
+
 }
 
-/* This aligns entires with the table columns*/
+/* Defines the size for each column */
+.orders-table th:nth-child(1) { width: 4%; }
+.orders-table th:nth-child(2) { width: 7%; }
+.orders-table th:nth-child(3) { width: 7%; }
+.orders-table th:nth-child(4) { width: 1%; }
+.orders-table th:nth-child(5) { width: 9%; }
+.orders-table th:nth-child(6) { width: 3%; }
+.orders-table th:nth-child(7) { width: 3%; }
+.orders-table th:nth-child(8) { width: 6%; }
+.orders-table th:nth-child(9) { width: 8%; }
+
+/* This aligns entires with the table columns and adds a dividing line*/
 .orders-table th, 
 .orders-table td {
     text-align: left;
-    padding: 10px 15px 10px 45px;
+    padding: 10px 15px 10px 10px; 
+    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
 }
 
+/* Adds a color to the first row of each table */
+.orders-table-color {
+    background-color: rgb(230, 230, 230);
+}
 
 /* The next 4 classes control the color of the buttons */
 .btn-accept {
     background-color: #ff990034;
-    border-color: rgb(160, 123, 0);
+    border-color: #a07b00;
     color: black;
 }
 
 .btn-cancel {
-    background-color: rgb(255, 205, 205);
+    background-color: #ffcdcd;
     border-color: red;
     color: rgb(255, 0, 0);
 }
@@ -140,7 +154,7 @@ select {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: #00000080;
 }
 
 /* Defines the entire layout of the popup window*/
@@ -154,7 +168,7 @@ select {
     height: 500px;
     width: 500px;
     border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 20px #0000004d;
 }
 
 /* Fixes the popup header in place */
@@ -213,6 +227,6 @@ select {
 #orderButton {
     display: block;
     margin-left: auto;
-    background-color: rgb(122, 245, 122);
+    background-color: #7af57a;
     cursor: pointer;
 }
