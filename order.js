@@ -47,6 +47,28 @@ function timeATM() {
     return time;
 }
 
+//Status Buttons
+function statusBtn(cells) {
+    //Completed Button
+    let compbtn = cells[8].querySelector("#completedBtn");
+    compbtn.style.display = "none";
+    compbtn.onclick = () => {
+        cells[6].textContent = "Completed";
+        filter();
+    }
+    //Accept Button
+    let abtn = cells[8].querySelector("#acceptBtn");
+    abtn.onclick = () => {
+        cells[6].textContent = "Accepted";
+        abtn.style.display = "none";
+        compbtn.style.display = "";
+        filter();
+    }
+    //Cancel Button
+    let cbtn = cells[8].querySelector("#cancelBtn");
+    cbtn.onclick = () => cells[6].textContent = "Cancelled";
+}
+
 //Simulate Order
 function chooseRandomOrder(a) {
     // Returns a random order from list a.
@@ -101,24 +123,8 @@ function simulateNewOrder() {
 
     incomingTableBody.appendChild(newRow);
 
-    //Completed Button
-    let compbtn = cells[8].querySelector("#completedBtn");
-    compbtn.style.display = "none";
-    compbtn.onclick = () => {
-        cells[6].textContent = "Completed";
-        filter();
-    }
-    //Accept Button
-    let abtn = cells[8].querySelector("#acceptBtn");
-    abtn.onclick = () => {
-        cells[6].textContent = "Accepted";
-        abtn.style.display = "none";
-        compbtn.style.display = "";
-        filter();
-    }
-    //Cancel Button
-    let cbtn = cells[8].querySelector("#cancelBtn");
-    cbtn.onclick = () => cells[6].textContent = "Cancelled";
+    //Status Buttons
+    statusBtn(cells);
 }
 
 
@@ -145,26 +151,13 @@ function NewOrder() {
 
     incomingTableBody.appendChild(newRow);
     popup.style.display = "none";
-
+    
+    //Status Buttons
+    statusBtn(cells);
+    
     // Clear form fields
     cleanForm();
 
-    //Completed Button
-    let compbtn = cells[8].querySelector("#completedBtn");
-    compbtn.style.display = "none";
-    compbtn.onclick = () => {
-        cells[6].textContent = "Completed";
-        filter();
-    }
-    //Accept Button
-    let abtn = cells[8].querySelector("#acceptBtn");
-    abtn.onclick = () => {
-        cells[6].textContent = "Accepted";
-        filter()
-    }    
-    //Cancel Button
-    let cbtn = cells[8].querySelector("#cancelBtn");
-    cbtn.onclick = () => cells[6].textContent = "Cancelled";
 }
 
 // Form Validation
@@ -196,7 +189,7 @@ function validateForm() {
     }
 }
 
-
+// Filter
 function filter() {
     const filterProvider = document.getElementById("providerFilter").value;
     const filterStatus = document.getElementById("statusFilter").value;
