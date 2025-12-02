@@ -128,28 +128,11 @@ function simulateNewOrder() {
     cells[4].textContent = simOrder.items;
     cells[5].textContent = simOrder.total.toFixed(2) + "₪";
     cells[6].innerHTML = '<span class="status-pill status-pending">Pending</span>';
-<<<<<<< HEAD
-
-    incomingTableBody.appendChild(newRow);
-
-    //Accept Button
-    let abtn = cells[8].querySelector("#acceptBtn");
-    abtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-accepted">Accepted</span>';
-
-    //Cancel Button
-    let cbtn = cells[8].querySelector("#cancelBtn");
-    cbtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-cancelled">Cancelled</span>';
-
-    //Completed Button
-    let compbtn = cells[8].querySelector("#completedBtn");
-    compbtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-completed">Completed</span>';
-=======
 
     incomingTableBody.appendChild(newRow);
 
     //Status Buttons
     statusBtn(cells);
->>>>>>> 1e02ffe67cca98dffc800b0086773f2f5661e3fd
 }
 
 
@@ -173,10 +156,6 @@ function NewOrder() {
     cells[5].textContent = orderTotal.value;
     cells[6].innerHTML = '<span class="status-pill status-pending">Pending</span>';
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 1e02ffe67cca98dffc800b0086773f2f5661e3fd
     incomingTableBody.appendChild(newRow);
     popup.style.display = "none";
 
@@ -186,20 +165,6 @@ function NewOrder() {
     // Clear form fields
     cleanForm();
 
-<<<<<<< HEAD
-    //Accept Button
-    let abtn = cells[8].querySelector("#acceptBtn");
-    abtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-accepted">Accepted</span>';
-
-    //Cancel Button
-    let cbtn = cells[8].querySelector("#cancelBtn");
-    cbtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-cancelled">Cancelled</span>';
-
-    //Completed Button
-    let compbtn = cells[8].querySelector("#completedBtn");
-    compbtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-completed">Completed</span>';
-=======
->>>>>>> 1e02ffe67cca98dffc800b0086773f2f5661e3fd
 }
 
 // Form Validation
@@ -229,10 +194,6 @@ function validateForm() {
         alert(alertms);
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 1e02ffe67cca98dffc800b0086773f2f5661e3fd
     else {
         NewOrder();
     }
@@ -251,11 +212,7 @@ function filter() {
                 cells[i].style.display = '';
             }
             else if ((cells[i].querySelectorAll("td")[1].innerHTML == filterProvider || filterProvider == 'all')
-<<<<<<< HEAD
-                && (cells[i].querySelectorAll("td")[6].innerHTML.toLowerCase() == filterStatus || filterStatus == 'all')) {
-=======
                 && (cells[i].querySelectorAll("td")[6].textContent.toLowerCase() == filterStatus || filterStatus == 'all')) {
->>>>>>> 1e02ffe67cca98dffc800b0086773f2f5661e3fd
                 cells[i].style.display = '';
             }
             else {
