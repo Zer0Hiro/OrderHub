@@ -154,7 +154,8 @@ function NewOrder() {
     cells[3].textContent = orderName.value;
     cells[4].textContent = orderItems.value;
     cells[5].textContent = orderTotal.value;
-    cells[6].innerHTML = '<span class="status-pill status-pending">Pending</span>';
+    cells[6].textContent = "Pending";
+
 
     incomingTableBody.appendChild(newRow);
     popup.style.display = "none";
@@ -179,11 +180,7 @@ function validateForm() {
     //Check price of items
     const total = parseFloat(orderTotal.value);
     if ((typeof orderTotal.value === 'string') || (total == 0 && orderItems.value.trim().length != 0)) {
-        alertms = alertms + "Invalid Amount";
-    }
-
-    if (orderPayment.value == "") {
-        alertms = alertms + "Please select a payment method";
+        alertms = alertms + "Invalid Amount\n";
     }
 
     if (orderPayment.value == "") {
