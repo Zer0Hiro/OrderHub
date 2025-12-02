@@ -105,9 +105,11 @@ select {
 .orders-table th, 
 .orders-table td {
     text-align: left;
-    padding: 10px 15px 10px 45px; /* Top Right Bottom LEFT */
+    padding: 10px 15px 10px 45px;
 }
 
+
+/* The next 4 classes control the color of the buttons */
 .btn-accept {
     background-color: #ff990034;
     border-color: rgb(160, 123, 0);
@@ -130,7 +132,7 @@ select {
     background-color: #cccccc;
     border-color: #4e4e4e;
     color: black;
-    margin-left: 18%;
+    margin-left: 15%;
 }
 
 /* Hides new order popup and fades background*/
