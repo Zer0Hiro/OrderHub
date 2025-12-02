@@ -119,12 +119,21 @@ function simulateNewOrder() {
     cells[3].textContent = simOrder.customer;
     cells[4].textContent = simOrder.items;
     cells[5].textContent = simOrder.total.toFixed(2) + "₪";
-    cells[6].textContent = "Pending";
+    cells[6].innerHTML = '<span class="status-pill status-pending">Pending</span>';
 
     incomingTableBody.appendChild(newRow);
 
-    //Status Buttons
-    statusBtn(cells);
+    //Accept Button
+    let abtn = cells[8].querySelector("#acceptBtn");
+    abtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-accepted">Accepted</span>';
+
+    //Cancel Button
+    let cbtn = cells[8].querySelector("#cancelBtn");
+    cbtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-cancelled">Cancelled</span>';
+
+    //Completed Button
+    let compbtn = cells[8].querySelector("#completedBtn");
+    compbtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-completed">Completed</span>';
 }
 
 
@@ -189,7 +198,7 @@ function validateForm() {
     }
 }
 
-// Filter
+
 function filter() {
     const filterProvider = document.getElementById("providerFilter").value;
     const filterStatus = document.getElementById("statusFilter").value;

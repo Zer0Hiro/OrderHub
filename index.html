@@ -139,20 +139,25 @@
         <label for="orderTotal" id="orderAmount">Total Amount (₪) *</label>
         <input type="number" id="orderTotal" name="total" step="0.01" min="0" required placeholder="0.00" /><br><br>
 
-        <label for="orderPayment">Payment Method *</label><br>
-        <select id="orderPayment" name="paymentMethod" required>
-          <option value>Select payment method</option>
-          <option value="Cash on delivery">Cash on delivery</option>
-          <option value="Google Pay">Google Pay</option>
-          <option value="Apple Pay">Apple Pay</option>
-          <option value="Credit Card">Credit Card</option>
-        </select>
-        <button type="submit" id="orderButton" onclick="validateForm()">Create
-          Order</button>
-      </form>
+          <label for="orderPayment">Payment Method *</label><br>
+          <select id="orderPayment" name="paymentMethod" required>
+            <option value>Select payment method</option>
+            <option value="Cash on delivery">Cash on delivery</option>
+            <option value="Google Pay">Google Pay</option>
+            <option value="Apple Pay">Apple Pay</option>
+            <option value="Credit Card">Credit Card</option>
+          </select><br><br>
 
+          <label>Special Notes</label><br>
+          <textarea id="orderNotes" name="notes"
+            placeholder="Do you have any allergies or special requests?"
+            rows="3"></textarea><br><br>
+
+          <button type="submit" id="orderButton" onclick="validateForm()">Create Order</button>
+        </form>
+
+      </div>
     </div>
-  </div>
   <script src="order.js"></script>
 
   <!-- Template of table elements-->
@@ -164,9 +169,7 @@
       <td class="order-customer"></td>
       <td class="order-items"></td>
       <td class="order-total"></td>
-      <td class="order-status">
-        <span class="status-pill"></span>
-      </td>
+      <td class="order-status"></td>
       <td class="order-contact">
         <button title="Call customer">
           📞
