@@ -10,6 +10,7 @@ const orderItems = document.getElementById("orderItems");
 const orderAddress = document.getElementById("orderAddress");
 const orderTotal = document.getElementById("orderTotal");
 const orderPayment = document.getElementById("orderPayment");
+const orderNotes = document.getElementById("orderNotes");
 //Table
 const incomingTableBody = document.getElementById("ordersBodyActive");
 
@@ -34,6 +35,7 @@ function cleanForm() {
     orderAddress.value = "";
     orderTotal.value = "";
     orderPayment.value = "";
+    orderNotes.value = "";
 }
 
 //Time func
@@ -45,6 +47,34 @@ function timeATM() {
         hour12: false
     });
     return time;
+}
+
+//Status Buttons
+function statusBtn(cells) {
+    //Completed Button
+    let compbtn = cells[8].querySelector("#completedBtn");
+    compbtn.style.display = "none";
+    compbtn.onclick = () => {
+        cells[6].innerHTML = '<span class="status-pill status-completed">Completed</span>';
+        cbtn.style.display = "none";
+        filter();
+    }
+    //Accept Button
+    let abtn = cells[8].querySelector("#acceptBtn");
+    abtn.onclick = () => {
+        cells[6].innerHTML = '<span class="status-pill status-accepted">Accepted</span>';
+        abtn.style.display = "none";
+        compbtn.style.display = "";
+        filter();
+    }
+    //Cancel Button
+    let cbtn = cells[8].querySelector("#cancelBtn");
+    cbtn.onclick = () => {
+        cells[6].innerHTML = '<span class="status-pill status-cancelled">Cancelled</span>';
+        abtn.style.display = "none";
+        compbtn.style.display = "none";
+        filter();
+    }
 }
 
 //Simulate Order
@@ -98,6 +128,7 @@ function simulateNewOrder() {
     cells[4].textContent = simOrder.items;
     cells[5].textContent = simOrder.total.toFixed(2) + "₪";
     cells[6].innerHTML = '<span class="status-pill status-pending">Pending</span>';
+<<<<<<< HEAD
 
     incomingTableBody.appendChild(newRow);
 
@@ -112,6 +143,13 @@ function simulateNewOrder() {
     //Completed Button
     let compbtn = cells[8].querySelector("#completedBtn");
     compbtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-completed">Completed</span>';
+=======
+
+    incomingTableBody.appendChild(newRow);
+
+    //Status Buttons
+    statusBtn(cells);
+>>>>>>> 1e02ffe67cca98dffc800b0086773f2f5661e3fd
 }
 
 
@@ -135,12 +173,20 @@ function NewOrder() {
     cells[5].textContent = orderTotal.value;
     cells[6].innerHTML = '<span class="status-pill status-pending">Pending</span>';
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e02ffe67cca98dffc800b0086773f2f5661e3fd
     incomingTableBody.appendChild(newRow);
     popup.style.display = "none";
+
+    //Status Buttons
+    statusBtn(cells);
 
     // Clear form fields
     cleanForm();
 
+<<<<<<< HEAD
     //Accept Button
     let abtn = cells[8].querySelector("#acceptBtn");
     abtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-accepted">Accepted</span>';
@@ -152,6 +198,8 @@ function NewOrder() {
     //Completed Button
     let compbtn = cells[8].querySelector("#completedBtn");
     compbtn.onclick = () => cells[6].innerHTML = '<span class="status-pill status-completed">Completed</span>';
+=======
+>>>>>>> 1e02ffe67cca98dffc800b0086773f2f5661e3fd
 }
 
 // Form Validation
@@ -165,8 +213,12 @@ function validateForm() {
 
     //Check price of items
     const total = parseFloat(orderTotal.value);
-    if (total == 0 && orderItems.value.trim().length != 0) {
-        alertms = alertms + "False Amount";
+    if ((typeof orderTotal.value === 'string') || (total == 0 && orderItems.value.trim().length != 0)) {
+        alertms = alertms + "Invalid Amount";
+    }
+
+    if (orderPayment.value == "") {
+        alertms = alertms + "Please select a payment method";
     }
 
     if (orderPayment.value == "") {
@@ -177,7 +229,10 @@ function validateForm() {
         alert(alertms);
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1e02ffe67cca98dffc800b0086773f2f5661e3fd
     else {
         NewOrder();
     }
@@ -196,7 +251,11 @@ function filter() {
                 cells[i].style.display = '';
             }
             else if ((cells[i].querySelectorAll("td")[1].innerHTML == filterProvider || filterProvider == 'all')
+<<<<<<< HEAD
                 && (cells[i].querySelectorAll("td")[6].innerHTML.toLowerCase() == filterStatus || filterStatus == 'all')) {
+=======
+                && (cells[i].querySelectorAll("td")[6].textContent.toLowerCase() == filterStatus || filterStatus == 'all')) {
+>>>>>>> 1e02ffe67cca98dffc800b0086773f2f5661e3fd
                 cells[i].style.display = '';
             }
             else {
