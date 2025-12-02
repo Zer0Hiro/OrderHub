@@ -11,7 +11,7 @@ const orderAddress = document.getElementById("orderAddress");
 const orderTotal = document.getElementById("orderTotal");
 const orderPayment = document.getElementById("orderPayment");
 //Table
-const tableBody = document.getElementById("ordersBodyActive");
+const incomingTableBody = document.getElementById("ordersBodyActive");
 
 //Empty Table
 if (ordersBodyActive) ordersBodyActive.innerHTML = "";
@@ -99,7 +99,7 @@ function simulateNewOrder() {
     cells[5].textContent = simOrder.total.toFixed(2) + "₪";
     cells[6].textContent = "Pending";
 
-    tableBody.appendChild(newRow);
+    incomingTableBody.appendChild(newRow);
 
 
 }
@@ -126,7 +126,7 @@ function NewOrder() {
     cells[6].textContent = "Pending";
 
 
-    tableBody.appendChild(newRow);
+    incomingTableBody.appendChild(newRow);
     popup.style.display = "none";
 
     // Clear form fields
@@ -159,5 +159,31 @@ function validateForm() {
 
     else {
         NewOrder();
+    }
+}
+
+
+function filter()
+{
+    const filterProvider = document.getElementById("providerFilter").value;
+    const filterStatus = document.getElementById("statusFilter").value;
+    const tables = document.getElementsByClassName("orderBody");
+
+    for(let j = 0; j < tables.length; j++)
+    {
+        const cells = tables[j].querySelectorAll("tr")
+        for(let i = 0; i < cells.length; i++)
+        {
+            if(filterProvider == "all" && filterStatus == "all"){
+                cells[i].style.display = '';
+            }
+            else if((cells[i].querySelectorAll("td")[1].innerHTML == filterProvider || filterProvider == 'all')
+                    && (cells[i].querySelectorAll("td")[6].innerHTML.toLowerCase() == filterStatus || filterStatus == 'all')){
+            cells[i].style.display = '';
+            }
+            else{
+                cells[i].style.display = 'none';
+            }
+        }
     }
 }
