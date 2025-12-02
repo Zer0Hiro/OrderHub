@@ -79,7 +79,11 @@ function validateForm() {
     }
 
     if(orderTotal.value == 0 && orderItems.value.trim().length !== 0) {
-        alertms = alertms + "False Amount";
+        alertms = alertms + "False Amount\n";
+    }
+    
+    if(orderPayment.value == "") {
+        alertms = alertms + "Please select a payment method";
     }
 
     if(alertms != ''){
@@ -138,8 +142,8 @@ function simulateNewOrder() {
     cells[4].textContent = simOrder.items;
     cells[5].textContent = simOrder.total;
     //cells[6].textContent = "Pending";
-    cells[6].querySelector('.status-pill').textContent = "Pending";
-    cells[6].querySelector('.status-pill').style.backgroundColor = "yellow";
+    cells[6].querySelector('.status-pill').textContent = "Pending"; 
+    cells[6].querySelector('.status-pill').style.backgroundColor = "yellow"; // can be defaulted to yellow in the CSS file later
     tableBody.appendChild(newRow);
 
 }
