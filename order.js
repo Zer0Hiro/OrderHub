@@ -101,15 +101,24 @@ function simulateNewOrder() {
 
     incomingTableBody.appendChild(newRow);
 
+    //Completed Button
+    let compbtn = cells[8].querySelector("#completedBtn");
+    compbtn.style.display = "none";
+    compbtn.onclick = () => {
+        cells[6].textContent = "Completed";
+        filter();
+    }
     //Accept Button
     let abtn = cells[8].querySelector("#acceptBtn");
-    abtn.onclick = () => cells[6].textContent = "Accepted";
+    abtn.onclick = () => {
+        cells[6].textContent = "Accepted";
+        abtn.style.display = "none";
+        compbtn.style.display = "";
+        filter();
+    }
     //Cancel Button
     let cbtn = cells[8].querySelector("#cancelBtn");
     cbtn.onclick = () => cells[6].textContent = "Cancelled";
-    //Completed Button
-    let compbtn = cells[8].querySelector("#completedBtn");
-    compbtn.onclick = () => cells[6].textContent = "Completed";
 }
 
 
@@ -140,15 +149,22 @@ function NewOrder() {
     // Clear form fields
     cleanForm();
 
+    //Completed Button
+    let compbtn = cells[8].querySelector("#completedBtn");
+    compbtn.style.display = "none";
+    compbtn.onclick = () => {
+        cells[6].textContent = "Completed";
+        filter();
+    }
     //Accept Button
     let abtn = cells[8].querySelector("#acceptBtn");
-    abtn.onclick = () => cells[6].textContent = "Accepted";
+    abtn.onclick = () => {
+        cells[6].textContent = "Accepted";
+        filter()
+    }    
     //Cancel Button
     let cbtn = cells[8].querySelector("#cancelBtn");
     cbtn.onclick = () => cells[6].textContent = "Cancelled";
-    //Completed Button
-    let compbtn = cells[8].querySelector("#completedBtn");
-    compbtn.onclick = () => cells[6].textContent = "Completed";
 }
 
 // Form Validation
