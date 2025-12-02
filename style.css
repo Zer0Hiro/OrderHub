@@ -14,6 +14,7 @@ select {
     padding: 8px 12px;
     border-radius: 50px;
     border: 1px solid #616161;
+    cursor: pointer;
 }
 
 /* Design for header */
@@ -73,7 +74,7 @@ select {
 
 /* This id and the next one stylize the Order buttons */
 #openBtn {
-    background-color: rgb(122, 245, 122);
+    background-color: #7af57a;
     cursor: pointer;
 }
 
@@ -98,6 +99,36 @@ select {
     min-width: 900px;
     border-collapse: collapse;
     font-size: 0.85rem;
+}
+
+/* This aligns entires with the table columns*/
+.orders-table th, 
+.orders-table td {
+    text-align: left;
+    padding: 10px 15px 10px 45px; /* Top Right Bottom LEFT */
+}
+
+.btn-accept {
+    background-color: #7af57a;
+    border-color: #0f4b0f;
+    color: rgb(0, 0, 0);
+}
+.btn-cancel {
+    background-color: rgb(255, 205, 205);
+    border-color: red;
+    color: rgb(255, 0, 0);
+}
+
+.btn-complete {
+    background-color: #ff990034;
+    border-color: rgb(160, 123, 0);
+    color: black;
+}
+
+.btn-more {
+    background-color: rgb(204, 204, 204);
+    border-color: rgb(78, 78, 78);
+    color: black;
 }
 
 /* Hides new order popup and fades background*/
