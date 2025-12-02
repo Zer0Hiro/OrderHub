@@ -14,6 +14,7 @@ select {
     padding: 8px 12px;
     border-radius: 50px;
     border: 1px solid #616161;
+    cursor: pointer;
 }
 
 /* Design for header */
@@ -71,41 +72,54 @@ select {
     margin-right: auto;
 }
 
+
 /* This id and the next one stylize the Order buttons */
 #openBtn {
-    background-color: rgb(122, 245, 122);
-    cursor: pointer;
+  background-color: rgb(122, 245, 122);
+  cursor: pointer;
 }
 
 #simulateBtn {
-    background-color: rgba(122, 245, 122, 0.397);
-    cursor: pointer;
-    margin-left: 10px;
+  background-color: rgba(122, 245, 122, 0.397);
+  cursor: pointer;
+  margin-left: 10px;
 }
 
 /* Defines the style of the top of the table */
 .orders-table-wrapper {
-    margin-top: 0.75rem;
-    border-radius: 0.75rem;
-    overflow: auto;
-    border: 1px solid rgba(78, 91, 49, 0.15);
-    background: #ffffff;
+  margin-top: 0.75rem;
+  border-radius: 0.75rem;
+  overflow: auto;
+  border: 1px solid rgba(78, 91, 49, 0.15);
+  background: #ffffff;
 }
 
 /* Defines the style of each column in the table */
 .orders-table {
-    width: 100%;
-    min-width: 900px;
-    border-collapse: collapse;
-    font-size: 0.85rem;
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+/* This fixes the positioning for order entries*/
+.orders-table th, 
+.orders-table td {
+    text-align: left;
+    padding: 10px 15px 10px 50px;
+}
+
+.btn btn-accept,
+{
+    background-color: green;
 }
 
 /* Hides new order popup and fades background*/
 .popup {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 /* Defines the entire layout of the popup window*/
