@@ -1,6 +1,32 @@
 /* Defines the background color */
 .background {
-  background-color: #ff990034;
+    background-color: #ff990034;
+}
+
+/* Universal design for font */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Universal design for buttons */
+button,
+select {
+    padding: 8px 12px;
+    border-radius: 50px;
+    border: 1px solid #616161;
+}
+
+/* Design for header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #d1d1d1;
+    padding-bottom: 15px;
+    background-color: #ffffff;
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 /* Places the logo next to header */
@@ -10,68 +36,71 @@
   gap: 15px;
 }
 
-/* Design for header */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  border-bottom: 2px solid #d1d1d1;
-  padding-bottom: 15px;
-  background-color: #ffffff;
-  padding-top: 20px;
-  padding-left: 40px;
-  padding-right: 40px;
-}
-
 /* Design for header text */
 .header-text {
-  font-size: 13px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
 }
 
-/* design for sub header */
+/* Design for text under header */
 .header-text h1 {
-  margin: 0;
-}
-
-.header-actions {
-  display: flex;
-  gap: 10px;
+    margin: 0;
 }
 
 .tables {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  max-width: 1380px;
-  margin: 20px auto;
-  background: #ffffff;
-  border-radius: 1.25rem;
-  padding: 1.5rem 1.75rem 1.75rem;
-  box-shadow:
-    0 24px 60px rgba(78, 91, 49, 0.1),
-    0 0 0 1px rgba(78, 91, 49, 0.15);
+    max-width: 1380px;
+    margin: 20px auto;
+    background: #ffffff;
+    border-radius: 1.25rem;
+    padding: 1.5rem 1.75rem 1.75rem;
+    box-shadow:
+        0 24px 60px rgba(78, 91, 49, 0.1),
+        0 0 0 1px rgba(78, 91, 49, 0.15);
 }
 
-/* shit to do with tables */
+/* This class and the next one align the Order buttons correctly */
+.table-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.tables h1 {
+    margin: 0;
+    margin-right: auto;
+}
+
+/* This id and the next one stylize the Order buttons */
+#openBtn {
+    background-color: rgb(122, 245, 122);
+    cursor: pointer;
+}
+
+#simulateBtn {
+    background-color: rgba(122, 245, 122, 0.397);
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Defines the style of the top of the table */
 .orders-table-wrapper {
-  margin-top: 0.75rem;
-  border-radius: 0.75rem;
-  overflow: auto;
-  border: 1px solid rgba(78, 91, 49, 0.15);
-  background: #ffffff;
+    margin-top: 0.75rem;
+    border-radius: 0.75rem;
+    overflow: auto;
+    border: 1px solid rgba(78, 91, 49, 0.15);
+    background: #ffffff;
 }
 
-/* shit to do with tables */
+/* Defines the style of each column in the table */
 .orders-table {
-  width: 100%;
-  min-width: 900px;
-  border-collapse: collapse;
-  font-size: 0.85rem;
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    font-size: 0.85rem;
 }
 
-/* shit to do with the "New Order" popup*/
+/* Hides new order popup and fades background*/
 .popup {
   display: none;
   position: fixed;
@@ -79,29 +108,37 @@
   background: rgba(0, 0, 0, 0.5);
 }
 
-/* shit to do with the "New Order" popup*/
+/* Defines the entire layout of the popup window*/
 .popup-content {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-
-  padding: 20px 20px 20px 20px;
-
-  height: 500px;
-  width: 500px;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px 20px 20px 20px;
+    height: 500px;
+    width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
+/* Fixes the popup header in place */
 .popup-content h2 {
-  text-align: center;
-  margin: 0 0 10px 0;
-  padding: 0;
+    text-align: center;
+    margin: 0 0 10px 0;
+    padding: 0;
 }
 
+/* Stylizes the "X" close button*/
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* Defines a standard design for each field in the popup menu */
 .popup-content input,
 .popup-content textarea,
 .popup-content select {
@@ -112,6 +149,7 @@
   resize: none;
 }
 
+/* Stylizes the 7 ids seen below. Mainly possitions the fields in a certain way*/
 #orderName {
   width: 48%;
   float: left;
@@ -125,44 +163,21 @@
 }
 
 #orderNumber {
-  float: right;
-  margin-right: 24%;
-  position: relative;
+    float: right;
+    margin-right: 24%;
+    position: relative;
 }
 
 #orderItems,
 #orderAddress,
 #orderTotal {
-  width: 100%;
-  clear: both;
+    width: 100%;
+    clear: both;
 }
 
 #orderButton {
-  display: block;
-  margin-left: auto;
-  background-color: rgb(122, 245, 122);
-  cursor: pointer;
-}
-
-#orderButton {
-  display: block;
-  margin-left: auto;
-  background-color: rgb(122, 245, 122);
-  cursor: pointer;
-}
-
-/* design for close button in the "New Order" popup*/
-.close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 22px;
-  cursor: pointer;
-}
-
-button,
-select {
-  padding: 8px 12px;
-  border-radius: 50px;
-  border: 1px solid #616161;
+    display: block;
+    margin-left: auto;
+    background-color: rgb(122, 245, 122);
+    cursor: pointer;
 }
