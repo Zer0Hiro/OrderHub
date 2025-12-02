@@ -101,7 +101,12 @@ function simulateNewOrder() {
 
     incomingTableBody.appendChild(newRow);
 
-
+    //Accept Button
+    let abtn = cells[8].querySelector("#acceptBtn");
+    abtn.onclick = () => cells[6].textContent = "Accepted";
+    //Cancel Button
+    let cbtn = cells[8].querySelector("#cancelBtn");
+    cbtn.onclick = () => cells[6].textContent = "Cancelled";
 }
 
 
@@ -131,6 +136,13 @@ function NewOrder() {
 
     // Clear form fields
     cleanForm();
+
+    //Accept Button
+    let abtn = cells[8].querySelector("#acceptBtn");
+    abtn.onclick = () => cells[6].textContent = "Accepted";
+    //Cancel Button
+    let cbtn = cells[8].querySelector("#cancelBtn");
+    cbtn.onclick = () => cells[6].textContent = "Cancelled";
 }
 
 // Form Validation
@@ -143,8 +155,9 @@ function validateForm() {
     }
 
     //Check price of items
+    const orderTotal = document.getElementById("orderTotal");
     const total = parseFloat(orderTotal.value);
-    if (total == 0 && orderItems.value.trim().length != 0) {
+    if (total < 1 && orderItems.value.trim().length != 0) {
         alertms = alertms + "False Amount";
     }
 
@@ -155,7 +168,6 @@ function validateForm() {
     if (alertms != "") {
         alert(alertms);
     }
-
 
     else {
         NewOrder();
