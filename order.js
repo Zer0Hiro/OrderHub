@@ -86,18 +86,19 @@ function NewOrder() {
 // Form Validation
 function validateForm() {
 
-    var alertms = '';
-    if(trim(orderTel).length != 10) {
+    let alertms = '';
+    if(orderTel.value.trim().length != 10) {
         alertms = alertms + "Please enter 10 digits phone number\n";
     }
+    const total = parseFloat(orderTotal.value);
 
-    if(orderTotal == 0 && trim(orderItems).length != 0) {
+    if(total == 0 && orderItems.value.trim().length != 0) {
         alertms = alertms + "False Amount";
     }
 
     if(alertms != ''){
         alert(alertms);
     }
-
     else {NewOrder();}
+    return true;
 }
