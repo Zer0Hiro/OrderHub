@@ -86,7 +86,7 @@ function NewOrder() {
 // Form Validation
 function validateForm() {
 
-    let alertms = '';
+    let alertms = "";
     if(orderTel.value.trim().length != 10) {
         alertms = alertms + "Please enter 10 digits phone number\n";
     }
@@ -99,6 +99,7 @@ function validateForm() {
     if(alertms != ''){
         alert(alertms);
     }
-    else {NewOrder();}
-    return true;
+    else {
+        NewOrder();
+    }
 }
