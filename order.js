@@ -1,14 +1,17 @@
+//Popup
 const ordersBodyActive = document.getElementById("ordersBodyActive");
 const popup = document.getElementById("popup");
 const openBtn = document.getElementById("openBtn");
 const closeBtn = document.getElementById("closeBtn");
+//Form
 const orderName = document.getElementById("orderName");
 const orderTel = document.getElementById("orderTel");
 const orderItems = document.getElementById("orderItems");
 const orderAddress = document.getElementById("orderAddress");
 const orderTotal = document.getElementById("orderTotal");
 const orderPayment = document.getElementById("orderPayment");
-
+//Table
+const tableBody = document.getElementById("ordersBodyActive");
 
 //Empty Table
 if (ordersBodyActive) ordersBodyActive.innerHTML = "";
@@ -24,8 +27,7 @@ window.onclick = (e) => {
 };
 
 //Clean Form
-function cleanForm()
-{
+function cleanForm() {
     orderName.value = "";
     orderTel.value = "";
     orderItems.value = "";
@@ -34,66 +36,18 @@ function cleanForm()
     orderPayment.value = "";
 }
 
-//Create Order
-function NewOrder() {
-    const tableBody = document.getElementById("ordersBodyActive");
-    const rowTemplate = document.getElementById("orderRowTemplate");
-    
-    const newRow = document.importNode(rowTemplate.content, true);
-    const cells = newRow.querySelectorAll('td');
-    
-    
-    // Generate current time
+//Time func
+function timeATM() {
     const now = new Date();
-    const timeString = now.toLocaleTimeString('en-US', { 
-        hour: '2-digit', 
+    const time = now.toLocaleTimeString('en-US', {
+        hour: '2-digit',
         minute: '2-digit',
-        hour12: false 
+        hour12: false
     });
-    
-    // Generate order ID
-    const orderId = "MAN-" + Date.now().toString().slice(-6);
-    
-    cells[0].textContent = timeString;
-    cells[1].textContent = "Manual";
-    cells[2].textContent = orderId;
-    cells[3].textContent = orderName.value;
-    cells[4].textContent = orderItems.value;
-    cells[5].textContent = orderTotal.value;
-    cells[6].textContent = "Pending";
-    
-    
-    tableBody.appendChild(newRow);
-    popup.style.display = "none";
-    
-    // Clear form fields
-    cleanForm();
+    return time;
 }
 
-// Form Validation
-function validateForm() {
-
-    var alertms = '';
-    if(orderTel.value.trim().length !== 10){
-        alertms = alertms + "Please enter 10 digits phone number\n";
-    }
-
-    if(orderTotal.value == 0 && orderItems.value.trim().length !== 0) {
-        alertms = alertms + "False Amount\n";
-    }
-    
-    if(orderPayment.value == "") {
-        alertms = alertms + "Please select a payment method";
-    }
-
-    if(alertms != ''){
-        alert(alertms);
-    }
-
-    else {NewOrder();}
-}
-
-
+//Simulate Order
 function chooseRandomOrder(a) {
     // Returns a random order from list a.
     const randIndex = Math.floor(Math.random() * a.length); // Math.random() returns  a float between 0 to 1
@@ -103,47 +57,107 @@ function chooseRandomOrder(a) {
 function simulateNewOrder() {
     // adds a new simulated order to the incoming orders list
     let orders = [
-    { provider: "Wolt", customer: "John", items: "Pizza: 2, Coke: 1", total: 50 },
-    { provider: "Mishloha", customer: "Leo", items: "Burger: 10", total: 500 }
+        { provider: "Wolt", customer: "John", items: "Pizza: 2, Coke: 1", total: 89.50 },
+        { provider: "Mishloha", customer: "Sarah", items: "Sushi Set: 1", total: 62.20 },
+        { provider: "Tenbis", customer: "Adam", items: "Falafel: 3, Water: 2", total: 38.75 },
+        { provider: "Wolt", customer: "Emily", items: "Pasta: 1, Salad: 1", total: 72.30 },
+        { provider: "Mishloha", customer: "Daniel", items: "Burger: 2, Fries: 1", total: 96.90 },
+        { provider: "Tenbis", customer: "Lior", items: "Shawarma: 1", total: 38.40 },
+        { provider: "Wolt", customer: "Maya", items: "Sushi: 8 pcs", total: 48.60 },
+        { provider: "Mishloha", customer: "Tom", items: "Steak Meal: 1", total: 135.75 },
+        { provider: "Tenbis", customer: "Omer", items: "Sandwich: 2, Juice: 1", total: 52.50 },
+        { provider: "Wolt", customer: "Noa", items: "Pad Thai: 1", total: 58.20 }
+    ];
 
-    ]   
-    const tableBody = document.getElementById("ordersBodyActive");
+
     const rowTemplate = document.getElementById("orderRowTemplate");
     const newRow = document.importNode(rowTemplate.content, true);
     const cells = newRow.querySelectorAll('td');
     const simOrder = chooseRandomOrder(orders);
 
-    // get the curr time as a string: `timeString`
-    const now = new Date();
-    const timeString = now.toLocaleTimeString('en-US', { 
-        hour: '2-digit', 
-        minute: '2-digit',
-        hour12: false 
-    });
-
+    //Time stamp for order
+    timeString = timeATM();
 
     let prefix = "";
-    if(simOrder.provider === "Wolt") {
+    if (simOrder.provider === "Wolt") {
         prefix = "WO";
     }
     else if (simOrder.provider === "Mishloha") {
         prefix = "MS";
     }
-    else if(simOrder.provider === "TenBis") {
+    else if (simOrder.provider === "Tenbis") {
         prefix = "TB";
     }
 
     const orderId = prefix + "-" + Date.now().toString().slice(-6);
-    
+
     cells[0].textContent = timeString;
     cells[1].textContent = simOrder.provider;
     cells[2].textContent = orderId;
     cells[3].textContent = simOrder.customer;
     cells[4].textContent = simOrder.items;
-    cells[5].textContent = simOrder.total;
-    //cells[6].textContent = "Pending";
-    cells[6].querySelector('.status-pill').textContent = "Pending"; 
-    cells[6].querySelector('.status-pill').style.backgroundColor = "yellow"; // can be defaulted to yellow in the CSS file later
+    cells[5].textContent = simOrder.total.toFixed(2) + "₪";
+    cells[6].textContent = "Pending";
+
     tableBody.appendChild(newRow);
 
+
+}
+
+
+//Create Order
+function NewOrder() {
+    const rowTemplate = document.getElementById("orderRowTemplate");
+    const newRow = document.importNode(rowTemplate.content, true);
+    const cells = newRow.querySelectorAll('td');
+
+    //Time stamp for order
+    timeString = timeATM();
+
+    // Generate order ID
+    const orderId = "MAN-" + Date.now().toString().slice(-6);
+
+    cells[0].textContent = timeString;
+    cells[1].textContent = "Manual";
+    cells[2].textContent = orderId;
+    cells[3].textContent = orderName.value;
+    cells[4].textContent = orderItems.value;
+    cells[5].textContent = orderTotal.value;
+    cells[6].textContent = "Pending";
+
+
+    tableBody.appendChild(newRow);
+    popup.style.display = "none";
+
+    // Clear form fields
+    cleanForm();
+}
+
+// Form Validation
+function validateForm() {
+
+    let alertms = "";
+    //Check phone number 
+    if (orderTel.value.trim().length != 10) {
+        alertms = alertms + "Please enter 10 digits phone number\n";
+    }
+
+    //Check price of items
+    const total = parseFloat(orderTotal.value);
+    if (total == 0 && orderItems.value.trim().length != 0) {
+        alertms = alertms + "False Amount";
+    }
+
+    if (orderPayment.value == "") {
+        alertms = alertms + "Please select a payment method";
+    }
+
+    if (alertms != "") {
+        alert(alertms);
+    }
+
+
+    else {
+        NewOrder();
+    }
 }
