@@ -19,7 +19,7 @@
           <p>Manage food orders from all delivery partners in one place!</p>
         </div>
       </div>
-
+      <!-- Filters -->
       <div class="header-actions">
         <select id="providerFilter" onchange="filter()" class="filter-select">
           <option value="all">All providers</option>
@@ -61,62 +61,12 @@
             </tr>
           </thead>
           <tbody id="ordersBodyActive" class="orderBody">
-            <!--  -->
           </tbody>
         </table>
       </div>
     </div>
-    <!--Cancelled And Completed Orders-->
-    <!-- 
-    <div class="tables">
-      <div class="table-header">
-        <h1>Cancelled Orders</h1>
-      </div>
-      <div class="orders-table-wrapper">
-        <table class="orders-table">
-          <thead>
-            <tr class="orders-table-color">
-              <th>Time</th>
-              <th>Provider</th>
-              <th>Order #</th>
-              <th>Customer</th>
-              <th>Items</th>
-              <th>Total</th>
-              <th>Status</th>
-              <th>Contact</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="ordersBodyCancelled" class="orderBody">
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="tables">
-      <div class="table-header">
-        <h1>Completed Orders</h1>
-      </div>
-      <div class="orders-table-wrapper">
-        <table class="orders-table">
-          <thead>
-            <tr class="orders-table-color">
-              <th>Time</th>
-              <th>Provider</th>
-              <th>Order #</th>
-              <th>Customer</th>
-              <th>Items</th>
-              <th>Total</th>
-              <th>Status</th>
-              <th>Contact</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="ordersBodyCompleted" class="orderBody">
-          </tbody>
-        </table>
-      </div>
-    </div>
-    -->
+
+    <!-- Popup -->
     <div id="popup" class="popup">
       <div class="popup-content">
         <span id="closeBtn" class="close">x</span>
@@ -166,7 +116,7 @@
     </div>
     <script src="order.js"></script>
 
-    <!-- Template of table elements-->
+    <!-- Template of table elements -->
     <template id="orderRowTemplate">
       <tr class="order-row">
         <td class="order-time"></td>

@@ -180,7 +180,7 @@ function validateForm() {
     //Check price of items
     const total = parseFloat(orderTotal.value);
     if ((typeof orderTotal.value === 'string') || (total == 0 && orderItems.value.trim().length != 0)) {
-        alertms = alertms + "Invalid Amount";
+        alertms = alertms + "Invalid Amount\n";
     }
 
     if (orderPayment.value == "") {
