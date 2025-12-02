@@ -32,9 +32,9 @@ select {
 
 /* Places the logo next to header */
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 /* Design for header text */
@@ -156,24 +156,24 @@ select {
 .popup-content input,
 .popup-content textarea,
 .popup-content select {
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-sizing: border-box;
-    resize: none;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
+  resize: none;
 }
 
 /* Stylizes the 7 ids seen below. Mainly possitions the fields in a certain way*/
 #orderName {
-    width: 48%;
-    float: left;
-    margin-bottom: 15px;
+  width: 48%;
+  float: left;
+  margin-bottom: 15px;
 }
 
 #orderTel {
-    width: 48%;
-    float: right;
-    margin-bottom: 15px;
+  width: 48%;
+  float: right;
+  margin-bottom: 15px;
 }
 
 #orderNumber {
