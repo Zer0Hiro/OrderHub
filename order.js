@@ -107,6 +107,9 @@ function simulateNewOrder() {
     //Cancel Button
     let cbtn = cells[8].querySelector("#cancelBtn");
     cbtn.onclick = () => cells[6].textContent = "Cancelled";
+    //Completed Button
+    let compbtn = cells[8].querySelector("#completedBtn");
+    compbtn.onclick = () => cells[6].textContent = "Completed";
 }
 
 
@@ -136,6 +139,16 @@ function NewOrder() {
 
     // Clear form fields
     cleanForm();
+
+    //Accept Button
+    let abtn = cells[8].querySelector("#acceptBtn");
+    abtn.onclick = () => cells[6].textContent = "Accepted";
+    //Cancel Button
+    let cbtn = cells[8].querySelector("#cancelBtn");
+    cbtn.onclick = () => cells[6].textContent = "Cancelled";
+    //Completed Button
+    let compbtn = cells[8].querySelector("#completedBtn");
+    compbtn.onclick = () => cells[6].textContent = "Completed";
 }
 
 // Form Validation
@@ -168,25 +181,22 @@ function validateForm() {
 }
 
 
-function filter()
-{
+function filter() {
     const filterProvider = document.getElementById("providerFilter").value;
     const filterStatus = document.getElementById("statusFilter").value;
     const tables = document.getElementsByClassName("orderBody");
 
-    for(let j = 0; j < tables.length; j++)
-    {
+    for (let j = 0; j < tables.length; j++) {
         const cells = tables[j].querySelectorAll("tr")
-        for(let i = 0; i < cells.length; i++)
-        {
-            if(filterProvider == "all" && filterStatus == "all"){
+        for (let i = 0; i < cells.length; i++) {
+            if (filterProvider == "all" && filterStatus == "all") {
                 cells[i].style.display = '';
             }
-            else if((cells[i].querySelectorAll("td")[1].innerHTML == filterProvider || filterProvider == 'all')
-                    && (cells[i].querySelectorAll("td")[6].innerHTML.toLowerCase() == filterStatus || filterStatus == 'all')){
-            cells[i].style.display = '';
+            else if ((cells[i].querySelectorAll("td")[1].innerHTML == filterProvider || filterProvider == 'all')
+                && (cells[i].querySelectorAll("td")[6].innerHTML.toLowerCase() == filterStatus || filterStatus == 'all')) {
+                cells[i].style.display = '';
             }
-            else{
+            else {
                 cells[i].style.display = 'none';
             }
         }

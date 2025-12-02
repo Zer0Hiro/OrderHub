@@ -100,21 +100,47 @@ select {
 }
 
 /* Defines the size for each column */
-.orders-table th:nth-child(1) { width: 4%; }
-.orders-table th:nth-child(2) { width: 7%; }
-.orders-table th:nth-child(3) { width: 7%; }
-.orders-table th:nth-child(4) { width: 1%; }
-.orders-table th:nth-child(5) { width: 9%; }
-.orders-table th:nth-child(6) { width: 3%; }
-.orders-table th:nth-child(7) { width: 3%; }
-.orders-table th:nth-child(8) { width: 6%; }
-.orders-table th:nth-child(9) { width: 8%; }
+.orders-table th:nth-child(1) {
+    width: 4%;
+}
+
+.orders-table th:nth-child(2) {
+    width: 7%;
+}
+
+.orders-table th:nth-child(3) {
+    width: 7%;
+}
+
+.orders-table th:nth-child(4) {
+    width: 1%;
+}
+
+.orders-table th:nth-child(5) {
+    width: 9%;
+}
+
+.orders-table th:nth-child(6) {
+    width: 3%;
+}
+
+.orders-table th:nth-child(7) {
+    width: 3%;
+}
+
+.orders-table th:nth-child(8) {
+    width: 6%;
+}
+
+.orders-table th:nth-child(9) {
+    width: 8%;
+}
 
 /* This aligns entires with the table columns and adds a dividing line*/
-.orders-table th, 
+.orders-table th,
 .orders-table td {
     text-align: left;
-    padding: 10px 15px 10px 10px; 
+    padding: 10px 15px 10px 10px;
     border-bottom: 1px solid #e0e0e0;
     border-right: 1px solid #e0e0e0;
 }
