@@ -109,10 +109,11 @@ select {
 }
 
 .btn-accept {
-    background-color: #7af57a;
-    border-color: #0f4b0f;
-    color: rgb(0, 0, 0);
+    background-color: #ff990034;
+    border-color: rgb(160, 123, 0);
+    color: black;
 }
+
 .btn-cancel {
     background-color: rgb(255, 205, 205);
     border-color: red;
@@ -120,15 +121,16 @@ select {
 }
 
 .btn-complete {
-    background-color: #ff990034;
-    border-color: rgb(160, 123, 0);
-    color: black;
+    background-color: #7af57a;
+    border-color: #0f4b0f;
+    color: rgb(0, 0, 0);
 }
 
 .btn-more {
-    background-color: rgb(204, 204, 204);
-    border-color: rgb(78, 78, 78);
+    background-color: #cccccc;
+    border-color: #4e4e4e;
     color: black;
+    margin-left: 18%;
 }
 
 /* Hides new order popup and fades background*/
