@@ -74,11 +74,11 @@ function NewOrder() {
 function validateForm() {
 
     var alertms = '';
-    if(trim(orderTel).length != 10) {
+    if(orderTel.value.trim().length !== 10){
         alertms = alertms + "Please enter 10 digits phone number\n";
     }
 
-    if(orderTotal == 0 && trim(orderItems).length != 0) {
+    if(orderTotal.value == 0 && orderItems.value.trim().length !== 0) {
         alertms = alertms + "False Amount";
     }
 
@@ -137,8 +137,9 @@ function simulateNewOrder() {
     cells[3].textContent = simOrder.customer;
     cells[4].textContent = simOrder.items;
     cells[5].textContent = simOrder.total;
-    cells[6].textContent = "Pending";
-
-     tableBody.appendChild(newRow);
+    //cells[6].textContent = "Pending";
+    cells[6].querySelector('.status-pill').textContent = "Pending";
+    cells[6].querySelector('.status-pill').style.backgroundColor = "yellow";
+    tableBody.appendChild(newRow);
 
 }
