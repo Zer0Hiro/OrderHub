@@ -1,6 +1,7 @@
 //Popup
 const ordersBodyActive = document.getElementById("ordersBodyActive");
 const popup = document.getElementById("popup");
+const monkeyPopup = document.getElementById("monkeyPopup");
 const openBtn = document.getElementById("openBtn");
 const closeBtn = document.getElementById("closeBtn");
 //Form
@@ -23,8 +24,15 @@ closeBtn.onclick = () => {
     popup.style.display = "none";
     cleanForm();
 }
+
+// Monkey Popup
+closeBtn.onclick = () => {
+    monkeyPopup.style.display = "none";
+    cleanForm();
+}
 window.onclick = (e) => {
     if (e.target === popup) popup.style.display = "none";
+    if (e.target === monkeyPopup) monkeyPopup.style.display = "none";
 };
 
 //Clean Form
@@ -104,6 +112,12 @@ function simulateNewOrder() {
     const newRow = document.importNode(rowTemplate.content, true);
     const cells = newRow.querySelectorAll('td');
     const simOrder = chooseRandomOrder(orders);
+    const phoneBtn = newRow.querySelector("#callButton");
+
+    phoneBtn.onclick = () => {
+        const monkeyPopup = document.getElementById("monkeyPopup");
+        monkeyPopup.style.display = "block";
+    }
 
     //Time stamp for order
     timeString = timeATM();
@@ -141,7 +155,13 @@ function NewOrder() {
     const rowTemplate = document.getElementById("orderRowTemplate");
     const newRow = document.importNode(rowTemplate.content, true);
     const cells = newRow.querySelectorAll('td');
+    const phoneBtn = newRow.querySelector("#callButton");
 
+    phoneBtn.onclick = () => {
+        const monkeyPopup = document.getElementById("monkeyPopup");
+        monkeyPopup.style.display = "block";
+    }
+    
     //Time stamp for order
     timeString = timeATM();
 
@@ -217,4 +237,8 @@ function filter() {
             }
         }
     }
+}
+
+function monkey() {
+
 }

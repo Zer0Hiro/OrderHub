@@ -204,6 +204,7 @@ select {
     background-color: #ffeeba;
     border-color: #856404;
     color: black;
+        margin-left: 5px;
 }
 
 .btn-cancel {
@@ -256,6 +257,22 @@ select {
     text-align: center;
     margin: 0 0 10px 0;
     padding: 0;
+}
+
+/* Mimics the behavior of the popup screen.. but for monkey*/
+.monkeyPopup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #00000080;
+}
+
+/* *monkey noises* */
+.monkeyPopupContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* Stylizes the "X" close button*/
