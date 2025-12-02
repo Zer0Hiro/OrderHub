@@ -75,6 +75,8 @@ select {
 /* This id and the next one stylize the Order buttons */
 #openBtn {
     background-color: #7af57a;
+    border-color: #0f4b0f;
+    color: rgb(0, 0, 0);
     cursor: pointer;
 }
 
@@ -98,7 +100,7 @@ select {
     width: 100%;
     min-width: 900px;
     border-collapse: collapse;
-    font-size: 0.85rem;
+    font-size: 13.6px;
 }
 
 /* This aligns entires with the table columns*/
@@ -108,6 +110,11 @@ select {
     padding: 10px 15px 10px 45px; /* Top Right Bottom LEFT */
 }
 
+.orders-table td:nth-child(6) {
+    font-weight: 650;
+}
+
+/* The next 4 classes control the color of the buttons */
 .btn-accept {
     background-color: #7af57a;
     border-color: #0f4b0f;
