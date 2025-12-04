@@ -9,10 +9,24 @@
     <link rel="icon" href="photos/icon.png">
   </head>
 
-  <body class="background">
+<body class="background">
+    <div class="login" id="login">
+      <div class="loginBackground">
+        <img src="photos/login_screen.png" draggable="false">
+      </div>
+      
+      <div class="loginCard">
+        <h1 class="loginText1" id="loginText1">Login</h1>
+        <h1 class="loginText2" id="loginText2">Please sign in to continue</h1>
+        <input class="username" id="username" type="text" required placeholder="Username">
+        <input class="password" id="password" type="password" required placeholder="Password">
+        <button class="signIn" id="loginBtn" onclick="validation(event)">Sign In</button>
+      </div>
+    </div>
+
     <div class="header">
-      <div class="logo">
-        <img src="photos/icon.png" width="45" height="45">
+      <div class="siteLogo">
+        <img src="photos/icon.png" width="45" height="45" draggable="false">
 
         <div class="header-text">
           <h1>OrderHub</h1>
@@ -41,8 +55,8 @@
     <div class="tables">
       <div class="table-header">
         <h1>Incoming Orders</h1>
-        <button id="openBtn">New Order</button>
-        <button id="simulateBtn" onclick="simulateNewOrder()">Simulate
+        <button class="openBtn" id="openBtn">New Order</button>
+        <button class="simulateBtn" id="simulateBtn" onclick="simulateNewOrder()">Simulate
           Order</button>
       </div>
       <div class="orders-table-wrapper">
@@ -164,6 +178,7 @@
       </div>
     </div>
     <script src="order.js"></script>
+    <script src="login.js"></script>
 
     <!-- Template of table elements -->
     <template id="orderRowTemplate">
@@ -176,21 +191,18 @@
         <td class="order-total"></td>
         <td class="order-status"></td>
         <td class="order-contact">
-          <button title="Call customer">
+          <button class="dontHover" id="callBtn" title="Call customer">
             📞
           </button>
-          <button title="Send message">
+          <button class="dontHover" id="textBtn" title="Send message">
             💬
           </button>
         </td>
         <td class="order-actions">
-          <button class="btn btn-accept" title="Accept order"
-            id="acceptBtn">✓</button>
-          <button class="btn btn-complete" title="Complete order"
-            id="completedBtn">✓</button>
-          <button class="btn btn-cancel" title="Cancel order"
-            id="cancelBtn">✕</button>
-          <button class="btn btn-more" title="More details">⋮</button>
+          <button class="btn btn-accept dontHover" title="Accept order" id="acceptBtn">✓</button>
+          <button class="btn btn-complete dontHover" title="Complete order" id="completedBtn">✓</button>
+          <button class="btn btn-cancel dontHover" title="Cancel order" id="cancelBtn">✕</button>
+          <button class="btn btn-more dontHover" title="More details">⋮</button>
         </td>
       </tr>
     </template>
