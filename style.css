@@ -17,6 +17,14 @@ select {
     cursor: pointer;
 }
 
+/* Filter select styling */
+.filterSelect {
+    padding: 8px 12px;
+    border-radius: 50px;
+    border: 1px solid #616161;
+    cursor: pointer;
+}
+
 /* Design for header */
 .header {
     display: flex;
@@ -38,14 +46,14 @@ select {
 }
 
 /* Design for header text */
-.header-text {
+.headerText {
     font-size: 13px;
     display: flex;
     flex-direction: column;
 }
 
 /* Design for text under header */
-.header-text h1 {
+.headerText h1 {
     margin: 0;
 }
 
@@ -61,7 +69,7 @@ select {
 }
 
 /* This class and the next one align the Order buttons correctly */
-.table-header {
+.tableHeader {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
@@ -87,13 +95,13 @@ select {
 }
 
 /* Defines the style of the top of the table */
-.orders-table-wrapper {
+.ordersTableWrapper {
     border-radius: 12px;
     overflow: auto;
 }
 
 /* Defines the style of each column in the table */
-.orders-table {
+.ordersTable {
     width: 1380px;
     table-layout: fixed;
     border-collapse: collapse;
@@ -102,56 +110,56 @@ select {
 }
 
 /* Defines the size for each column */
-.orders-table th:nth-child(1) {
+.ordersTable th:nth-child(1) {
     width: 2%;
 }
 
 /* Time */
-.orders-table th:nth-child(2) {
+.ordersTable th:nth-child(2) {
     width: 2%;
 }
 
 /* Provider */
-.orders-table th:nth-child(3) {
+.ordersTable th:nth-child(3) {
     width: 2%;
 }
 
 /* Order # */
-.orders-table th:nth-child(4) {
+.ordersTable th:nth-child(4) {
     width: 2%;
 }
 
 /* Customer */
-.orders-table th:nth-child(5) {
+.ordersTable th:nth-child(5) {
     width: 9%;
 }
 
 /* Items */
-.orders-table th:nth-child(6) {
+.ordersTable th:nth-child(6) {
     width: 2%;
 }
 
 /* Total */
-.orders-table th:nth-child(7) {
+.ordersTable th:nth-child(7) {
     width: 2.2%;
     min-width: 90px;
 }
 
 /* Status */
-.orders-table th:nth-child(8) {
+.ordersTable th:nth-child(8) {
     width: 2.2%;
 }
 
 /* Contact */
-.orders-table th:nth-child(9) {
+.ordersTable th:nth-child(9) {
     width: 7%;
 }
 
 /* Actions */
 
 /* This aligns entires with the table columns and adds a dividing line*/
-.orders-table th,
-.orders-table td {
+.ordersTable th,
+.ordersTable td {
     text-align: left;
     padding: 10px 15px 10px 10px;
     border-bottom: 1px solid #e0e0e0;
@@ -160,17 +168,17 @@ select {
 }
 
 /* Adds a color to the first row of each table */
-.orders-table-color {
+.ordersTableColor {
     background-color: #e6e6e6;
 }
 
 /* BOOOOLD */
-.orders-table td:nth-child(6) {
+.ordersTable td:nth-child(6) {
     font-weight: 650;
 }
 
 /* Defines a pill style for the order status */
-.status-pill {
+.statusPill {
     padding: 5px 12px;
     border-radius: 50px;
     font-weight: 600;
@@ -179,48 +187,48 @@ select {
 }
 
 /* Defines the design for each status */
-.status-pending {
+.statusPending {
     background-color: #ffeeba;
     color: #856404;
 }
 
-.status-accepted {
+.statusAccepted {
     background-color: #cce5ff;
     color: #004085;
 }
 
-.status-cancelled {
+.statusCancelled {
     background-color: #f8d7da;
     color: #721c24;
 }
 
-.status-completed {
+.statusCompleted {
     background-color: #d4edda;
     color: #155724;
 }
 
 /* The next 4 classes control the color of the buttons */
-.btn-accept {
+.btnAccept {
     background-color: #ffeeba;
     border-color: #856404;
     color: black;
 }
 
-.btn-cancel {
+.btnCancel {
     background-color: #f8d7da;
     border-color: #991b28;
     color: #ff0000;
     margin-left: 5px;
 }
 
-.btn-complete {
+.btnComplete {
     background-color: #d4edda;
     border-color: #155724;
     color: #000000;
     margin-left: 5px;
 }
 
-.btn-more {
+.btnMore {
     background-color: transparent;
     border-color: transparent;
     color: #000000;
@@ -237,7 +245,7 @@ select {
 }
 
 /* Defines the entire layout of the popup window*/
-.popup-content {
+.popupContent {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -252,7 +260,7 @@ select {
 }
 
 /* Fixes the popup header in place */
-.popup-content h2 {
+.popupContent h2 {
     text-align: center;
     margin: 0 0 10px 0;
     padding: 0;
@@ -268,9 +276,9 @@ select {
 }
 
 /* Defines a standard design for each field in the popup menu */
-.popup-content input,
-.popup-content textarea,
-.popup-content select {
+.popupContent input,
+.popupContent textarea,
+.popupContent select {
     border-radius: 10px;
     border: 1px solid #ccc;
     padding: 10px;

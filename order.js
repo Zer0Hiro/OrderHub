@@ -55,14 +55,14 @@ function statusBtn(cells) {
     let compbtn = cells[8].querySelector("#completedBtn");
     compbtn.style.display = "none";
     compbtn.onclick = () => {
-        cells[6].innerHTML = '<span class="status-pill status-completed">Completed</span>';
+        cells[6].innerHTML = '<span class="statusPill statusCompleted">Completed</span>';
         cbtn.style.display = "none";
         filter();
     }
     //Accept Button
     let abtn = cells[8].querySelector("#acceptBtn");
     abtn.onclick = () => {
-        cells[6].innerHTML = '<span class="status-pill status-accepted">Accepted</span>';
+        cells[6].innerHTML = '<span class="statusPill statusAccepted">Accepted</span>';
         abtn.style.display = "none";
         compbtn.style.display = "";
         filter();
@@ -70,7 +70,7 @@ function statusBtn(cells) {
     //Cancel Button
     let cbtn = cells[8].querySelector("#cancelBtn");
     cbtn.onclick = () => {
-        cells[6].innerHTML = '<span class="status-pill status-cancelled">Cancelled</span>';
+        cells[6].innerHTML = '<span class="statusPill statusCancelled">Cancelled</span>';
         abtn.style.display = "none";
         compbtn.style.display = "none";
         filter();
@@ -127,9 +127,12 @@ function simulateNewOrder() {
     cells[3].textContent = simOrder.customer;
     cells[4].textContent = simOrder.items;
     cells[5].textContent = simOrder.total.toFixed(2) + "₪";
-    cells[6].innerHTML = '<span class="status-pill status-pending">Pending</span>';
+    cells[6].innerHTML = '<span class="statusPill statusPending">Pending</span>';
 
     incomingTableBody.appendChild(newRow);
+
+    //Filter Update
+    filter();
 
     //Status Buttons
     statusBtn(cells);

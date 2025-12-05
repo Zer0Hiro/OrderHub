@@ -14,21 +14,21 @@
       <div class="logo">
         <img src="photos/icon.png" width="45" height="45">
 
-        <div class="header-text">
+        <div class="headerText">
           <h1>OrderHub</h1>
           <p>Manage food orders from all delivery partners in one place!</p>
         </div>
       </div>
       <!-- Filters -->
-      <div class="header-actions">
-        <select id="providerFilter" onchange="filter()" class="filter-select">
+      <div class="headerActions">
+        <select id="providerFilter" onchange="filter()" class="filterSelect">
           <option value="all">All providers</option>
           <option value="Wolt">Wolt</option>
           <option value="Tenbis">TenBis</option>
           <option value="Mishloha">Mishloha</option>
           <option value="Manual">Manual</option>
         </select>
-        <select id="statusFilter" onchange="filter()" class="filter-select">
+        <select id="statusFilter" onchange="filter()" class="filterSelect">
           <option value="all">All statuses</option>
           <option value="pending">Pending</option>
           <option value="accepted">Accepted</option>
@@ -39,16 +39,16 @@
 
     <!-- Incoming Orders part -->
     <div class="tables">
-      <div class="table-header">
+      <div class="tableHeader">
         <h1>Incoming Orders</h1>
         <button id="openBtn">New Order</button>
         <button id="simulateBtn" onclick="simulateNewOrder()">Simulate
           Order</button>
       </div>
-      <div class="orders-table-wrapper">
-        <table class="orders-table">
+      <div class="ordersTableWrapper">
+        <table class="ordersTable">
           <thead>
-            <tr class="orders-table-color">
+            <tr class="ordersTableColor">
               <th>Time</th>
               <th>Provider</th>
               <th>Order #</th>
@@ -68,7 +68,7 @@
 
     <!-- Popup -->
     <div id="popup" class="popup">
-      <div class="popup-content">
+      <div class="popupContent">
         <span id="closeBtn" class="close">x</span>
         <form name="NewOrder">
           <h2>Create New Order</h2>
@@ -118,15 +118,15 @@
 
     <!-- Template of table elements -->
     <template id="orderRowTemplate">
-      <tr class="order-row">
-        <td class="order-time"></td>
-        <td class="order-provider"></td>
-        <td class="order-id"></td>
-        <td class="order-customer"></td>
-        <td class="order-items"></td>
-        <td class="order-total"></td>
-        <td class="order-status"></td>
-        <td class="order-contact">
+      <tr class="orderRow">
+        <td class="orderTime"></td>
+        <td class="orderProvider"></td>
+        <td class="orderId"></td>
+        <td class="orderCustomer"></td>
+        <td class="orderItems"></td>
+        <td class="orderTotal"></td>
+        <td class="orderStatus"></td>
+        <td class="orderContact">
           <button title="Call customer">
             📞
           </button>
@@ -134,14 +134,14 @@
             💬
           </button>
         </td>
-        <td class="order-actions">
-          <button class="btn btn-accept" title="Accept order"
+        <td class="orderActions">
+          <button class="btn btnAccept" title="Accept order"
             id="acceptBtn">✓</button>
-          <button class="btn btn-complete" title="Complete order"
+          <button class="btn btnComplete" title="Complete order"
             id="completedBtn">✓</button>
-          <button class="btn btn-cancel" title="Cancel order"
+          <button class="btn btnCancel" title="Cancel order"
             id="cancelBtn">✕</button>
-          <button class="btn btn-more" title="More details">⋮</button>
+          <button class="btn btnMore" title="More details">⋮</button>
         </td>
       </tr>
     </template>
