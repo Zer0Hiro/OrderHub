@@ -135,6 +135,9 @@ function simulateNewOrder() {
     cells[5].textContent = simOrder.total.toFixed(2) + "₪";
     cells[6].innerHTML = '<span class="statusPill statusPending">Pending</span>';
 
+    //const btns = cells[7].querySelectorAll("a");
+    //btns[1].href = "call:" + 
+
     incomingTableBody.appendChild(newRow);
 
     //Filter Update
@@ -164,6 +167,11 @@ function NewOrder() {
     cells[4].textContent = orderItems.value;
     cells[5].textContent = orderTotal.value;
     cells[6].textContent = "Pending";
+
+    
+    const btns = cells[7].querySelectorAll("a");
+    btns[0].href = "tel:" + orderTel.value;
+    btns[1].href = "sms:" + orderTel.value;
 
 
     incomingTableBody.appendChild(newRow);
