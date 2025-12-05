@@ -93,16 +93,16 @@ function chooseRandomOrder(a) {
 function simulateNewOrder() {
     // adds a new simulated order to the incoming orders list
     let orders = [
-        { provider: "Wolt", customer: "John", items: "Pizza: 2, Coke: 1", total: 89.50 },
-        { provider: "Mishloha", customer: "Sarah", items: "Sushi Set: 1", total: 62.20 },
-        { provider: "Tenbis", customer: "Adam", items: "Falafel: 3, Water: 2", total: 38.75 },
-        { provider: "Wolt", customer: "Emily", items: "Pasta: 1, Salad: 1", total: 72.30 },
-        { provider: "Mishloha", customer: "Daniel", items: "Burger: 2, Fries: 1", total: 96.90 },
-        { provider: "Tenbis", customer: "Lior", items: "Shawarma: 1", total: 38.40 },
-        { provider: "Wolt", customer: "Maya", items: "Sushi: 8 pcs", total: 48.60 },
-        { provider: "Mishloha", customer: "Tom", items: "Steak Meal: 1", total: 135.75 },
-        { provider: "Tenbis", customer: "Omer", items: "Sandwich: 2, Juice: 1", total: 52.50 },
-        { provider: "Wolt", customer: "Noa", items: "Pad Thai: 1", total: 58.20 }
+        { provider: "Wolt", customer: "John", items: "Pizza: 2, Coke: 1", total: 89.50, orderTel: "0505256442" },
+        { provider: "Mishloha", customer: "Sarah", items: "Sushi Set: 1", total: 62.20, orderTel: "0505256442" },
+        { provider: "Tenbis", customer: "Adam", items: "Falafel: 3, Water: 2", total: 38.75, orderTel: "0505256442" },
+        { provider: "Wolt", customer: "Emily", items: "Pasta: 1, Salad: 1", total: 72.30, orderTel: "0505256442" },
+        { provider: "Mishloha", customer: "Daniel", items: "Burger: 2, Fries: 1", total: 96.90, orderTel: "0505256442" },
+        { provider: "Tenbis", customer: "Lior", items: "Shawarma: 1", total: 38.40, orderTel: "0505256442" },
+        { provider: "Wolt", customer: "Maya", items: "Sushi: 8 pcs", total: 48.60, orderTel: "0505256442" },
+        { provider: "Mishloha", customer: "Tom", items: "Steak Meal: 1", total: 135.75, orderTel: "0505256442", orderTel: "0505256442" },
+        { provider: "Tenbis", customer: "Omer", items: "Sandwich: 2, Juice: 1", total: 52.50,  orderTel: "0505256442" },
+        { provider: "Wolt", customer: "Noa", items: "Pad Thai: 1", total: 58.20, orderTel: "0505256442" }
     ];
 
 
@@ -135,9 +135,9 @@ function simulateNewOrder() {
     cells[5].textContent = simOrder.total.toFixed(2) + "₪";
     cells[6].innerHTML = '<span class="statusPill" id="statusPending">Pending</span>';
 
-    //const btns = cells[7].querySelectorAll("a");
-    //btns[1].href = "call:" + 
-
+    const btns = cells[7].querySelectorAll("a");
+    btns[0].href = "tel:" + simOrder.orderTel;
+    btns[1].href = "sms:" + simOrder.orderTel;
     incomingTableBody.appendChild(newRow);
 
     //Filter Update
