@@ -391,6 +391,7 @@ button:not(.dontHover):hover {
     top: 10px;
     right: 15px;
     font-size: 22px;
+    cursor: pointer;
 }
 
 /* Defines a standard design for each field in the popup menu */
