@@ -8,16 +8,16 @@ function validation(event) {
     
     let alarm = "";
 
-    if (usernameInput.value.trim() === "")
+    if (usernameInput.value.trim() == "")
         alarm += "Please enter your username\n";
 
-    if (passwordInput.value.trim() === "")
+    if (passwordInput.value.trim() == "")
         alarm += "Please enter your password";
 
     if (alarm !== "") // if user failed to fill both fields
         alert(alarm);
 
     else {
-        loginScreen.classList.add("fade-out"); // classList provides a way to access CSS classes.
+        loginScreen.classList.add("fadeOut"); // classList provides a way to access CSS classes.
     }
 }

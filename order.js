@@ -2,7 +2,7 @@
 const ordersBodyActive = document.getElementById("ordersBodyActive");
 const popup = document.getElementById("popup");
 const openBtn = document.getElementById("openBtn");
-const closeBtn = document.getElementById("closeBtn");
+const closeBtn = document.getElementById("close");
 //Form
 const orderName = document.getElementById("orderName");
 const orderTel = document.getElementById("orderTel");
@@ -39,7 +39,7 @@ function cleanForm() {
 }
 
 //Time func
-function timeATM() {
+function timeAtm() {
     const now = new Date();
     const time = now.toLocaleTimeString('en-US', {
         hour: '2-digit',
@@ -52,27 +52,27 @@ function timeATM() {
 //Status Buttons
 function statusBtn(cells) {
     //Completed Button
-    let compbtn = cells[8].querySelector("#completedBtn");
-    compbtn.style.display = "none";
-    compbtn.onclick = () => {
-        cells[6].innerHTML = '<span class="status-pill status-completed">Completed</span>';
-        cbtn.style.display = "none";
+    let compBtn = cells[8].querySelector("#completedBtn");
+    compBtn.style.display = "none";
+    compBtn.onclick = () => {
+        cells[6].innerHTML = '<span class="statusPill statusCompleted">Completed</span>';
+        cancelBtn.style.display = "none";
         filter();
     }
     //Accept Button
-    let abtn = cells[8].querySelector("#acceptBtn");
-    abtn.onclick = () => {
-        cells[6].innerHTML = '<span class="status-pill status-accepted">Accepted</span>';
-        abtn.style.display = "none";
-        compbtn.style.display = "";
+    let acceptBtn = cells[8].querySelector("#acceptBtn");
+    acceptBtn.onclick = () => {
+        cells[6].innerHTML = '<span class="statusPill statusAccepted">Accepted</span>';
+        acceptBtn.style.display = "none";
+        compBtn.style.display = "";
         filter();
     }
     //Cancel Button
-    let cbtn = cells[8].querySelector("#cancelBtn");
-    cbtn.onclick = () => {
-        cells[6].innerHTML = '<span class="status-pill status-cancelled">Cancelled</span>';
-        abtn.style.display = "none";
-        compbtn.style.display = "none";
+    let cancelBtn = cells[8].querySelector("#cancelBtn");
+    cancelBtn.onclick = () => {
+        cells[6].innerHTML = '<span class="statusPill statusCancelled">Cancelled</span>';
+        acceptBtn.style.display = "none";
+        compBtn.style.display = "none";
         filter();
     }
 }
@@ -106,16 +106,16 @@ function simulateNewOrder() {
     const simOrder = chooseRandomOrder(orders);
 
     //Time stamp for order
-    timeString = timeATM();
+    timeString = timeAtm();
 
     let prefix = "";
-    if (simOrder.provider === "Wolt") {
+    if (simOrder.provider == "Wolt") {
         prefix = "WO";
     }
-    else if (simOrder.provider === "Mishloha") {
+    else if (simOrder.provider == "Mishloha") {
         prefix = "MS";
     }
-    else if (simOrder.provider === "Tenbis") {
+    else if (simOrder.provider == "Tenbis") {
         prefix = "TB";
     }
 
@@ -127,7 +127,7 @@ function simulateNewOrder() {
     cells[3].textContent = simOrder.customer;
     cells[4].textContent = simOrder.items;
     cells[5].textContent = simOrder.total.toFixed(2) + "₪";
-    cells[6].innerHTML = '<span class="status-pill status-pending">Pending</span>';
+    cells[6].innerHTML = '<span class="statusPill statusPending">Pending</span>';
 
     incomingTableBody.appendChild(newRow);
 
@@ -137,13 +137,13 @@ function simulateNewOrder() {
 
 
 //Create Order
-function NewOrder() {
+function newOrder() {
     const rowTemplate = document.getElementById("orderRowTemplate");
     const newRow = document.importNode(rowTemplate.content, true);
     const cells = newRow.querySelectorAll('td');
 
     //Time stamp for order
-    timeString = timeATM();
+    timeString = timeAtm();
 
     // Generate order ID
     const orderId = "MAN-" + Date.now().toString().slice(-6);
@@ -171,28 +171,28 @@ function NewOrder() {
 // Form Validation
 function validateForm() {
 
-    let alertms = "";
+    let alertMs = "";
     //Check phone number 
     if (orderTel.value.trim().length != 10) {
-        alertms = alertms + "Please enter 10 digits phone number\n";
+        alertMs = alertMs + "Please enter 10 digits phone number\n";
     }
 
     //Check price of items
     const total = parseFloat(orderTotal.value);
     if ((typeof orderTotal.value === 'string') || (total == 0 && orderItems.value.trim().length != 0)) {
-        alertms = alertms + "Invalid Amount\n";
+        alertMs = alertMs + "Invalid Amount\n";
     }
 
     if (orderPayment.value == "") {
-        alertms = alertms + "Please select a payment method";
+        alertMs = alertMs + "Please select a payment method";
     }
 
-    if (alertms != "") {
-        alert(alertms);
+    if (alertMs != "") {
+        alert(alertMs);
     }
 
     else {
-        NewOrder();
+        newOrder();
     }
 }
 

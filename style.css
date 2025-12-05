@@ -4,7 +4,7 @@ body {
 }
 
 /* Defines the background color */
-.background {
+#background {
     background-color: #ff990034;
 }
 
@@ -27,12 +27,12 @@ select:not(.dontHover) {
 button:not(.dontHover):hover {
     box-shadow: 0 0 12px #7878787d;
     color: white;
-    background-color: #97c1ff;
-    border: 1px solid #afafaf7f;
+    background-color: #97c1ff !important; /* !important forces the color change no matter what */
+    border: 1px solid #afafaf7f !important;
 }
 
 /* Centers the login card*/
-.login {
+#login {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,18 +49,18 @@ button:not(.dontHover):hover {
 }
 
 /* Related to fadeouts.. NEEDS TO BE ANNOTATED CORRECTLY!!! */
-.fade-out {
+#login.fadeOut {
     opacity: 0;
     visibility: hidden;
 }
 
 /* Centers everything(?) idk how */
-.loginBackground {
+#loginBackground {
     position: absolute;
 }
 
 /* Defines the design for the login card  */
-.loginCard {
+#loginCard {
     z-index: 999;
     background-color: white;
     
@@ -80,7 +80,7 @@ button:not(.dontHover):hover {
 }
 
 /* This class and the next one controls the design and positioning of the text */
-.loginText1 {
+#loginText1 {
     position: absolute;
     top: 15px;
     left: 0;
@@ -92,7 +92,7 @@ button:not(.dontHover):hover {
     color: #333;
 }
 
-.loginText2 {
+#loginText2 {
     position: absolute;
     top: 50px;
     left: 0;
@@ -133,7 +133,7 @@ button:not(.dontHover):hover {
 }
 
 /* Defines the style for the sign in button */
-.signIn {
+#signIn {
     position: absolute;
     top: 150px;
 
@@ -146,7 +146,7 @@ button:not(.dontHover):hover {
 }
 
 /* Design for header */
-.header {
+#header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -166,14 +166,14 @@ button:not(.dontHover):hover {
 }
 
 /* Design for header text */
-.header-text {
+.headerText {
     font-size: 13px;
     display: flex;
     flex-direction: column;
 }
 
 /* Design for text under header */
-.header-text h1 {
+.headerText h1 {
     margin: 0;
 }
 
@@ -189,7 +189,7 @@ button:not(.dontHover):hover {
 }
 
 /* This class and the next one align the Order buttons correctly */
-.table-header {
+.tableHeader {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
@@ -201,25 +201,25 @@ button:not(.dontHover):hover {
 }
 
 /* This id and the next one stylize the Order buttons */
-.openBtn {
+#openBtn {
     background-color: #7af57a;
     border-color: #0f4b0f;
     color: #000000;    
 }
 
-.simulateBtn {
+#simulateBtn {
     background-color: #7af57a65;
     margin-left: 10px;
 }
 
 /* Defines the style of the top of the table */
-.orders-table-wrapper {
+.ordersTableWrapper {
     border-radius: 12px;
     overflow: auto;
 }
 
 /* Defines the style of each column in the table */
-.orders-table {
+.ordersTable {
     width: 1380px;
     table-layout: fixed;
     border-collapse: collapse;
@@ -228,56 +228,56 @@ button:not(.dontHover):hover {
 }
 
 /* Defines the size for each column */
-.orders-table th:nth-child(1) {
+.ordersTable th:nth-child(1) {
     width: 2%;
 }
 
 /* Time */
-.orders-table th:nth-child(2) {
+.ordersTable th:nth-child(2) {
     width: 2%;
 }
 
 /* Provider */
-.orders-table th:nth-child(3) {
+.ordersTable th:nth-child(3) {
     width: 2%;
 }
 
 /* Order # */
-.orders-table th:nth-child(4) {
+.ordersTable th:nth-child(4) {
     width: 2%;
 }
 
 /* Customer */
-.orders-table th:nth-child(5) {
+.ordersTable th:nth-child(5) {
     width: 9%;
 }
 
 /* Items */
-.orders-table th:nth-child(6) {
+.ordersTable th:nth-child(6) {
     width: 2%;
 }
 
 /* Total */
-.orders-table th:nth-child(7) {
+.ordersTable th:nth-child(7) {
     width: 2.2%;
     min-width: 90px;
 }
 
 /* Status */
-.orders-table th:nth-child(8) {
+.ordersTable th:nth-child(8) {
     width: 2.2%;
 }
 
 /* Contact */
-.orders-table th:nth-child(9) {
+.ordersTable th:nth-child(9) {
     width: 7%;
 }
 
 /* Actions */
 
 /* This aligns entires with the table columns and adds a dividing line*/
-.orders-table th,
-.orders-table td {
+.ordersTable th,
+.ordersTable td {
     text-align: left;
     padding: 10px 15px 10px 10px;
     border-bottom: 1px solid #e0e0e0;
@@ -286,17 +286,17 @@ button:not(.dontHover):hover {
 }
 
 /* Adds a color to the first row of each table */
-.orders-table-color {
+.ordersTableColor {
     background-color: #e6e6e6;
 }
 
 /* BOOOOLD */
-.orders-table td:nth-child(6) {
+.ordersTable td:nth-child(6) {
     font-weight: 650;
 }
 
 /* Defines a pill style for the order status */
-.status-pill {
+.statusPill {
     padding: 5px 12px;
     border-radius: 50px;
     font-weight: 600;
@@ -305,49 +305,49 @@ button:not(.dontHover):hover {
 }
 
 /* Defines the design for each status */
-.status-pending {
+.statusPending {
     background-color: #ffeeba;
     color: #856404;
 }
 
-.status-accepted {
+.statusAccepted {
     background-color: #cce5ff;
     color: #004085;
 }
 
-.status-cancelled {
+.statusCancelled {
     background-color: #f8d7da;
     color: #721c24;
 }
 
-.status-completed {
+.statusCompleted {
     background-color: #d4edda;
     color: #155724;
 }
 
 /* The next 4 classes control the color of the buttons */
-.btn-accept {
+.btnAccept {
     background-color: #ffeeba;
     border-color: #856404;
     color: black;
-        margin-left: 5px;
+    margin-left: 5px;
 }
 
-.btn-cancel {
+.btnCancel {
     background-color: #f8d7da;
     border-color: #991b28;
     color: #ff0000;
     margin-left: 5px;
 }
 
-.btn-complete {
+.btnComplete {
     background-color: #d4edda;
     border-color: #155724;
     color: #000000;
     margin-left: 5px;
 }
 
-.btn-more {
+.btnMore {
     background-color: transparent;
     border-color: transparent;
     color: #000000;
@@ -356,7 +356,7 @@ button:not(.dontHover):hover {
 }
 
 /* Hides new order popup and fades background*/
-.popup {
+#popup {
     display: none;
     position: fixed;
     inset: 0;
@@ -364,7 +364,7 @@ button:not(.dontHover):hover {
 }
 
 /* Defines the entire layout of the popup window*/
-.popup-content {
+#popupContent {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -379,14 +379,14 @@ button:not(.dontHover):hover {
 }
 
 /* Fixes the popup header in place */
-.popup-content h2 {
+#popupContent h2 {
     text-align: center;
     margin: 0 0 10px 0;
     padding: 0;
 }
 
 /* Stylizes the "X" close button*/
-.close {
+#close {
     position: absolute;
     top: 10px;
     right: 15px;
@@ -394,9 +394,9 @@ button:not(.dontHover):hover {
 }
 
 /* Defines a standard design for each field in the popup menu */
-.popup-content input,
-.popup-content textarea,
-.popup-content select {
+#popupContent input,
+#popupContent textarea,
+#popupContent select {
     border-radius: 10px;
     border: 1px solid #ccc;
     padding: 10px;
