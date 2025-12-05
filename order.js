@@ -33,7 +33,7 @@ window.onclick = (event) => {
     if (event.target === popup) popup.style.display = "none";
 };
 
-orderBtn.onclick = () => NewOrder();
+orderBtn.onclick = () => validateForm();
 simulateBtn.onclick = () => simulateNewOrder();
 
 //Clean Form
@@ -58,33 +58,6 @@ function timeATM() {
     return time;
 }
 
-//Status Buttons
-function statusBtn(cells) {
-    //Completed Button
-    let compbtn = cells[8].querySelector("#completedBtn");
-    compbtn.style.display = "none";
-    compbtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill" id="statusCompleted">Completed</span>';
-        cbtn.style.display = "none";
-        filter();
-    }
-    //Accept Button
-    let abtn = cells[8].querySelector("#acceptBtn");
-    abtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill" id="statusAccepted">Accepted</span>';
-        abtn.style.display = "none";
-        compbtn.style.display = "";
-        filter();
-    }
-    //Cancel Button
-    let cbtn = cells[8].querySelector("#cancelBtn");
-    cbtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill" id="statusCancelled">Cancelled</span>';
-        abtn.style.display = "none";
-        compbtn.style.display = "none";
-        filter();
-    }
-}
 
 //Simulate Order
 function chooseRandomOrder(a) {
@@ -166,8 +139,8 @@ function NewOrder() {
     cells[2].textContent = orderId;
     cells[3].textContent = orderName.value;
     cells[4].textContent = orderItems.value;
-    cells[5].textContent = orderTotal.value;
-    cells[6].textContent = "Pending";
+    cells[5].textContent = orderTotal.total.toFixed(2) + "₪";
+    cells[6].innerHTML = '<span class="statusPill" id="statusPending">Pending</span>';
 
     
     const btns = cells[7].querySelectorAll("a");
@@ -197,7 +170,7 @@ function validateForm() {
 
     //Check price of items
     const total = parseFloat(orderTotal.value);
-    if ((typeof orderTotal.value === 'string') || (total == 0 && orderItems.value.trim().length != 0)) {
+    if ((typeof total.value === 'string') || (total == 0 && orderItems.value.trim().length != 0)) {
         alertms = alertms + "Invalid Amount\n";
     }
 
@@ -234,5 +207,33 @@ function filter() {
                 cells[i].style.display = 'none';
             }
         }
+    }
+}
+
+//Status Buttons
+function statusBtn(cells) {
+    //Completed Button
+    let compbtn = cells[8].querySelector("#completedBtn");
+    compbtn.style.display = "none";
+    compbtn.onclick = () => {
+        cells[6].innerHTML = '<span class="statusPill" id="statusCompleted">Completed</span>';
+        cbtn.style.display = "none";
+        filter();
+    }
+    //Accept Button
+    let abtn = cells[8].querySelector("#acceptBtn");
+    abtn.onclick = () => {
+        cells[6].innerHTML = '<span class="statusPill" id="statusAccepted">Accepted</span>';
+        abtn.style.display = "none";
+        compbtn.style.display = "";
+        filter();
+    }
+    //Cancel Button
+    let cbtn = cells[8].querySelector("#cancelBtn");
+    cbtn.onclick = () => {
+        cells[6].innerHTML = '<span class="statusPill" id="statusCancelled">Cancelled</span>';
+        abtn.style.display = "none";
+        compbtn.style.display = "none";
+        filter();
     }
 }
