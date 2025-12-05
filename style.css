@@ -4,7 +4,7 @@ body {
 }
 
 /* Defines the background color */
-.background {
+#background {
     background-color: #ff990034;
 }
 
@@ -26,7 +26,7 @@ select {
 }
 
 /* Design for header */
-.header {
+#header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -39,26 +39,26 @@ select {
 }
 
 /* Places the logo next to header */
-.logo {
+#logo {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
 /* Design for header text */
-.headerText {
+#headerText {
     font-size: 13px;
     display: flex;
     flex-direction: column;
 }
 
 /* Design for text under header */
-.headerText h1 {
+#headerText h1 {
     margin: 0;
 }
 
 /* Design for the tables */
-.tables {
+#tables {
     max-width: 1380px;
     margin: 20px auto;
     background: #ffffff;
@@ -69,13 +69,13 @@ select {
 }
 
 /* This class and the next one align the Order buttons correctly */
-.tableHeader {
+#tableHeader {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
 }
 
-.tables h1 {
+#tables h1 {
     margin: 0;
     margin-right: auto;
 }
@@ -95,13 +95,13 @@ select {
 }
 
 /* Defines the style of the top of the table */
-.ordersTableWrapper {
+#ordersTableWrapper {
     border-radius: 12px;
     overflow: auto;
 }
 
 /* Defines the style of each column in the table */
-.ordersTable {
+#ordersTable {
     width: 1380px;
     table-layout: fixed;
     border-collapse: collapse;
@@ -110,56 +110,56 @@ select {
 }
 
 /* Defines the size for each column */
-.ordersTable th:nth-child(1) {
+#ordersTable th:nth-child(1) {
     width: 2%;
 }
 
 /* Time */
-.ordersTable th:nth-child(2) {
+#ordersTable th:nth-child(2) {
     width: 2%;
 }
 
 /* Provider */
-.ordersTable th:nth-child(3) {
+#ordersTable th:nth-child(3) {
     width: 2%;
 }
 
 /* Order # */
-.ordersTable th:nth-child(4) {
+#ordersTable th:nth-child(4) {
     width: 2%;
 }
 
 /* Customer */
-.ordersTable th:nth-child(5) {
+#ordersTable th:nth-child(5) {
     width: 9%;
 }
 
 /* Items */
-.ordersTable th:nth-child(6) {
+#ordersTable th:nth-child(6) {
     width: 2%;
 }
 
 /* Total */
-.ordersTable th:nth-child(7) {
+#ordersTable th:nth-child(7) {
     width: 2.2%;
     min-width: 90px;
 }
 
 /* Status */
-.ordersTable th:nth-child(8) {
+#ordersTable th:nth-child(8) {
     width: 2.2%;
 }
 
 /* Contact */
-.ordersTable th:nth-child(9) {
+#ordersTable th:nth-child(9) {
     width: 7%;
 }
 
 /* Actions */
 
 /* This aligns entires with the table columns and adds a dividing line*/
-.ordersTable th,
-.ordersTable td {
+#ordersTable th,
+#ordersTable td {
     text-align: left;
     padding: 10px 15px 10px 10px;
     border-bottom: 1px solid #e0e0e0;
@@ -168,12 +168,12 @@ select {
 }
 
 /* Adds a color to the first row of each table */
-.ordersTableColor {
+#ordersTableColor {
     background-color: #e6e6e6;
 }
 
 /* BOOOOLD */
-.ordersTable td:nth-child(6) {
+#ordersTable td:nth-child(6) {
     font-weight: 650;
 }
 
@@ -212,6 +212,7 @@ select {
     background-color: #ffeeba;
     border-color: #856404;
     color: black;
+    margin-left: 5px;
 }
 
 .btnCancel {
@@ -237,7 +238,7 @@ select {
 }
 
 /* Hides new order popup and fades background*/
-.popup {
+#popup {
     display: none;
     position: fixed;
     inset: 0;
@@ -245,7 +246,7 @@ select {
 }
 
 /* Defines the entire layout of the popup window*/
-.popupContent {
+#popupContent {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -260,14 +261,14 @@ select {
 }
 
 /* Fixes the popup header in place */
-.popupContent h2 {
+#popupContent h2 {
     text-align: center;
     margin: 0 0 10px 0;
     padding: 0;
 }
 
 /* Stylizes the "X" close button*/
-.close {
+#closeBtn {
     position: absolute;
     top: 10px;
     right: 15px;
@@ -276,9 +277,9 @@ select {
 }
 
 /* Defines a standard design for each field in the popup menu */
-.popupContent input,
-.popupContent textarea,
-.popupContent select {
+#popupContent input,
+#popupContent textarea,
+#popupContent select {
     border-radius: 10px;
     border: 1px solid #ccc;
     padding: 10px;
