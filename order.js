@@ -12,10 +12,13 @@ const orderTotal = document.getElementById("orderTotal");
 const orderPayment = document.getElementById("orderPayment");
 const orderNotes = document.getElementById("orderNotes");
 //Table
+const rowTemplate = document.getElementById("orderRowTemplate");
 const incomingTableBody = document.getElementById("ordersBodyActive");
 const orderBtn = document.getElementById("orderButton");
 const simulateBtn = document.getElementById("simulateBtn");
-
+//Filters
+const filterProvider = document.getElementById("providerFilter");
+const filterStatus = document.getElementById("statusFilter");
 
 //Empty Table
 if (ordersBodyActive) ordersBodyActive.innerHTML = "";
@@ -106,7 +109,6 @@ function simulateNewOrder() {
     ];
 
 
-    const rowTemplate = document.getElementById("orderRowTemplate");
     const newRow = document.importNode(rowTemplate.content, true);
     const cells = newRow.querySelectorAll('td');
     const simOrder = chooseRandomOrder(orders);
@@ -150,7 +152,6 @@ function simulateNewOrder() {
 
 //Create Order
 function NewOrder() {
-    const rowTemplate = document.getElementById("orderRowTemplate");
     const newRow = document.importNode(rowTemplate.content, true);
     const cells = newRow.querySelectorAll('td');
 
@@ -215,18 +216,18 @@ function validateForm() {
 
 
 function filter() {
-    const filterProvider = document.getElementById("providerFilter").value;
-    const filterStatus = document.getElementById("statusFilter").value;
+    let provider = filterProvider.value;
+    let status = filterStatus.value;
     const tables = document.getElementsByClassName("orderBody");
 
     for (let j = 0; j < tables.length; j++) {
         const cells = tables[j].querySelectorAll("tr")
         for (let i = 0; i < cells.length; i++) {
-            if (filterProvider == "all" && filterStatus == "all") {
+            if (provider == "all" && status == "all") {
                 cells[i].style.display = '';
             }
-            else if ((cells[i].querySelectorAll("td")[1].innerHTML == filterProvider || filterProvider == 'all')
-                && (cells[i].querySelectorAll("td")[6].textContent.toLowerCase() == filterStatus || filterStatus == 'all')) {
+            else if ((cells[i].querySelectorAll("td")[1].innerHTML == provider || provider == 'all')
+                && (cells[i].querySelectorAll("td")[6].textContent.toLowerCase() == status || status == 'all')) {
                 cells[i].style.display = '';
             }
             else {
