@@ -9,18 +9,18 @@
     <link rel="icon" href="photos/icon.png">
   </head>
 
-  <body class="background">
-    <div class="header">
-      <div class="logo">
+  <body id="background">
+    <div id="header">
+      <div id="logo">
         <img src="photos/icon.png" width="45" height="45">
 
-        <div class="headerText">
+        <div id="headerText">
           <h1>OrderHub</h1>
           <p>Manage food orders from all delivery partners in one place!</p>
         </div>
       </div>
       <!-- Filters -->
-      <div class="headerActions">
+      <div id="headerActions">
         <select id="providerFilter" onchange="filter()" class="filterSelect">
           <option value="all">All providers</option>
           <option value="Wolt">Wolt</option>
@@ -38,17 +38,17 @@
     </div>
 
     <!-- Incoming Orders part -->
-    <div class="tables">
-      <div class="tableHeader">
+    <div id="tables">
+      <div id="tableHeader">
         <h1>Incoming Orders</h1>
         <button id="openBtn">New Order</button>
         <button id="simulateBtn" onclick="simulateNewOrder()">Simulate
           Order</button>
       </div>
-      <div class="ordersTableWrapper">
-        <table class="ordersTable">
+      <div id="ordersTableWrapper">
+        <table id="ordersTable">
           <thead>
-            <tr class="ordersTableColor">
+            <tr id="ordersTableColor">
               <th>Time</th>
               <th>Provider</th>
               <th>Order #</th>
@@ -67,9 +67,9 @@
     </div>
 
     <!-- Popup -->
-    <div id="popup" class="popup">
-      <div class="popupContent">
-        <span id="closeBtn" class="close">x</span>
+    <div id="popup">
+      <div id="popupContent">
+        <span id="closeBtn">x</span>
         <form name="NewOrder">
           <h2>Create New Order</h2>
 
