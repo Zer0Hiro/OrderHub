@@ -171,7 +171,7 @@ select {
 
 }
 
-/* Adds a color to the first row of each table */
+/* Adds a color to the first row of each table */ 
 #ordersTableColor {
     background-color: #e6e6e6;
 }
@@ -263,6 +263,23 @@ select {
     border-radius: 20px;
     box-shadow: 0 0 20px #0000004d;
 }
+
+@media (max-width :540px) {
+    #popupContent {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #ffffff;
+        padding: 20px 20px 20px 20px;
+        max-height: 80vh;
+        overflow-y: auto;
+        width: 300px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px #0000004d;
+    }
+    
+}
+
 
 /* Fixes the popup header in place */
 #popupContent h2 {
