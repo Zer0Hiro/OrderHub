@@ -8,6 +8,10 @@ body {
     background-color: #ff990034;
 }
 
+a {
+    text-decoration: none;
+}
+
 /* Universal design for buttons */
 button,
 select {
