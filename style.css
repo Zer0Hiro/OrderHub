@@ -10,11 +10,139 @@ body {
 
 /* Universal design for buttons */
 button,
-select {
+select{
     padding: 8px 12px;
     border-radius: 50px;
     border: 1px solid #616161;
+
     cursor: pointer;
+}
+
+/* Universal design for hovering over buttons */
+button:not(.dontHover),
+select:not(.dontHover) {
+    transition: all 0.3s ease;
+}
+
+button:not(.dontHover):hover {
+    box-shadow: 0 0 12px #7878787d;
+    color: white;
+    background-color: #97c1ff;
+    border: 1px solid #afafaf7f;
+}
+
+/* Centers the login card*/
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    opacity: 1;
+    visibility: visible;
+    
+    transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+/* Related to fadeouts.. NEEDS TO BE ANNOTATED CORRECTLY!!! */
+.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Centers everything(?) idk how */
+.loginBackground {
+    position: absolute;
+}
+
+/* Defines the design for the login card  */
+.loginCard {
+    z-index: 999;
+    background-color: white;
+    
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+    width: 432px;
+    height: 200px;
+    padding: 20px;
+    
+    border-radius: 32px;
+    border: 2px solid #afafaf7f;
+    box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* This class and the next one controls the design and positioning of the text */
+.loginText1 {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.loginText2 {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+
+    margin: 0;
+    font-size: 16px;
+    color: #666;
+    font-weight: normal;
+}
+
+/* This class and the next one controls the design and positioning of the fields */
+.username {
+    position: absolute;
+    top: 84px;
+    left: 30%;
+
+    text-align: center;
+    color: #666;
+
+    border-radius: 10px;
+    border: 1.5px solid #afafaf7f;
+    padding: 3px;
+}
+
+.password {
+    position: absolute;
+    top: 114px;
+    left: 30%;
+
+    text-align: center;
+    color: #666;
+
+    border-radius: 10px;
+    border: 1px solid #afafaf7f;
+    padding: 3px;
+}
+
+/* Defines the style for the sign in button */
+.signIn {
+    position: absolute;
+    top: 150px;
+
+    text-align: center;
+    left: 42.5%;
+    margin: 0;
+    color: #666;
+    border: 1px solid #afafaf7f;
+    background-color: #ff990023;
 }
 
 /* Design for header */
@@ -31,7 +159,7 @@ select {
 }
 
 /* Places the logo next to header */
-.logo {
+.siteLogo {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -73,16 +201,14 @@ select {
 }
 
 /* This id and the next one stylize the Order buttons */
-#openBtn {
+.openBtn {
     background-color: #7af57a;
     border-color: #0f4b0f;
-    color: #000000;
-    cursor: pointer;
+    color: #000000;    
 }
 
-#simulateBtn {
+.simulateBtn {
     background-color: #7af57a65;
-    cursor: pointer;
     margin-left: 10px;
 }
 
@@ -204,6 +330,7 @@ select {
     background-color: #ffeeba;
     border-color: #856404;
     color: black;
+        margin-left: 5px;
 }
 
 .btn-cancel {
@@ -258,13 +385,28 @@ select {
     padding: 0;
 }
 
+/* Mimics the behavior of the popup screen.. but for monkey*/
+.monkeyPopup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #00000080;
+}
+
+/* *monkey noises* */
+.monkeyPopupContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 /* Stylizes the "X" close button*/
 .close {
     position: absolute;
     top: 10px;
     right: 15px;
     font-size: 22px;
-    cursor: pointer;
 }
 
 /* Defines a standard design for each field in the popup menu */
@@ -309,5 +451,10 @@ select {
     display: block;
     margin-left: auto;
     background-color: #7af57a;
-    cursor: pointer;
+}
+
+#orderButton:hover {
+    box-shadow: 0 0 12px #7878787d;
+    color: white;
+    background-color: #97c1ff; 
 }
