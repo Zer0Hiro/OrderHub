@@ -8,6 +8,11 @@ body {
     background-color: #ff990034;
 }
 
+/* Removes hyperlink underline */
+a {
+    text-decoration: none;
+}
+
 /* Universal design for buttons */
 button,
 select{
