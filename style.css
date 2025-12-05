@@ -191,7 +191,7 @@ select {
 }
 
 /* Defines the design for each status */
-#statusPending {
+.statusPending {
     background-color: #ffeeba;
     color: #856404;
 }

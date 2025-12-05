@@ -77,7 +77,7 @@ function simulateNewOrder() {
         { provider: "Tenbis", customer: "Lior", items: "Shawarma: 1", total: 38.40, orderTel: "0505256442" },
         { provider: "Wolt", customer: "Maya", items: "Sushi: 8 pcs", total: 48.60, orderTel: "0505256442" },
         { provider: "Mishloha", customer: "Tom", items: "Steak Meal: 1", total: 135.75, orderTel: "0505256442", orderTel: "0505256442" },
-        { provider: "Tenbis", customer: "Omer", items: "Sandwich: 2, Juice: 1", total: 52.50,  orderTel: "0505256442" },
+        { provider: "Tenbis", customer: "Omer", items: "Sandwich: 2, Juice: 1", total: 52.50, orderTel: "0505256442" },
         { provider: "Wolt", customer: "Noa", items: "Pad Thai: 1", total: 58.20, orderTel: "0505256442" }
     ];
 
@@ -108,7 +108,7 @@ function simulateNewOrder() {
     cells[3].textContent = simOrder.customer;
     cells[4].textContent = simOrder.items;
     cells[5].textContent = simOrder.total.toFixed(2) + "₪";
-    cells[6].innerHTML = '<span class="statusPill" id="statusPending">Pending</span>';
+    cells[6].innerHTML = '<span class="statusPill statusPending">Pending</span>';
 
     const btns = cells[7].querySelectorAll("a");
     btns[0].href = "tel:" + simOrder.orderTel;
@@ -139,10 +139,10 @@ function NewOrder() {
     cells[2].textContent = orderId;
     cells[3].textContent = orderName.value;
     cells[4].textContent = orderItems.value;
-    cells[5].textContent = orderTotal.total.toFixed(2) + "₪";
-    cells[6].innerHTML = '<span class="statusPill" id="statusPending">Pending</span>';
+    cells[5].textContent = orderTotal.value + "₪";
+    cells[6].innerHTML = '<span class="statusPill statusPending">Pending</span>';
 
-    
+
     const btns = cells[7].querySelectorAll("a");
     btns[0].href = "tel:" + orderTel.value;
     btns[1].href = "sms:" + orderTel.value;
@@ -168,12 +168,18 @@ function validateForm() {
         alertms = alertms + "Please enter 10 digits phone number\n";
     }
 
+    //Check items is not empty
+    if (orderItems.value == "") {
+        alertms = alertms + "Please add any items\n";
+    }
+
     //Check price of items
     const total = parseFloat(orderTotal.value);
-    if ((typeof total.value === 'string') || (total == 0 && orderItems.value.trim().length != 0)) {
+    if (isNaN(total) || (total == 0 && orderItems.value.trim().length != 0)) {
         alertms = alertms + "Invalid Amount\n";
     }
 
+    //Check payment method
     if (orderPayment.value == "") {
         alertms = alertms + "Please select a payment method";
     }
