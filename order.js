@@ -106,7 +106,7 @@ function simulateNewOrder() {
     const simOrder = chooseRandomOrder(orders);
 
     //Time stamp for order
-    timeString = timeAtm();
+    timeString = timeATM();
 
     let prefix = "";
     if (simOrder.provider == "Wolt") {
@@ -127,9 +127,15 @@ function simulateNewOrder() {
     cells[3].textContent = simOrder.customer;
     cells[4].textContent = simOrder.items;
     cells[5].textContent = simOrder.total.toFixed(2) + "₪";
-    cells[6].innerHTML = '<span class="statusPill statusPending">Pending</span>';
+    cells[6].innerHTML = '<span class="statusPill" id="statusPending">Pending</span>';
+
+    //const btns = cells[7].querySelectorAll("a");
+    //btns[1].href = "call:" + 
 
     incomingTableBody.appendChild(newRow);
+
+    //Filter Update
+    filter();
 
     //Status Buttons
     statusBtn(cells);
