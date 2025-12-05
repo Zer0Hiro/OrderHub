@@ -16,6 +16,7 @@ const incomingTableBody = document.getElementById("ordersBodyActive");
 const orderBtn = document.getElementById("orderButton");
 const simulateBtn = document.getElementById("simulateBtn");
 
+
 //Empty Table
 if (ordersBodyActive) ordersBodyActive.innerHTML = "";
 
@@ -25,9 +26,12 @@ closeBtn.onclick = () => {
     popup.style.display = "none";
     cleanForm();
 }
-window.onclick = (e) => {
-    if (e.target === popup) popup.style.display = "none";
+window.onclick = (event) => {
+    if (event.target === popup) popup.style.display = "none";
 };
+
+orderBtn.onclick = () => NewOrder();
+simulateBtn.onclick = () => simulateNewOrder();
 
 //Clean Form
 function cleanForm() {
@@ -41,7 +45,7 @@ function cleanForm() {
 }
 
 //Time func
-function timeAtm() {
+function timeATM() {
     const now = new Date();
     const time = now.toLocaleTimeString('en-US', {
         hour: '2-digit',
@@ -54,27 +58,27 @@ function timeAtm() {
 //Status Buttons
 function statusBtn(cells) {
     //Completed Button
-    let compBtn = cells[8].querySelector("#completedBtn");
-    compBtn.style.display = "none";
-    compBtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill statusCompleted">Completed</span>';
-        cancelBtn.style.display = "none";
+    let compbtn = cells[8].querySelector("#completedBtn");
+    compbtn.style.display = "none";
+    compbtn.onclick = () => {
+        cells[6].innerHTML = '<span class="statusPill" id="statusCompleted">Completed</span>';
+        cbtn.style.display = "none";
         filter();
     }
     //Accept Button
-    let acceptBtn = cells[8].querySelector("#acceptBtn");
-    acceptBtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill statusAccepted">Accepted</span>';
-        acceptBtn.style.display = "none";
-        compBtn.style.display = "";
+    let abtn = cells[8].querySelector("#acceptBtn");
+    abtn.onclick = () => {
+        cells[6].innerHTML = '<span class="statusPill" id="statusAccepted">Accepted</span>';
+        abtn.style.display = "none";
+        compbtn.style.display = "";
         filter();
     }
     //Cancel Button
-    let cancelBtn = cells[8].querySelector("#cancelBtn");
-    cancelBtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill statusCancelled">Cancelled</span>';
-        acceptBtn.style.display = "none";
-        compBtn.style.display = "none";
+    let cbtn = cells[8].querySelector("#cancelBtn");
+    cbtn.onclick = () => {
+        cells[6].innerHTML = '<span class="statusPill" id="statusCancelled">Cancelled</span>';
+        abtn.style.display = "none";
+        compbtn.style.display = "none";
         filter();
     }
 }
@@ -145,13 +149,13 @@ function simulateNewOrder() {
 
 
 //Create Order
-function newOrder() {
+function NewOrder() {
     const rowTemplate = document.getElementById("orderRowTemplate");
     const newRow = document.importNode(rowTemplate.content, true);
     const cells = newRow.querySelectorAll('td');
 
     //Time stamp for order
-    timeString = timeAtm();
+    timeString = timeATM();
 
     // Generate order ID
     const orderId = "MAN-" + Date.now().toString().slice(-6);
@@ -163,6 +167,11 @@ function newOrder() {
     cells[4].textContent = orderItems.value;
     cells[5].textContent = orderTotal.value;
     cells[6].textContent = "Pending";
+
+    
+    const btns = cells[7].querySelectorAll("a");
+    btns[0].href = "tel:" + orderTel.value;
+    btns[1].href = "sms:" + orderTel.value;
 
 
     incomingTableBody.appendChild(newRow);
@@ -179,28 +188,28 @@ function newOrder() {
 // Form Validation
 function validateForm() {
 
-    let alertMs = "";
+    let alertms = "";
     //Check phone number 
     if (orderTel.value.trim().length != 10) {
-        alertMs = alertMs + "Please enter 10 digits phone number\n";
+        alertms = alertms + "Please enter 10 digits phone number\n";
     }
 
     //Check price of items
     const total = parseFloat(orderTotal.value);
     if ((typeof orderTotal.value === 'string') || (total == 0 && orderItems.value.trim().length != 0)) {
-        alertMs = alertMs + "Invalid Amount\n";
+        alertms = alertms + "Invalid Amount\n";
     }
 
     if (orderPayment.value == "") {
-        alertMs = alertMs + "Please select a payment method";
+        alertms = alertms + "Please select a payment method";
     }
 
-    if (alertMs != "") {
-        alert(alertMs);
+    if (alertms != "") {
+        alert(alertms);
     }
 
     else {
-        newOrder();
+        NewOrder();
     }
 }
 
