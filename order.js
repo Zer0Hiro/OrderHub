@@ -26,8 +26,8 @@ closeBtn.onclick = () => {
     popup.style.display = "none";
     cleanForm();
 }
-window.onclick = (e) => {
-    if (e.target === popup) popup.style.display = "none";
+window.onclick = (event) => {
+    if (event.target === popup) popup.style.display = "none";
 };
 
 orderBtn.onclick = () => NewOrder();
@@ -61,14 +61,14 @@ function statusBtn(cells) {
     let compbtn = cells[8].querySelector("#completedBtn");
     compbtn.style.display = "none";
     compbtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill statusCompleted">Completed</span>';
+        cells[6].innerHTML = '<span class="statusPill" id="statusCompleted">Completed</span>';
         cbtn.style.display = "none";
         filter();
     }
     //Accept Button
     let abtn = cells[8].querySelector("#acceptBtn");
     abtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill statusAccepted">Accepted</span>';
+        cells[6].innerHTML = '<span class="statusPill" id="statusAccepted">Accepted</span>';
         abtn.style.display = "none";
         compbtn.style.display = "";
         filter();
@@ -76,7 +76,7 @@ function statusBtn(cells) {
     //Cancel Button
     let cbtn = cells[8].querySelector("#cancelBtn");
     cbtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill statusCancelled">Cancelled</span>';
+        cells[6].innerHTML = '<span class="statusPill" id="statusCancelled">Cancelled</span>';
         abtn.style.display = "none";
         compbtn.style.display = "none";
         filter();
@@ -115,13 +115,13 @@ function simulateNewOrder() {
     timeString = timeATM();
 
     let prefix = "";
-    if (simOrder.provider === "Wolt") {
+    if (simOrder.provider == "Wolt") {
         prefix = "WO";
     }
-    else if (simOrder.provider === "Mishloha") {
+    else if (simOrder.provider == "Mishloha") {
         prefix = "MS";
     }
-    else if (simOrder.provider === "Tenbis") {
+    else if (simOrder.provider == "Tenbis") {
         prefix = "TB";
     }
 
@@ -133,7 +133,7 @@ function simulateNewOrder() {
     cells[3].textContent = simOrder.customer;
     cells[4].textContent = simOrder.items;
     cells[5].textContent = simOrder.total.toFixed(2) + "₪";
-    cells[6].innerHTML = '<span class="statusPill statusPending">Pending</span>';
+    cells[6].innerHTML = '<span class="statusPill" id="statusPending">Pending</span>';
 
     //const btns = cells[7].querySelectorAll("a");
     //btns[1].href = "call:" + 
