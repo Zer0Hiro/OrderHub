@@ -194,12 +194,18 @@ function validateForm() {
         alertms = alertms + "Please enter 10 digits phone number\n";
     }
 
+    //Check items is not empty
+    if (orderItems.value == "") {
+        alertms = alertms + "Please add any items\n";
+    }
+
     //Check price of items
     const total = parseFloat(orderTotal.value);
-    if ((typeof orderTotal.value === 'string') || (total == 0 && orderItems.value.trim().length != 0)) {
+    if (isNaN(total) || (total == 0 && orderItems.value.trim().length != 0)) {
         alertms = alertms + "Invalid Amount\n";
     }
 
+    //Check payment method
     if (orderPayment.value == "") {
         alertms = alertms + "Please select a payment method";
     }
