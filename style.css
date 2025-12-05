@@ -106,7 +106,7 @@ button:not(.dontHover):hover {
 }
 
 /* This class and the next one controls the design and positioning of the fields */
-.username {
+#username {
     position: absolute;
     top: 84px;
     left: 30%;
@@ -119,7 +119,7 @@ button:not(.dontHover):hover {
     padding: 3px;
 }
 
-.password {
+#password {
     position: absolute;
     top: 114px;
     left: 30%;
@@ -159,21 +159,21 @@ button:not(.dontHover):hover {
 }
 
 /* Places the logo next to header */
-.siteLogo {
+#siteLogo {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
 /* Design for header text */
-.headerText {
+#headerText {
     font-size: 13px;
     display: flex;
     flex-direction: column;
 }
 
 /* Design for text under header */
-.headerText h1 {
+#headerText h1 {
     margin: 0;
 }
 
