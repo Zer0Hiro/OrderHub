@@ -17,11 +17,21 @@ button, select, .filterSelect {
 }
 
 /* Button hover effect */
-button:not(.dontHover):hover, select:not(.dontHover):hover {
+button:not(.dontHover):hover {
     box-shadow: 0 0 12px #7878787d;
     color: #ffffff;
     background-color: #97c1ff !important;
     border: 1px solid #afafaf7f !important;
+}
+
+/* Specific hover color for GREEN action buttons */
+#openBtn:hover,
+#simulateBtn:hover,
+#orderButton:hover {
+    background-color: #5cd65c !important; /* A darker shade of green */
+    color: #000000 !important; /* Keep text black */
+    border-color: #0f4b0f !important;
+    box-shadow: 0 0 12px #7af57a80; /* Optional: adds a soft green glow */
 }
 
 /* Login Screen */
@@ -234,12 +244,6 @@ button:not(.dontHover):hover, select:not(.dontHover):hover {
     display: block;
     margin-left: auto;
     background-color: #7af57a;
-}
-
-#orderButton:hover {
-    box-shadow: 0 0 12px #7878787d;
-    color: #ffffff;
-    background-color: #97c1ff; 
 }
 
 /* Mobile version */
