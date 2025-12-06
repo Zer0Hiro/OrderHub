@@ -51,7 +51,20 @@ button:not(.dontHover):hover {
     visibility: hidden;
 }
 
-#loginBackground { position: absolute; }
+/* Positions the background div behind the login card */
+#loginBackground {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Stretches the background to cover the entire screen */
+#loginBackground img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 #loginCard {
     z-index: 999;
