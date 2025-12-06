@@ -12,7 +12,13 @@ const orderTotal = document.getElementById("orderTotal");
 const orderPayment = document.getElementById("orderPayment");
 const orderNotes = document.getElementById("orderNotes");
 //Table
+const rowTemplate = document.getElementById("orderRowTemplate");
 const incomingTableBody = document.getElementById("ordersBodyActive");
+const orderBtn = document.getElementById("orderButton");
+const simulateBtn = document.getElementById("simulateBtn");
+//Filters
+const filterProvider = document.getElementById("providerFilter");
+const filterStatus = document.getElementById("statusFilter");
 
 //Empty Table
 if (ordersBodyActive) ordersBodyActive.innerHTML = "";
@@ -23,9 +29,12 @@ closeBtn.onclick = () => {
     popup.style.display = "none";
     cleanForm();
 }
-window.onclick = (e) => {
-    if (e.target === popup) popup.style.display = "none";
+window.onclick = (event) => {
+    if (event.target === popup) popup.style.display = "none";
 };
+
+orderBtn.onclick = () => validateForm();
+simulateBtn.onclick = () => simulateNewOrder();
 
 //Clean Form
 function cleanForm() {
@@ -49,33 +58,6 @@ function timeATM() {
     return time;
 }
 
-//Status Buttons
-function statusBtn(cells) {
-    //Completed Button
-    let compbtn = cells[8].querySelector("#completedBtn");
-    compbtn.style.display = "none";
-    compbtn.onclick = () => {
-        cells[6].innerHTML = '<span class="status-pill status-completed">Completed</span>';
-        cbtn.style.display = "none";
-        filter();
-    }
-    //Accept Button
-    let abtn = cells[8].querySelector("#acceptBtn");
-    abtn.onclick = () => {
-        cells[6].innerHTML = '<span class="status-pill status-accepted">Accepted</span>';
-        abtn.style.display = "none";
-        compbtn.style.display = "";
-        filter();
-    }
-    //Cancel Button
-    let cbtn = cells[8].querySelector("#cancelBtn");
-    cbtn.onclick = () => {
-        cells[6].innerHTML = '<span class="status-pill status-cancelled">Cancelled</span>';
-        abtn.style.display = "none";
-        compbtn.style.display = "none";
-        filter();
-    }
-}
 
 //Simulate Order
 function chooseRandomOrder(a) {
@@ -87,20 +69,19 @@ function chooseRandomOrder(a) {
 function simulateNewOrder() {
     // adds a new simulated order to the incoming orders list
     let orders = [
-        { provider: "Wolt", customer: "John", items: "Pizza: 2, Coke: 1", total: 89.50 },
-        { provider: "Mishloha", customer: "Sarah", items: "Sushi Set: 1", total: 62.20 },
-        { provider: "Tenbis", customer: "Adam", items: "Falafel: 3, Water: 2", total: 38.75 },
-        { provider: "Wolt", customer: "Emily", items: "Pasta: 1, Salad: 1", total: 72.30 },
-        { provider: "Mishloha", customer: "Daniel", items: "Burger: 2, Fries: 1", total: 96.90 },
-        { provider: "Tenbis", customer: "Lior", items: "Shawarma: 1", total: 38.40 },
-        { provider: "Wolt", customer: "Maya", items: "Sushi: 8 pcs", total: 48.60 },
-        { provider: "Mishloha", customer: "Tom", items: "Steak Meal: 1", total: 135.75 },
-        { provider: "Tenbis", customer: "Omer", items: "Sandwich: 2, Juice: 1", total: 52.50 },
-        { provider: "Wolt", customer: "Noa", items: "Pad Thai: 1", total: 58.20 }
+        { provider: "Wolt", customer: "John", items: "Pizza: 2, Coke: 1", total: 89.50, orderTel: "0505256442" },
+        { provider: "Mishloha", customer: "Sarah", items: "Sushi Set: 1", total: 62.20, orderTel: "0505256442" },
+        { provider: "Tenbis", customer: "Adam", items: "Falafel: 3, Water: 2", total: 38.75, orderTel: "0505256442" },
+        { provider: "Wolt", customer: "Emily", items: "Pasta: 1, Salad: 1", total: 72.30, orderTel: "0505256442" },
+        { provider: "Mishloha", customer: "Daniel", items: "Burger: 2, Fries: 1", total: 96.90, orderTel: "0505256442" },
+        { provider: "Tenbis", customer: "Lior", items: "Shawarma: 1", total: 38.40, orderTel: "0505256442" },
+        { provider: "Wolt", customer: "Maya", items: "Sushi: 8 pcs", total: 48.60, orderTel: "0505256442" },
+        { provider: "Mishloha", customer: "Tom", items: "Steak Meal: 1", total: 135.75, orderTel: "0505256442", orderTel: "0505256442" },
+        { provider: "Tenbis", customer: "Omer", items: "Sandwich: 2, Juice: 1", total: 52.50, orderTel: "0505256442" },
+        { provider: "Wolt", customer: "Noa", items: "Pad Thai: 1", total: 58.20, orderTel: "0505256442" }
     ];
 
 
-    const rowTemplate = document.getElementById("orderRowTemplate");
     const newRow = document.importNode(rowTemplate.content, true);
     const cells = newRow.querySelectorAll('td');
     const simOrder = chooseRandomOrder(orders);
@@ -109,13 +90,13 @@ function simulateNewOrder() {
     timeString = timeATM();
 
     let prefix = "";
-    if (simOrder.provider === "Wolt") {
+    if (simOrder.provider == "Wolt") {
         prefix = "WO";
     }
-    else if (simOrder.provider === "Mishloha") {
+    else if (simOrder.provider == "Mishloha") {
         prefix = "MS";
     }
-    else if (simOrder.provider === "Tenbis") {
+    else if (simOrder.provider == "Tenbis") {
         prefix = "TB";
     }
 
@@ -127,9 +108,15 @@ function simulateNewOrder() {
     cells[3].textContent = simOrder.customer;
     cells[4].textContent = simOrder.items;
     cells[5].textContent = simOrder.total.toFixed(2) + "₪";
-    cells[6].innerHTML = '<span class="status-pill status-pending">Pending</span>';
+    cells[6].innerHTML = '<span class="statusPill statusPending">Pending</span>';
 
+    const btns = cells[7].querySelectorAll("a");
+    btns[0].href = "tel:" + simOrder.orderTel;
+    btns[1].href = "sms:" + simOrder.orderTel;
     incomingTableBody.appendChild(newRow);
+
+    //Filter Update
+    filter();
 
     //Status Buttons
     statusBtn(cells);
@@ -138,7 +125,6 @@ function simulateNewOrder() {
 
 //Create Order
 function NewOrder() {
-    const rowTemplate = document.getElementById("orderRowTemplate");
     const newRow = document.importNode(rowTemplate.content, true);
     const cells = newRow.querySelectorAll('td');
 
@@ -153,8 +139,13 @@ function NewOrder() {
     cells[2].textContent = orderId;
     cells[3].textContent = orderName.value;
     cells[4].textContent = orderItems.value;
-    cells[5].textContent = orderTotal.value;
-    cells[6].textContent = "Pending";
+    cells[5].textContent = orderTotal.value + "₪";
+    cells[6].innerHTML = '<span class="statusPill statusPending">Pending</span>';
+
+
+    const btns = cells[7].querySelectorAll("a");
+    btns[0].href = "tel:" + orderTel.value;
+    btns[1].href = "sms:" + orderTel.value;
 
 
     incomingTableBody.appendChild(newRow);
@@ -177,12 +168,18 @@ function validateForm() {
         alertms = alertms + "Please enter 10 digits phone number\n";
     }
 
+    //Check items is not empty
+    if (orderItems.value == "") {
+        alertms = alertms + "Please add any items\n";
+    }
+
     //Check price of items
     const total = parseFloat(orderTotal.value);
-    if ((typeof orderTotal.value === 'string') || (total == 0 && orderItems.value.trim().length != 0)) {
+    if (isNaN(total) || (total == 0 && orderItems.value.trim().length != 0)) {
         alertms = alertms + "Invalid Amount\n";
     }
 
+    //Check payment method
     if (orderPayment.value == "") {
         alertms = alertms + "Please select a payment method";
     }
@@ -198,23 +195,51 @@ function validateForm() {
 
 
 function filter() {
-    const filterProvider = document.getElementById("providerFilter").value;
-    const filterStatus = document.getElementById("statusFilter").value;
+    let provider = filterProvider.value;
+    let status = filterStatus.value;
     const tables = document.getElementsByClassName("orderBody");
 
     for (let j = 0; j < tables.length; j++) {
         const cells = tables[j].querySelectorAll("tr")
         for (let i = 0; i < cells.length; i++) {
-            if (filterProvider == "all" && filterStatus == "all") {
+            if (provider == "all" && status == "all") {
                 cells[i].style.display = '';
             }
-            else if ((cells[i].querySelectorAll("td")[1].innerHTML == filterProvider || filterProvider == 'all')
-                && (cells[i].querySelectorAll("td")[6].textContent.toLowerCase() == filterStatus || filterStatus == 'all')) {
+            else if ((cells[i].querySelectorAll("td")[1].innerHTML == provider || provider == 'all')
+                && (cells[i].querySelectorAll("td")[6].textContent.toLowerCase() == status || status == 'all')) {
                 cells[i].style.display = '';
             }
             else {
                 cells[i].style.display = 'none';
             }
         }
+    }
+}
+
+//Status Buttons
+function statusBtn(cells) {
+    //Completed Button
+    let compbtn = cells[8].querySelector("#completedBtn");
+    compbtn.style.display = "none";
+    compbtn.onclick = () => {
+        cells[6].innerHTML = '<span class="statusPill" id="statusCompleted">Completed</span>';
+        cbtn.style.display = "none";
+        filter();
+    }
+    //Accept Button
+    let abtn = cells[8].querySelector("#acceptBtn");
+    abtn.onclick = () => {
+        cells[6].innerHTML = '<span class="statusPill" id="statusAccepted">Accepted</span>';
+        abtn.style.display = "none";
+        compbtn.style.display = "";
+        filter();
+    }
+    //Cancel Button
+    let cbtn = cells[8].querySelector("#cancelBtn");
+    cbtn.onclick = () => {
+        cells[6].innerHTML = '<span class="statusPill" id="statusCancelled">Cancelled</span>';
+        abtn.style.display = "none";
+        compbtn.style.display = "none";
+        filter();
     }
 }

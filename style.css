@@ -1,183 +1,116 @@
-/* Universal design for font */
+/* Universal Font & Background */
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-
-/* Defines the background color */
-.background {
     background-color: #ff990034;
 }
 
-/* Universal design for buttons */
-button,
-select{
+/* Remove underline from links */
+a { text-decoration: none; }
+
+/* Universal design for Buttons & Inputs */
+button, select, .filterSelect {
     padding: 8px 12px;
     border-radius: 50px;
     border: 1px solid #616161;
-
     cursor: pointer;
-}
-
-/* Universal design for hovering over buttons */
-button:not(.dontHover),
-select:not(.dontHover) {
     transition: all 0.3s ease;
 }
 
-button:not(.dontHover):hover {
+/* Button hover effect */
+button:not(.dontHover):hover, select:not(.dontHover):hover {
     box-shadow: 0 0 12px #7878787d;
-    color: white;
-    background-color: #97c1ff;
-    border: 1px solid #afafaf7f;
+    color: #ffffff;
+    background-color: #97c1ff !important;
+    border: 1px solid #afafaf7f !important;
 }
 
-/* Centers the login card*/
-.login {
+/* Login Screen */
+#login {
     display: flex;
     justify-content: center;
     align-items: center;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
+    inset: 0;
     opacity: 1;
     visibility: visible;
-    
     transition: opacity 0.8s ease, visibility 0.8s;
 }
 
-/* Related to fadeouts.. NEEDS TO BE ANNOTATED CORRECTLY!!! */
-.fade-out {
+#login.fadeOut {
     opacity: 0;
     visibility: hidden;
 }
 
-/* Centers everything(?) idk how */
-.loginBackground {
-    position: absolute;
-}
+#loginBackground { position: absolute; }
 
-/* Defines the design for the login card  */
-.loginCard {
+#loginCard {
     z-index: 999;
-    background-color: white;
-    
+    background-color: #ffffff;
     position: relative;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     box-sizing: border-box;
     width: 432px;
     height: 200px;
     padding: 20px;
-    
     border-radius: 32px;
     border: 2px solid #afafaf7f;
-    box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 15px 15px 25px #00000033;
 }
 
-/* This class and the next one controls the design and positioning of the text */
-.loginText1 {
+/* Login text */
+#loginText1, #loginText2 {
     position: absolute;
-    top: 15px;
     left: 0;
     width: 100%;
     text-align: center;
-
     margin: 0;
-    font-size: 24px;
-    color: #333;
 }
 
-.loginText2 {
-    position: absolute;
-    top: 50px;
-    left: 0;
-    width: 100%;
-    text-align: center;
+#loginText1 { top: 15px; font-size: 24px; color: #333333; }
+#loginText2 { top: 50px; font-size: 16px; color: #666666; font-weight: normal; }
 
-    margin: 0;
-    font-size: 16px;
-    color: #666;
-    font-weight: normal;
-}
-
-/* This class and the next one controls the design and positioning of the fields */
-.username {
+/* Login inputs */
+#username, #password {
     position: absolute;
-    top: 84px;
     left: 30%;
-
     text-align: center;
-    color: #666;
-
+    color: #666666;
     border-radius: 10px;
-    border: 1.5px solid #afafaf7f;
     padding: 3px;
 }
 
-.password {
-    position: absolute;
-    top: 114px;
-    left: 30%;
+#username { top: 84px; border: 1.5px solid #afafaf7f; }
+#password { top: 114px; border: 1px solid #afafaf7f; }
 
-    text-align: center;
-    color: #666;
-
-    border-radius: 10px;
-    border: 1px solid #afafaf7f;
-    padding: 3px;
-}
-
-/* Defines the style for the sign in button */
-.signIn {
+#signIn {
     position: absolute;
     top: 150px;
-
-    text-align: center;
     left: 42.5%;
     margin: 0;
-    color: #666;
+    color: #666666;
     border: 1px solid #afafaf7f;
     background-color: #ff990023;
 }
 
-/* Design for header */
-.header {
+/* Header */
+#header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #d1d1d1;
-    padding-bottom: 15px;
     background-color: #ffffff;
-    padding-top: 20px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding: 20px 40px 15px 40px; /* Top Right Bottom Left */
 }
 
-/* Places the logo next to header */
-.siteLogo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
+#siteLogo { display: flex; align-items: center; gap: 15px; }
 
-/* Design for header text */
-.header-text {
-    font-size: 13px;
-    display: flex;
-    flex-direction: column;
-}
+#headerText { font-size: 13px; display: flex; flex-direction: column; }
+#headerText h1 { margin: 0; }
 
-/* Design for text under header */
-.header-text h1 {
-    margin: 0;
-}
-
-/* Design for the tables */
+/* Tables layout */
 .tables {
     max-width: 1380px;
     margin: 20px auto;
@@ -185,41 +118,17 @@ button:not(.dontHover):hover {
     border-radius: 20px;
     border: 1px solid #61616181;
     padding: 24px 20px 20px;
-
 }
 
-/* This class and the next one align the Order buttons correctly */
-.table-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
+.tableHeader { display: flex; align-items: center; margin-bottom: 15px; }
+.tables h1 { margin: 0; margin-right: auto; }
 
-.tables h1 {
-    margin: 0;
-    margin-right: auto;
-}
+#openBtn { background-color: #7af57a; border-color: #0f4b0f; color: #000000; }
+#simulateBtn { background-color: #7af57a65; margin-left: 10px; }
 
-/* This id and the next one stylize the Order buttons */
-.openBtn {
-    background-color: #7af57a;
-    border-color: #0f4b0f;
-    color: #000000;    
-}
+.ordersTableWrapper { border-radius: 12px; overflow: auto; }
 
-.simulateBtn {
-    background-color: #7af57a65;
-    margin-left: 10px;
-}
-
-/* Defines the style of the top of the table */
-.orders-table-wrapper {
-    border-radius: 12px;
-    overflow: auto;
-}
-
-/* Defines the style of each column in the table */
-.orders-table {
+.ordersTable {
     width: 1380px;
     table-layout: fixed;
     border-collapse: collapse;
@@ -227,76 +136,34 @@ button:not(.dontHover):hover {
     white-space: nowrap;
 }
 
-/* Defines the size for each column */
-.orders-table th:nth-child(1) {
-    width: 2%;
-}
+/* Column widths */
+.ordersTable th:nth-child(1), /* Time */
+.ordersTable th:nth-child(2), /* Provider */
+.ordersTable th:nth-child(3), /* Order # */
+.ordersTable th:nth-child(4), /* Customer */
+.ordersTable th:nth-child(6) { width: 2%; } /* Items */
+.ordersTable th:nth-child(5) { width: 9%; } /* Customer Name */
+.ordersTable th:nth-child(7) { width: 2.2%; min-width: 90px; } /* Total */
+.ordersTable th:nth-child(8) { width: 2.2%; } /* Status */
+.ordersTable th:nth-child(9) { width: 7%; }   /* Actions */
 
-/* Time */
-.orders-table th:nth-child(2) {
-    width: 2%;
-}
-
-/* Provider */
-.orders-table th:nth-child(3) {
-    width: 2%;
-}
-
-/* Order # */
-.orders-table th:nth-child(4) {
-    width: 2%;
-}
-
-/* Customer */
-.orders-table th:nth-child(5) {
-    width: 9%;
-}
-
-/* Items */
-.orders-table th:nth-child(6) {
-    width: 2%;
-}
-
-/* Total */
-.orders-table th:nth-child(7) {
-    width: 2.2%;
-    min-width: 90px;
-}
-
-/* Status */
-.orders-table th:nth-child(8) {
-    width: 2.2%;
-}
-
-/* Contact */
-.orders-table th:nth-child(9) {
-    width: 7%;
-}
-
-/* Actions */
-
-/* This aligns entires with the table columns and adds a dividing line*/
-.orders-table th,
-.orders-table td {
+.ordersTable th, .ordersTable td {
     text-align: left;
     padding: 10px 15px 10px 10px;
     border-bottom: 1px solid #e0e0e0;
     border-right: 1px solid #e0e0e0;
 
+    /* These handles text overflow */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Adds a color to the first row of each table */
-.orders-table-color {
-    background-color: #e6e6e6;
-}
+.ordersTableColor { background-color: #e6e6e6; }
+.ordersTable td:nth-child(6) { font-weight: 650; }
 
-/* BOOOOLD */
-.orders-table td:nth-child(6) {
-    font-weight: 650;
-}
-
-/* Defines a pill style for the order status */
-.status-pill {
+/* Status pill design */
+.statusPill {
     padding: 5px 12px;
     border-radius: 50px;
     font-weight: 600;
@@ -304,73 +171,34 @@ button:not(.dontHover):hover {
     display: inline-block;
 }
 
-/* Defines the design for each status */
-.status-pending {
-    background-color: #ffeeba;
-    color: #856404;
-}
+.statusPending { background-color: #ffeeba; color: #856404; }
+#statusAccepted { background-color: #cce5ff; color: #004085; }
+#statusCancelled { background-color: #f8d7da; color: #721c24; }
+#statusCompleted { background-color: #d4edda; color: #155724; }
 
-.status-accepted {
-    background-color: #cce5ff;
-    color: #004085;
-}
+/* Action buttons */
+.btnAccept, .btnCancel, .btnComplete { margin-left: 5px; }
 
-.status-cancelled {
-    background-color: #f8d7da;
-    color: #721c24;
-}
+.btnAccept { background-color: #ffeeba; border-color: #856404; color: #000000; }
+.btnCancel { background-color: #f8d7da; border-color: #991b28; color: #ff0000; }
+.btnComplete { background-color: #d4edda; border-color: #155724; color: #000000; }
+.btnMore { background-color: transparent; border-color: transparent; color: #000000; font-weight: 600; float: right; }
 
-.status-completed {
-    background-color: #d4edda;
-    color: #155724;
-}
-
-/* The next 4 classes control the color of the buttons */
-.btn-accept {
-    background-color: #ffeeba;
-    border-color: #856404;
-    color: black;
-        margin-left: 5px;
-}
-
-.btn-cancel {
-    background-color: #f8d7da;
-    border-color: #991b28;
-    color: #ff0000;
-    margin-left: 5px;
-}
-
-.btn-complete {
-    background-color: #d4edda;
-    border-color: #155724;
-    color: #000000;
-    margin-left: 5px;
-}
-
-.btn-more {
-    background-color: transparent;
-    border-color: transparent;
-    color: #000000;
-    font-weight: 600;
-    float: right;
-}
-
-/* Hides new order popup and fades background*/
-.popup {
+/* Popup modal */
+#popup {
     display: none;
     position: fixed;
     inset: 0;
     background: #00000080;
 }
 
-/* Defines the entire layout of the popup window*/
-.popup-content {
+#popupContent {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: #ffffff;
-    padding: 20px 20px 20px 20px;
+    padding: 20px;
     max-height: 80vh;
     overflow-y: auto;
     width: 500px;
@@ -378,44 +206,21 @@ button:not(.dontHover):hover {
     box-shadow: 0 0 20px #0000004d;
 }
 
-/* Fixes the popup header in place */
-.popup-content h2 {
-    text-align: center;
-    margin: 0 0 10px 0;
-    padding: 0;
-}
+#popupContent h2 { text-align: center; margin: 0 0 10px 0; padding: 0; }
+#closeBtn { position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer; }
 
-/* Stylizes the "X" close button*/
-.close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 22px;
-}
-
-/* Defines a standard design for each field in the popup menu */
-.popup-content input,
-.popup-content textarea,
-.popup-content select {
+#popupContent input, #popupContent textarea, #popupContent select {
     border-radius: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
     padding: 10px;
     box-sizing: border-box;
     resize: vertical;
 }
 
-/* Stylizes the 7 ids seen below. Mainly possitions the fields in a certain way*/
-#orderName {
-    width: 48%;
-    float: left;
-    margin-bottom: 15px;
-}
-
-#orderTel {
-    width: 48%;
-    float: right;
-    margin-bottom: 15px;
-}
+/* Popup form layout */
+#orderName, #orderTel { width: 48%; margin-bottom: 15px; }
+#orderName { float: left; }
+#orderTel { float: right; }
 
 #orderNumber {
     float: right;
@@ -423,13 +228,7 @@ button:not(.dontHover):hover {
     position: relative;
 }
 
-#orderItems,
-#orderAddress,
-#orderTotal,
-#orderNotes {
-    width: 100%;
-    clear: both;
-}
+#orderItems, #orderAddress, #orderTotal, #orderNotes { width: 100%; clear: both; }
 
 #orderButton {
     display: block;
@@ -439,6 +238,21 @@ button:not(.dontHover):hover {
 
 #orderButton:hover {
     box-shadow: 0 0 12px #7878787d;
-    color: white;
+    color: #ffffff;
     background-color: #97c1ff; 
+}
+
+/* Mobile version */
+@media (max-width: 540px) {
+    #popupContent { width: 300px; }
+    
+    #customerName { width: 48%; float: left; display: block; }
+
+    #orderNumber {
+        width: 48%;
+        float: right;
+        margin-right: 0 !important;
+        text-align: left;
+        display: block;
+    }
 }
