@@ -5,42 +5,56 @@ body {
 }
 
 /* Remove underline from links */
-a { text-decoration: none; }
+a {
+    text-decoration: none;
+}
 
 /* Universal design for Buttons & Inputs */
 button, select, .filterSelect {
     padding: 8px 12px;
-    border-radius: 50px;
+    
     border: 1px solid #616161;
+    border-radius: 50px;
+    
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 /* Button hover effect */
 button:not(.dontHover):hover {
-    box-shadow: 0 0 12px #7878787d;
     color: #ffffff;
     background-color: #97c1ff !important;
+    
     border: 1px solid #afafaf7f !important;
+    box-shadow: 0 0 12px #7878787d;
+}
+
+/* Universal glow for input */
+textarea:focus,
+input:focus {
+    box-shadow: 0px 0px 8px 1px #ff99007e;
 }
 
 /* Specific hover color for GREEN action buttons */
 #openBtn:hover,
 #simulateBtn:hover,
 #orderButton:hover {
-    background-color: #5cd65c !important; /* A darker shade of green */
-    color: #000000 !important; /* Keep text black */
+    color: #000000 !important;
+    background-color: #5cd65c !important;
+    
     border-color: #0f4b0f !important;
-    box-shadow: 0 0 12px #7af57a80; /* Optional: adds a soft green glow */
 }
 
 /* Login Screen */
 #login {
+    position: fixed;
+    inset: 0;
+    z-index: 3;
+    
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
-    inset: 0;
+    
     opacity: 1;
     visibility: visible;
     transition: opacity 0.8s ease, visibility 0.8s;
@@ -54,9 +68,10 @@ button:not(.dontHover):hover {
 /* Positions the background div behind the login card */
 #loginBackground {
     position: absolute;
+    z-index: -1;
+    
     width: 100%;
     height: 100%;
-    z-index: -1;
 }
 
 /* Stretches the background to cover the entire screen */
@@ -67,94 +82,164 @@ button:not(.dontHover):hover {
 }
 
 #loginCard {
-    z-index: 999;
-    background-color: #ffffff;
     position: relative;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
     box-sizing: border-box;
     width: 432px;
     height: 200px;
     padding: 20px;
-    border-radius: 32px;
+    
+    background-color: #ffffff;
     border: 2px solid #afafaf7f;
+    border-radius: 32px;
     box-shadow: 15px 15px 25px #00000033;
 }
 
-/* Login text */
+/* Login text and their design */
 #loginText1, #loginText2 {
     position: absolute;
     left: 0;
+    
     width: 100%;
-    text-align: center;
     margin: 0;
+    
+    text-align: center;
 }
 
-#loginText1 { top: 15px; font-size: 24px; color: #333333; }
-#loginText2 { top: 50px; font-size: 16px; color: #666666; font-weight: normal; }
+#loginText1 {
+    top: 15px;
+    
+    color: #333333;
+    font-size: 24px;
+}
 
-/* Login inputs */
+#loginText2 {
+    top: 50px;
+    
+    color: #666666;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+/* Login inputs and their design */
 #username, #password {
     position: absolute;
     left: 30%;
-    text-align: center;
-    color: #666666;
-    border-radius: 10px;
+    
     padding: 3px;
+    
+    color: #666666;
+    text-align: center;
+    border-radius: 10px;
 }
 
-#username { top: 84px; border: 1.5px solid #afafaf7f; }
-#password { top: 114px; border: 1px solid #afafaf7f; }
+#username {
+    top: 84px;
+    border: 1.5px solid #afafaf7f;
+}
+
+#password {
+    top: 114px;
+    border: 1px solid #afafaf7f;
+}
 
 #signIn {
     position: absolute;
     top: 150px;
     left: 42.5%;
+    
     margin: 0;
+    
     color: #666666;
-    border: 1px solid #afafaf7f;
     background-color: #ff990023;
+    border: 1px solid #afafaf7f;
 }
 
 /* Header */
 #header {
+    /* These three tell the header to follow the screen as you scroll */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #d1d1d1;
+    
+    padding: 20px 40px 15px 40px;
+    
     background-color: #ffffff;
-    padding: 20px 40px 15px 40px; /* Top Right Bottom Left */
+    border-bottom: 2px solid #d1d1d1;
+    box-shadow: 0 4px 10px 1px rgba(0, 0, 0, 0.35);
 }
 
-#siteLogo { display: flex; align-items: center; gap: 15px; }
+#siteLogo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
-#headerText { font-size: 13px; display: flex; flex-direction: column; }
-#headerText h1 { margin: 0; }
+#headerText {
+    display: flex;
+    flex-direction: column;
+    
+    font-size: 13px;
+}
+
+#headerText h1 {
+    margin: 0;
+}
 
 /* Tables layout */
 .tables {
     max-width: 1380px;
     margin: 20px auto;
-    background: #ffffff;
-    border-radius: 20px;
-    border: 1px solid #61616181;
     padding: 24px 20px 20px;
+    
+    background: #ffffff;
+    border: 1px solid #61616181;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.35);
 }
 
-.tableHeader { display: flex; align-items: center; margin-bottom: 15px; }
-.tables h1 { margin: 0; margin-right: auto; }
+.tableHeader {
+    display: flex;
+    align-items: center;
+    
+    margin-bottom: 15px;
+}
 
-#openBtn { background-color: #7af57a; border-color: #0f4b0f; color: #000000; }
-#simulateBtn { background-color: #7af57a65; margin-left: 10px; }
+.tables h1 {
+    margin: 0;
+    margin-right: auto;
+}
 
-.ordersTableWrapper { border-radius: 12px; overflow: auto; }
+#openBtn {
+    color: #000000;
+    background-color: #7af57a;
+    border-color: #0f4b0f;
+}
+
+#simulateBtn {
+    margin-left: 10px;
+    background-color: #7af57a65;
+}
+
+.ordersTableWrapper {
+    overflow: auto;
+    border-radius: 12px;
+}
 
 .ordersTable {
     width: 1380px;
     table-layout: fixed;
     border-collapse: collapse;
+    
     font-size: 13.6px;
     white-space: nowrap;
 }
@@ -171,47 +256,98 @@ button:not(.dontHover):hover {
 .ordersTable th:nth-child(9) { width: 7%; }   /* Actions */
 
 .ordersTable th, .ordersTable td {
-    text-align: left;
     padding: 10px 15px 10px 10px;
-    border-bottom: 1px solid #e0e0e0;
-    border-right: 1px solid #e0e0e0;
-
-    /* These handles text overflow */
+    
+    text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    
+    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
 }
 
-.ordersTableColor { background-color: #e6e6e6; }
-.ordersTable td:nth-child(6) { font-weight: 650; }
+.ordersTableColor {
+    background-color: #e6e6e6;
+}
+
+.ordersTable td:nth-child(6) {
+    font-weight: 650;
+}
 
 /* Status pill design */
 .statusPill {
-    padding: 5px 12px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 12px;
     display: inline-block;
+    
+    padding: 5px 12px;
+    
+    font-size: 12px;
+    font-weight: 600;
+    
+    border-radius: 50px;
 }
 
-.statusPending { background-color: #ffeeba; color: #856404; }
-#statusAccepted { background-color: #cce5ff; color: #004085; }
-#statusCancelled { background-color: #f8d7da; color: #721c24; }
-#statusCompleted { background-color: #d4edda; color: #155724; }
+.statusPending {
+    color: #856404;
+    background-color: #ffeeba;
+}
+
+#statusAccepted {
+    color: #004085;
+    background-color: #cce5ff;
+}
+
+#statusCancelled {
+    color: #721c24;
+    background-color: #f8d7da;
+}
+
+#statusCompleted {
+    color: #155724;
+    background-color: #d4edda;
+}
 
 /* Action buttons */
-.btnAccept, .btnCancel, .btnComplete { margin-left: 5px; }
+.btnAccept, .btnCancel, .btnComplete {
+    margin-left: 5px;
+}
 
-.btnAccept { background-color: #ffeeba; border-color: #856404; color: #000000; }
-.btnCancel { background-color: #f8d7da; border-color: #991b28; color: #ff0000; }
-.btnComplete { background-color: #d4edda; border-color: #155724; color: #000000; }
-.btnMore { background-color: transparent; border-color: transparent; color: #000000; font-weight: 600; float: right; }
+.btnAccept {
+    color: #000000;
+    background-color: #ffeeba;
+    border-color: #856404;
+}
+
+.btnCancel {
+    color: #ff0000;
+    background-color: #f8d7da;
+    border-color: #991b28;
+}
+
+.btnComplete {
+    color: #000000;
+    background-color: #d4edda;
+    border-color: #155724;
+}
+
+.btnMore {
+    float: right;
+    
+    color: #000000;
+    font-weight: 600;
+    
+    background-color: transparent;
+    border-color: transparent;
+}
 
 /* Popup modal */
 #popup {
     display: none;
+    
     position: fixed;
     inset: 0;
+    z-index: 2;
+    
     background: #00000080;
 }
 
@@ -220,56 +356,95 @@ button:not(.dontHover):hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #ffffff;
-    padding: 20px;
-    max-height: 80vh;
-    overflow-y: auto;
+    
     width: 500px;
+    max-height: 80vh;
+    padding: 20px;
+    overflow-y: auto;
+    
+    background: #ffffff;
     border-radius: 20px;
     box-shadow: 0 0 20px #0000004d;
 }
 
-#popupContent h2 { text-align: center; margin: 0 0 10px 0; padding: 0; }
-#closeBtn { position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer; }
+#popupContent h2 {
+    margin: 0 0 10px 0;
+    padding: 0;
+    
+    text-align: center;
+}
+
+#closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    
+    font-size: 22px;
+    cursor: pointer;
+}
 
 #popupContent input, #popupContent textarea, #popupContent select {
-    border-radius: 10px;
-    border: 1px solid #cccccc;
-    padding: 10px;
     box-sizing: border-box;
+    padding: 10px;
+    
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    
     resize: vertical;
 }
 
 /* Popup form layout */
-#orderName, #orderTel { width: 48%; margin-bottom: 15px; }
-#orderName { float: left; }
-#orderTel { float: right; }
-
-#orderNumber {
-    float: right;
-    margin-right: 24%;
-    position: relative;
+#orderName, #orderTel {
+    width: 48%;
+    margin-bottom: 15px;
 }
 
-#orderItems, #orderAddress, #orderTotal, #orderNotes { width: 100%; clear: both; }
+#orderName {
+    float: left;
+}
+
+#orderTel {
+    float: right;
+}
+
+#orderNumber {
+    position: relative;
+    float: right;
+    
+    margin-right: 24%;
+}
+
+#orderItems, #orderAddress, #orderTotal, #orderNotes {
+    clear: both;
+    width: 100%;
+}
 
 #orderButton {
     display: block;
     margin-left: auto;
+    
     background-color: #7af57a;
 }
 
 /* Mobile version */
 @media (max-width: 540px) {
-    #popupContent { width: 300px; }
+    #popupContent {
+        width: 300px;
+    }
     
-    #customerName { width: 48%; float: left; display: block; }
+    #customerName {
+        display: block;
+        float: left;
+        width: 48%;
+    }
 
     #orderNumber {
-        width: 48%;
-        float: right;
-        margin-right: 0 !important;
-        text-align: left;
         display: block;
+        float: right;
+        
+        width: 48%;
+        margin-right: 0 !important;
+        
+        text-align: left;
     }
 }
