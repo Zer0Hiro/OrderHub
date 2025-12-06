@@ -134,7 +134,7 @@
     <div id="popup">
       <div id="popupContent">
         <span id="closeBtn">x</span>
-        <form name="NewOrder">
+        <div name="NewOrder">
           <h2>Create New Order</h2>
 
           <br><label id="customerName">Customer Name *</label> <label id="orderNumber">Phone Number *</label><br>
@@ -149,7 +149,7 @@
           <input type="text" id="orderAddress" name="address" required placeholder="Karmiel, Ramat Rabin — 12 HaNassi Street" /><br><br>
 
           <label for="orderTotal" id="orderAmount">Total Amount (₪) *</label>
-          <input type="number" id="orderTotal" name="total" step="0.01" min="0" required placeholder="0.00" /><br><br>
+          <input type="number" id="orderTotal" name="total" step="0.01" min="0" value="0.00" required placeholder="0.00" /><br><br>
 
           <label for="orderPayment">Payment Method *</label><br>
           <select id="orderPayment" name="paymentMethod" required>
@@ -164,7 +164,7 @@
           <textarea id="orderNotes" name="notes" placeholder="Do you have any allergies or special requests?" rows="3"></textarea><br><br>
 
           <button type="submit" id="orderButton">Create Order</button>
-        </form>
+        </div>
 
       </div>
     </div>
