@@ -1,197 +1,216 @@
-/* Universal design for font */
+/* Universal Font & Background */
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-
-/* Defines the background color */
-.background {
     background-color: #ff990034;
 }
 
-/* Universal design for buttons */
-button,
-select{
-    padding: 8px 12px;
-    border-radius: 50px;
-    border: 1px solid #616161;
-
-    cursor: pointer;
+/* Remove underline from links */
+a {
+    text-decoration: none;
 }
 
-/* Universal design for hovering over buttons */
-button:not(.dontHover),
-select:not(.dontHover) {
+/* Universal design for Buttons & Inputs */
+button, select, .filterSelect {
+    padding: 8px 12px;
+    
+    border: 1px solid #616161;
+    border-radius: 50px;
+    
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
+/* Button hover effect */
 button:not(.dontHover):hover {
+    color: #ffffff;
+    background-color: #97c1ff !important;
+    
+    border: 1px solid #afafaf7f !important;
     box-shadow: 0 0 12px #7878787d;
-    color: white;
-    background-color: #97c1ff;
-    border: 1px solid #afafaf7f;
 }
 
-/* Centers the login card*/
-.login {
+/* Universal glow for input */
+textarea:focus,
+input:focus {
+    box-shadow: 0px 0px 8px 1px #ff99007e;
+}
+
+/* Specific hover color for GREEN action buttons */
+#openBtn:hover,
+#simulateBtn:hover,
+#orderButton:hover {
+    color: #000000 !important;
+    background-color: #5cd65c !important;
+    
+    border-color: #0f4b0f !important;
+}
+
+/* Login Screen */
+#login {
+    position: fixed;
+    inset: 0;
+    z-index: 3;
+    
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
+    
     opacity: 1;
     visibility: visible;
-    
     transition: opacity 0.8s ease, visibility 0.8s;
 }
 
-/* Related to fadeouts.. NEEDS TO BE ANNOTATED CORRECTLY!!! */
-.fade-out {
+#login.fadeOut {
     opacity: 0;
     visibility: hidden;
 }
 
-/* Centers everything(?) idk how */
-.loginBackground {
+/* Positions the background div behind the login card */
+#loginBackground {
     position: absolute;
+    z-index: -1;
+    
+    width: 100%;
+    height: 100%;
 }
 
-/* Defines the design for the login card  */
-.loginCard {
-    z-index: 999;
-    background-color: white;
-    
+/* Stretches the background to cover the entire screen */
+#loginBackground img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#loginCard {
     position: relative;
+    
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    
     box-sizing: border-box;
     width: 432px;
     height: 200px;
     padding: 20px;
     
-    border-radius: 32px;
+    background-color: #ffffff;
     border: 2px solid #afafaf7f;
-    box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 32px;
+    box-shadow: 15px 15px 25px #00000033;
 }
 
-/* This class and the next one controls the design and positioning of the text */
-.loginText1 {
+/* Login text and their design */
+#loginText1, #loginText2 {
     position: absolute;
+    left: 0;
+    
+    width: 100%;
+    margin: 0;
+    
+    text-align: center;
+}
+
+#loginText1 {
     top: 15px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-
-    margin: 0;
+    
+    color: #333333;
     font-size: 24px;
-    color: #333;
 }
 
-.loginText2 {
-    position: absolute;
+#loginText2 {
     top: 50px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-
-    margin: 0;
+    
+    color: #666666;
     font-size: 16px;
-    color: #666;
     font-weight: normal;
 }
 
-/* This class and the next one controls the design and positioning of the fields */
-.username {
+/* Login inputs and their design */
+#username, #password {
     position: absolute;
+    left: 30%;
+    
+    padding: 3px;
+    
+    color: #666666;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#username {
     top: 84px;
-    left: 30%;
-
-    text-align: center;
-    color: #666;
-
-    border-radius: 10px;
     border: 1.5px solid #afafaf7f;
-    padding: 3px;
 }
 
-.password {
-    position: absolute;
+#password {
     top: 114px;
-    left: 30%;
-
-    text-align: center;
-    color: #666;
-
-    border-radius: 10px;
     border: 1px solid #afafaf7f;
-    padding: 3px;
 }
 
-/* Defines the style for the sign in button */
-.signIn {
+#signIn {
     position: absolute;
     top: 150px;
-
-    text-align: center;
     left: 42.5%;
+    
     margin: 0;
-    color: #666;
-    border: 1px solid #afafaf7f;
+    
+    color: #666666;
     background-color: #ff990023;
+    border: 1px solid #afafaf7f;
 }
 
-/* Design for header */
-.header {
+/* Header */
+#header {
+    /* These three tell the header to follow the screen as you scroll */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #d1d1d1;
-    padding-bottom: 15px;
+    
+    padding: 20px 40px 15px 40px;
+    
     background-color: #ffffff;
-    padding-top: 20px;
-    padding-left: 40px;
-    padding-right: 40px;
+    border-bottom: 2px solid #d1d1d1;
+    box-shadow: 0 4px 10px 1px rgba(0, 0, 0, 0.35);
 }
 
-/* Places the logo next to header */
-.siteLogo {
+#siteLogo {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-/* Design for header text */
-.header-text {
-    font-size: 13px;
+#headerText {
     display: flex;
     flex-direction: column;
+    
+    font-size: 13px;
 }
 
-/* Design for text under header */
-.header-text h1 {
+#headerText h1 {
     margin: 0;
 }
 
-/* Design for the tables */
+/* Tables layout */
 .tables {
     max-width: 1380px;
     margin: 20px auto;
-    background: #ffffff;
-    border-radius: 20px;
-    border: 1px solid #61616181;
     padding: 24px 20px 20px;
-
+    
+    background: #ffffff;
+    border: 1px solid #61616181;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.35);
 }
 
-/* This class and the next one align the Order buttons correctly */
-.table-header {
+.tableHeader {
     display: flex;
     align-items: center;
+    
     margin-bottom: 15px;
 }
 
@@ -200,261 +219,232 @@ button:not(.dontHover):hover {
     margin-right: auto;
 }
 
-/* This id and the next one stylize the Order buttons */
-.openBtn {
+#openBtn {
+    color: #000000;
     background-color: #7af57a;
     border-color: #0f4b0f;
-    color: #000000;    
 }
 
-.simulateBtn {
-    background-color: #7af57a65;
+#simulateBtn {
     margin-left: 10px;
+    background-color: #7af57a65;
 }
 
-/* Defines the style of the top of the table */
-.orders-table-wrapper {
-    border-radius: 12px;
+.ordersTableWrapper {
     overflow: auto;
+    border-radius: 12px;
 }
 
-/* Defines the style of each column in the table */
-.orders-table {
+.ordersTable {
     width: 1380px;
     table-layout: fixed;
     border-collapse: collapse;
+    
     font-size: 13.6px;
     white-space: nowrap;
 }
 
-/* Defines the size for each column */
-.orders-table th:nth-child(1) {
-    width: 2%;
-}
+/* Column widths */
+.ordersTable th:nth-child(1), /* Time */
+.ordersTable th:nth-child(2), /* Provider */
+.ordersTable th:nth-child(3), /* Order # */
+.ordersTable th:nth-child(4), /* Customer */
+.ordersTable th:nth-child(6) { width: 2%; } /* Items */
+.ordersTable th:nth-child(5) { width: 9%; } /* Customer Name */
+.ordersTable th:nth-child(7) { width: 2.2%; min-width: 90px; } /* Total */
+.ordersTable th:nth-child(8) { width: 2.2%; } /* Status */
+.ordersTable th:nth-child(9) { width: 7%; }   /* Actions */
 
-/* Time */
-.orders-table th:nth-child(2) {
-    width: 2%;
-}
-
-/* Provider */
-.orders-table th:nth-child(3) {
-    width: 2%;
-}
-
-/* Order # */
-.orders-table th:nth-child(4) {
-    width: 2%;
-}
-
-/* Customer */
-.orders-table th:nth-child(5) {
-    width: 9%;
-}
-
-/* Items */
-.orders-table th:nth-child(6) {
-    width: 2%;
-}
-
-/* Total */
-.orders-table th:nth-child(7) {
-    width: 2.2%;
-    min-width: 90px;
-}
-
-/* Status */
-.orders-table th:nth-child(8) {
-    width: 2.2%;
-}
-
-/* Contact */
-.orders-table th:nth-child(9) {
-    width: 7%;
-}
-
-/* Actions */
-
-/* This aligns entires with the table columns and adds a dividing line*/
-.orders-table th,
-.orders-table td {
-    text-align: left;
+.ordersTable th, .ordersTable td {
     padding: 10px 15px 10px 10px;
+    
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
     border-bottom: 1px solid #e0e0e0;
     border-right: 1px solid #e0e0e0;
-
 }
 
-/* Adds a color to the first row of each table */
-.orders-table-color {
+.ordersTableColor {
     background-color: #e6e6e6;
 }
 
-/* BOOOOLD */
-.orders-table td:nth-child(6) {
+.ordersTable td:nth-child(6) {
     font-weight: 650;
 }
 
-/* Defines a pill style for the order status */
-.status-pill {
-    padding: 5px 12px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 12px;
+/* Status pill design */
+.statusPill {
     display: inline-block;
+    
+    padding: 5px 12px;
+    
+    font-size: 12px;
+    font-weight: 600;
+    
+    border-radius: 50px;
 }
 
-/* Defines the design for each status */
-.status-pending {
-    background-color: #ffeeba;
+.statusPending {
     color: #856404;
+    background-color: #ffeeba;
 }
 
-.status-accepted {
-    background-color: #cce5ff;
+#statusAccepted {
     color: #004085;
+    background-color: #cce5ff;
 }
 
-.status-cancelled {
-    background-color: #f8d7da;
+#statusCancelled {
     color: #721c24;
+    background-color: #f8d7da;
 }
 
-.status-completed {
-    background-color: #d4edda;
+#statusCompleted {
     color: #155724;
+    background-color: #d4edda;
 }
 
-/* The next 4 classes control the color of the buttons */
-.btn-accept {
+/* Action buttons */
+.btnAccept, .btnCancel, .btnComplete {
+    margin-left: 5px;
+}
+
+.btnAccept {
+    color: #000000;
     background-color: #ffeeba;
     border-color: #856404;
-    color: black;
-        margin-left: 5px;
 }
 
-.btn-cancel {
+.btnCancel {
+    color: #ff0000;
     background-color: #f8d7da;
     border-color: #991b28;
-    color: #ff0000;
-    margin-left: 5px;
 }
 
-.btn-complete {
+.btnComplete {
+    color: #000000;
     background-color: #d4edda;
     border-color: #155724;
-    color: #000000;
-    margin-left: 5px;
 }
 
-.btn-more {
-    background-color: transparent;
-    border-color: transparent;
+.btnMore {
+    float: right;
+    
     color: #000000;
     font-weight: 600;
-    float: right;
+    
+    background-color: transparent;
+    border-color: transparent;
 }
 
-/* Hides new order popup and fades background*/
-.popup {
+/* Popup modal */
+#popup {
     display: none;
+    
     position: fixed;
     inset: 0;
+    z-index: 2;
+    
     background: #00000080;
 }
 
-/* Defines the entire layout of the popup window*/
-.popup-content {
+#popupContent {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #ffffff;
-    padding: 20px 20px 20px 20px;
-    max-height: 80vh;
-    overflow-y: auto;
+    
     width: 500px;
+    max-height: 80vh;
+    padding: 20px;
+    overflow-y: auto;
+    
+    background: #ffffff;
     border-radius: 20px;
     box-shadow: 0 0 20px #0000004d;
 }
 
-/* Fixes the popup header in place */
-.popup-content h2 {
-    text-align: center;
+#popupContent h2 {
     margin: 0 0 10px 0;
     padding: 0;
+    
+    text-align: center;
 }
 
-/* Mimics the behavior of the popup screen.. but for monkey*/
-.monkeyPopup {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: #00000080;
-}
-
-/* *monkey noises* */
-.monkeyPopupContent {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-/* Stylizes the "X" close button*/
-.close {
+#closeBtn {
     position: absolute;
     top: 10px;
     right: 15px;
+    
     font-size: 22px;
+    cursor: pointer;
 }
 
-/* Defines a standard design for each field in the popup menu */
-.popup-content input,
-.popup-content textarea,
-.popup-content select {
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
+#popupContent input, #popupContent textarea, #popupContent select {
     box-sizing: border-box;
+    padding: 10px;
+    
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    
     resize: vertical;
 }
 
-/* Stylizes the 7 ids seen below. Mainly possitions the fields in a certain way*/
-#orderName {
+/* Popup form layout */
+#orderName, #orderTel {
     width: 48%;
-    float: left;
     margin-bottom: 15px;
+}
+
+#orderName {
+    float: left;
 }
 
 #orderTel {
-    width: 48%;
     float: right;
-    margin-bottom: 15px;
 }
 
 #orderNumber {
-    float: right;
-    margin-right: 24%;
     position: relative;
+    float: right;
+    
+    margin-right: 24%;
 }
 
-#orderItems,
-#orderAddress,
-#orderTotal,
-#orderNotes {
-    width: 100%;
+#orderItems, #orderAddress, #orderTotal, #orderNotes {
     clear: both;
+    width: 100%;
 }
 
 #orderButton {
     display: block;
     margin-left: auto;
+    
     background-color: #7af57a;
 }
 
-#orderButton:hover {
-    box-shadow: 0 0 12px #7878787d;
-    color: white;
-    background-color: #97c1ff; 
+/* Mobile version */
+@media (max-width: 540px) {
+    #popupContent {
+        width: 300px;
+    }
+    
+    #customerName {
+        display: block;
+        float: left;
+        width: 48%;
+    }
+
+    #orderNumber {
+        display: block;
+        float: right;
+        
+        width: 48%;
+        margin-right: 0 !important;
+        
+        text-align: left;
+    }
 }

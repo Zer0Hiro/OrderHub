@@ -9,40 +9,26 @@
     <link rel="icon" href="photos/icon.png">
   </head>
 
-<body class="background">
-    <div class="login" id="login">
-      <div class="loginBackground">
-        <img src="photos/login_screen.png" draggable="false">
-      </div>
-      
-      <div class="loginCard">
-        <h1 class="loginText1" id="loginText1">Login</h1>
-        <h1 class="loginText2" id="loginText2">Please sign in to continue</h1>
-        <input class="username" id="username" type="text" required placeholder="Username">
-        <input class="password" id="password" type="password" required placeholder="Password">
-        <button class="signIn" id="loginBtn" onclick="validation(event)">Sign In</button>
-      </div>
-    </div>
-
-    <div class="header">
-      <div class="siteLogo">
+<body id="background">
+    <div id="header">
+      <div id="siteLogo">
         <img src="photos/icon.png" width="45" height="45" draggable="false">
 
-        <div class="header-text">
+        <div id="headerText">
           <h1>OrderHub</h1>
           <p>Manage food orders from all delivery partners in one place!</p>
         </div>
       </div>
       <!-- Filters -->
-      <div class="header-actions">
-        <select id="providerFilter" onchange="filter()" class="filter-select">
+      <div id="headerActions">
+        <select id="providerFilter" onchange="filter()" class="filterSelect">
           <option value="all">All providers</option>
           <option value="Wolt">Wolt</option>
           <option value="Tenbis">TenBis</option>
           <option value="Mishloha">Mishloha</option>
           <option value="Manual">Manual</option>
         </select>
-        <select id="statusFilter" onchange="filter()" class="filter-select">
+        <select id="statusFilter" onchange="filter()" class="filterSelect">
           <option value="all">All statuses</option>
           <option value="pending">Pending</option>
           <option value="accepted">Accepted</option>
@@ -53,16 +39,15 @@
 
     <!-- Incoming Orders part -->
     <div class="tables">
-      <div class="table-header">
+      <div class="tableHeader">
         <h1>Incoming Orders</h1>
-        <button class="openBtn" id="openBtn">New Order</button>
-        <button class="simulateBtn" id="simulateBtn" onclick="simulateNewOrder()">Simulate
-          Order</button>
+        <button id="openBtn">New Order</button>
+        <button id="simulateBtn" onclick="simulateNewOrder()">Simulate Order</button>
       </div>
-      <div class="orders-table-wrapper">
-        <table class="orders-table">
+      <div class="ordersTableWrapper">
+        <table class="ordersTable">
           <thead>
-            <tr class="orders-table-color">
+            <tr class="ordersTableColor">
               <th>Time</th>
               <th>Provider</th>
               <th>Order #</th>
@@ -81,13 +66,13 @@
     </div>
     <!--Cancelled Orders-->
     <div class="tables">
-      <div class="table-header">
+      <div class="tableHeader">
         <h1>Cancelled Orders</h1>
       </div>
-      <div class="orders-table-wrapper">
-        <table class="orders-table">
+      <div class="ordersTableWrapper">
+        <table class="ordersTable">
           <thead>
-            <tr class="orders-table-color">
+            <tr class="ordersTableColor">
               <th>Time</th>
               <th>Provider</th>
               <th>Order #</th>
@@ -106,13 +91,13 @@
     </div>
     <!-- Completed Orders -->
     <div class="tables">
-      <div class="table-header">
+      <div class="tableHeader">
         <h1>Completed Orders</h1>
       </div>
-      <div class="orders-table-wrapper">
-        <table class="orders-table">
+      <div class="ordersTableWrapper">
+        <table class="ordersTable">
           <thead>
-            <tr class="orders-table-color">
+            <tr class="ordersTableColor">
               <th>Time</th>
               <th>Provider</th>
               <th>Order #</th>
@@ -130,32 +115,25 @@
       </div>
     </div>
     <!-- Popup -->
-    <div id="popup" class="popup">
-      <div class="popup-content">
-        <span id="closeBtn" class="close">x</span>
-        <form name="NewOrder">
+    <div id="popup">
+      <div id="popupContent">
+        <span id="closeBtn">x</span>
+        <div name="NewOrder">
           <h2>Create New Order</h2>
 
-          <br><label id="customerName">Customer Name *</label> <label
-            id="orderNumber">Phone Number *</label><br>
-          <input id="orderName" type="text" required
-            placeholder="Enter customer name">
+          <br><label id="customerName">Customer Name *</label> <label id="orderNumber">Phone Number *</label><br>
+          <input id="orderName" type="text" required placeholder="Enter customer name">
 
-          <input id="orderTel" type="tel" required
-            placeholder="05x-xxx-xxxx"><br><br>
+          <input id="orderTel" type="tel" required placeholder="05x-xxx-xxxx"><br><br>
 
           <label>Items *</label><br>
-          <textarea id="orderItems" name="items" required
-            placeholder="2x Cola, 1x Smoky Burger..."
-            rows="3"></textarea><br><br>
+          <textarea id="orderItems" name="items" required placeholder="2x Cola, 1x Smoky Burger..." rows="3"></textarea><br><br>
 
           <label>Delivery Address *</label>
-          <input type="text" id="orderAddress" name="address" required
-            placeholder="Karmiel, Ramat Rabin — 12 HaNassi Street" /><br><br>
+          <input type="text" id="orderAddress" name="address" required placeholder="Karmiel, Ramat Rabin — 12 HaNassi Street" /><br><br>
 
           <label for="orderTotal" id="orderAmount">Total Amount (₪) *</label>
-          <input type="number" id="orderTotal" name="total" step="0.01" min="0"
-            required placeholder="0.00" /><br><br>
+          <input type="number" id="orderTotal" name="total" step="0.01" min="0" required placeholder="0.00" /><br><br>
 
           <label for="orderPayment">Payment Method *</label><br>
           <select id="orderPayment" name="paymentMethod" required>
@@ -167,46 +145,40 @@
           </select><br><br>
 
           <label>Special Notes</label><br>
-          <textarea id="orderNotes" name="notes"
-            placeholder="Do you have any allergies or special requests?"
-            rows="3"></textarea><br><br>
+          <textarea id="orderNotes" name="notes" placeholder="Do you have any allergies or special requests?" rows="3"></textarea><br><br>
 
-          <button type="submit" id="orderButton" onclick="validateForm()">Create
-            Order</button>
-        </form>
+          <button type="submit" id="orderButton">Create Order</button>
+        </div>
 
       </div>
     </div>
-    <script src="order.js"></script>
-    <script src="login.js"></script>
 
     <!-- Template of table elements -->
     <template id="orderRowTemplate">
-      <tr class="order-row">
-        <td class="order-time"></td>
-        <td class="order-provider"></td>
-        <td class="order-id"></td>
-        <td class="order-customer"></td>
-        <td class="order-items"></td>
-        <td class="order-total"></td>
-        <td class="order-status"></td>
-        <td class="order-contact">
-          <button class="dontHover" id="callBtn" title="Call customer">
-            📞
-          </button>
-          <button class="dontHover" id="textBtn" title="Send message">
-            💬
-          </button>
+      <tr class="orderRow">
+        <td class="orderTime"></td>
+        <td class="orderProvider"></td>
+        <td class="orderId"></td>
+        <td class="orderCustomer"></td>
+        <td class="orderItems"></td>
+        <td class="orderTotal"></td>
+        <td class="orderStatus"></td>
+        <td class="orderContact">
+          <button class="dontHover" id="callBtn" title="Call customer"><a>📞</a></button>
+          <button class="dontHover" id="textBtn" title="Send message"><a>💬</a></button>
         </td>
-        <td class="order-actions">
-          <button class="btn btn-accept dontHover" title="Accept order" id="acceptBtn">✓</button>
-          <button class="btn btn-complete dontHover" title="Complete order" id="completedBtn">✓</button>
-          <button class="btn btn-cancel dontHover" title="Cancel order" id="cancelBtn">✕</button>
-          <button class="btn btn-more dontHover" title="More details">⋮</button>
+
+        <td class="orderActions">
+          <button class="btn btnAccept dontHover" title="Accept order" id="acceptBtn">✓</button>
+          <button class="btn btnComplete dontHover" title="Complete order" id="completedBtn">✓</button>
+          <button class="btn btnCancel dontHover" title="Cancel order" id="cancelBtn">✕</button>
+          <button class="btn btnMore dontHover" title="More details">⋮</button>
         </td>
       </tr>
     </template>
 
+    <script src="order.js"></script>
+    <script src="login.js"></script>
   </body>
 
 </html>
