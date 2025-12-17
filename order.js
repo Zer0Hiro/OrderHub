@@ -202,10 +202,7 @@ function filter() {
     for (let j = 0; j < tables.length; j++) {
         const cells = tables[j].querySelectorAll("tr")
         for (let i = 0; i < cells.length; i++) {
-            if (provider == "all" && status == "all") {
-                cells[i].style.display = '';
-            }
-            else if ((cells[i].querySelectorAll("td")[1].innerHTML == provider || provider == 'all')
+            if ((cells[i].querySelectorAll("td")[1].innerHTML == provider || provider == 'all')
                 && (cells[i].querySelectorAll("td")[6].textContent.toLowerCase() == status || status == 'all')) {
                 cells[i].style.display = '';
             }
