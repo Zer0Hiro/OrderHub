@@ -10,12 +10,14 @@ a {
 }
 
 /* Universal design for Buttons & Inputs */
-button, select, .filterSelect {
+button,
+select,
+.filterSelect {
     padding: 8px 12px;
-    
+
     border: 1px solid #616161;
     border-radius: 50px;
-    
+
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -23,8 +25,6 @@ button, select, .filterSelect {
 /* Button hover effect */
 button:not(.dontHover):hover {
     color: #ffffff;
-    background-color: #97c1ff !important;
-    
     border: 1px solid #afafaf7f !important;
     box-shadow: 0 0 12px #7878787d;
 }
@@ -41,123 +41,8 @@ input:focus {
 #orderButton:hover {
     color: #000000 !important;
     background-color: #5cd65c !important;
-    
+
     border-color: #0f4b0f !important;
-}
-
-/* Login Screen */
-#login {
-    position: fixed;
-    inset: 0;
-    z-index: 3;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.8s ease, visibility 0.8s;
-}
-
-#login.fadeOut {
-    opacity: 0;
-    visibility: hidden;
-}
-
-/* Positions the background div behind the login card */
-#loginBackground {
-    position: absolute;
-    z-index: -1;
-    
-    width: 100%;
-    height: 100%;
-}
-
-/* Stretches the background to cover the entire screen */
-#loginBackground img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-#loginCard {
-    position: relative;
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    box-sizing: border-box;
-    width: 432px;
-    height: 200px;
-    padding: 20px;
-    
-    background-color: #ffffff;
-    border: 2px solid #afafaf7f;
-    border-radius: 32px;
-    box-shadow: 15px 15px 25px #00000033;
-}
-
-/* Login text and their design */
-#loginText1, #loginText2 {
-    position: absolute;
-    left: 0;
-    
-    width: 100%;
-    margin: 0;
-    
-    text-align: center;
-}
-
-#loginText1 {
-    top: 15px;
-    
-    color: #333333;
-    font-size: 24px;
-}
-
-#loginText2 {
-    top: 50px;
-    
-    color: #666666;
-    font-size: 16px;
-    font-weight: normal;
-}
-
-/* Login inputs and their design */
-#username, #password {
-    position: absolute;
-    left: 30%;
-    
-    padding: 3px;
-    
-    color: #666666;
-    text-align: center;
-    border-radius: 10px;
-}
-
-#username {
-    top: 84px;
-    border: 1.5px solid #afafaf7f;
-}
-
-#password {
-    top: 114px;
-    border: 1px solid #afafaf7f;
-}
-
-#signIn {
-    position: absolute;
-    top: 150px;
-    left: 42.5%;
-    
-    margin: 0;
-    
-    color: #666666;
-    background-color: #ff990023;
-    border: 1px solid #afafaf7f;
 }
 
 /* Header */
@@ -166,13 +51,13 @@ input:focus {
     position: sticky;
     top: 0;
     z-index: 1;
-    
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
     padding: 20px 40px 15px 40px;
-    
+
     background-color: #ffffff;
     border-bottom: 2px solid #d1d1d1;
     box-shadow: 0 4px 10px 1px rgba(0, 0, 0, 0.35);
@@ -187,7 +72,7 @@ input:focus {
 #headerText {
     display: flex;
     flex-direction: column;
-    
+
     font-size: 13px;
 }
 
@@ -197,10 +82,10 @@ input:focus {
 
 /* Tables layout */
 .tables {
-    max-width: 1380px;
+    width: min(90%, 95%);
     margin: 20px auto;
     padding: 24px 20px 20px;
-    
+
     background: #ffffff;
     border: 1px solid #61616181;
     border-radius: 20px;
@@ -210,7 +95,7 @@ input:focus {
 .tableHeader {
     display: flex;
     align-items: center;
-    
+
     margin-bottom: 15px;
 }
 
@@ -236,33 +121,56 @@ input:focus {
 }
 
 .ordersTable {
-    width: 1380px;
+    width: min(100%);
     table-layout: fixed;
-    border-collapse: collapse;
-    
     font-size: 13.6px;
-    white-space: nowrap;
 }
 
 /* Column widths */
-.ordersTable th:nth-child(1), /* Time */
-.ordersTable th:nth-child(2), /* Provider */
-.ordersTable th:nth-child(3), /* Order # */
-.ordersTable th:nth-child(4), /* Customer */
-.ordersTable th:nth-child(6) { width: 2%; } /* Items */
-.ordersTable th:nth-child(5) { width: 9%; } /* Customer Name */
-.ordersTable th:nth-child(7) { width: 2.2%; min-width: 90px; } /* Total */
-.ordersTable th:nth-child(8) { width: 2.2%; } /* Status */
-.ordersTable th:nth-child(9) { width: 7%; }   /* Actions */
+.ordersTable th:nth-child(1),
+/* Time */
+.ordersTable th:nth-child(2),
+/* Provider */
+.ordersTable th:nth-child(3),
+/* Order # */
+.ordersTable th:nth-child(4),
+/* Customer */
+.ordersTable th:nth-child(6) {
+    width: 2%;
+}
 
-.ordersTable th, .ordersTable td {
+/* Items */
+.ordersTable th:nth-child(5) {
+    width: 9%;
+}
+
+/* Customer Name */
+.ordersTable th:nth-child(7) {
+    width: 2.2%;
+    min-width: 90px;
+}
+
+/* Total */
+.ordersTable th:nth-child(8) {
+    width: 2.2%;
+}
+
+/* Status */
+.ordersTable th:nth-child(9) {
+    width: 7%;
+}
+
+/* Actions */
+
+.ordersTable th,
+.ordersTable td {
     padding: 10px 15px 10px 10px;
-    
+
     text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    
+
     border-bottom: 1px solid #e0e0e0;
     border-right: 1px solid #e0e0e0;
 }
@@ -278,12 +186,12 @@ input:focus {
 /* Status pill design */
 .statusPill {
     display: inline-block;
-    
+
     padding: 5px 12px;
-    
+
     font-size: 12px;
     font-weight: 600;
-    
+
     border-radius: 50px;
 }
 
@@ -308,7 +216,9 @@ input:focus {
 }
 
 /* Action buttons */
-.btnAccept, .btnCancel, .btnComplete {
+.btnAccept,
+.btnCancel,
+.btnComplete {
     margin-left: 5px;
 }
 
@@ -332,10 +242,10 @@ input:focus {
 
 .btnMore {
     float: right;
-    
+
     color: #000000;
     font-weight: 600;
-    
+
     background-color: transparent;
     border-color: transparent;
 }
@@ -343,11 +253,11 @@ input:focus {
 /* Popup modal */
 #popup {
     display: none;
-    
+
     position: fixed;
     inset: 0;
     z-index: 2;
-    
+
     background: #00000080;
 }
 
@@ -356,12 +266,12 @@ input:focus {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
+
     width: 500px;
     max-height: 80vh;
     padding: 20px;
     overflow-y: auto;
-    
+
     background: #ffffff;
     border-radius: 20px;
     box-shadow: 0 0 20px #0000004d;
@@ -370,31 +280,34 @@ input:focus {
 #popupContent h2 {
     margin: 0 0 10px 0;
     padding: 0;
-    
+
     text-align: center;
 }
 
-#closeBtn {
+.closeBtn {
     position: absolute;
     top: 10px;
     right: 15px;
-    
+
     font-size: 22px;
     cursor: pointer;
 }
 
-#popupContent input, #popupContent textarea, #popupContent select {
+#popupContent input,
+#popupContent textarea,
+#popupContent select {
     box-sizing: border-box;
     padding: 10px;
-    
+
     border: 1px solid #cccccc;
     border-radius: 10px;
-    
+
     resize: vertical;
 }
 
 /* Popup form layout */
-#orderName, #orderTel {
+#orderName,
+#orderTel {
     width: 48%;
     margin-bottom: 15px;
 }
@@ -410,11 +323,14 @@ input:focus {
 #orderNumber {
     position: relative;
     float: right;
-    
+
     margin-right: 24%;
 }
 
-#orderItems, #orderAddress, #orderTotal, #orderNotes {
+#orderItems,
+#orderAddress,
+#orderTotal,
+#orderNotes {
     clear: both;
     width: 100%;
 }
@@ -422,29 +338,98 @@ input:focus {
 #orderButton {
     display: block;
     margin-left: auto;
-    
+
     background-color: #7af57a;
 }
 
-/* Mobile version */
-@media (max-width: 540px) {
-    #popupContent {
-        width: 300px;
-    }
-    
-    #customerName {
-        display: block;
-        float: left;
-        width: 48%;
-    }
+/*################################Order Details#####################################*/
+.orderDetailsRow td {
+    background: white;
+    padding: 0.9rem 1rem 1.1rem;
+}
 
-    #orderNumber {
-        display: block;
-        float: right;
-        
-        width: 48%;
-        margin-right: 0 !important;
-        
-        text-align: left;
-    }
+.orderDetailsPop {
+    width: min(60em, 90%);
+    border-radius: 0.85rem;
+    border: 1px solid rgba(78, 91, 49, 0.15);
+    padding: 0.9rem 1rem;
+    background: rgb(250, 231, 193);
+    box-shadow: 0 10px 25px rgba(78, 91, 49, 0.08);
+}
+
+.orderDetailHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.orderDetailHeader h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.orderDetailHeader p {
+    margin: 0.25rem 0 0;
+    font-size: 0.8rem;
+    color: rgba(32, 36, 21, 0.75);
+}
+
+.orderDetailsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem 1.25rem;
+    font-size: 0.85rem;
+}
+
+.orderDetailsGrid .label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: rgba(32, 36, 21, 0.75);
+    margin-bottom: 0.15rem;
+}
+
+.uppertext {
+    text-transform: uppercase;
+}
+
+.orderDetailsNotes {
+    margin-top: 0.75rem;
+    padding-top: 0.6rem;
+    border-top: 1px dashed rgba(50, 58, 31, 0.25);
+    font-size: 0.85rem;
+}
+
+.orderDetailsNotes p {
+    margin: 0.25rem 0 0;
+}
+
+#closeDetails {
+    border: none;
+    border-radius: 999px;
+    background: rgb(248, 226, 182);
+    color: #0e0c07;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+/*################# ANIMATIONS ####################### */
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.1s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
