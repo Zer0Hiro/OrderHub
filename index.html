@@ -10,22 +10,6 @@
   </head>
 
 <body id="background">
-    <div id="login">
-      <div id="loginBackground">
-        <img src="photos/login_screen.png" draggable="false">
-      </div>
-      
-      <div id="loginCard">
-        <h1 id="loginText1">Login</h1>
-        <h1 id="loginText2">Please sign in to continue</h1>
-        <form onsubmit="validation(event)">
-          <input id="username" type="text" required placeholder="Username">
-          <input id="password" type="password" required placeholder="Password">
-          <button id="signIn" onclick="validation(event)">Sign In</button>
-        </form>
-      </div>
-    </div>
-
     <div id="header">
       <div id="siteLogo">
         <img src="photos/icon.png" width="45" height="45" draggable="false">
@@ -133,7 +117,7 @@
     <!-- Popup -->
     <div id="popup">
       <div id="popupContent">
-        <span id="closeBtn">x</span>
+        <span clss="closeBtn">x</span>
         <div name="NewOrder">
           <h2>Create New Order</h2>
 
@@ -188,13 +172,12 @@
           <button class="btn btnAccept dontHover" title="Accept order" id="acceptBtn">✓</button>
           <button class="btn btnComplete dontHover" title="Complete order" id="completedBtn">✓</button>
           <button class="btn btnCancel dontHover" title="Cancel order" id="cancelBtn">✕</button>
-          <button class="btn btnMore dontHover" title="More details">⋮</button>
+          <button class="btn btnMore dontHover" title="More details" id="moreBtn">⋮</button>
         </td>
       </tr>
     </template>
 
     <script src="order.js"></script>
-    <script src="login.js"></script>
   </body>
 
 </html>
