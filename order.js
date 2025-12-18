@@ -280,18 +280,10 @@ function statusBtn(cells, row, order) {
 //Order details func
 function openOrderDeatil(row, order) {
     //If already open, remove
-<<<<<<< HEAD
     if (row.nextElementSibling?.classList.contains("orderDetailsRow")) {
         row.nextElementSibling.remove();
         return;
     }
-=======
-    if (row.nextElementSibling?.classList.contains("orderDetailsRow")){
-        row.nextElementSibling.remove();
-        return;
-    }
-    //if(!order) return;
->>>>>>> cb98bb47dae905697d4a5eb287b03661ac51e589
 
     const detailsRow = document.createElement("tr");
     detailsRow.className = "orderDetailsRow";
@@ -300,11 +292,7 @@ function openOrderDeatil(row, order) {
     //get length of a row
     detailsPop.colSpan = row.children.length;
     detailsPop.innerHTML = `
-<<<<<<< HEAD
     <div class="orderDetailsPop fade-in">
-=======
-    <div class="orderDetailsPop">
->>>>>>> cb98bb47dae905697d4a5eb287b03661ac51e589
       <div class="orderDetailHeader">
         <div>
           <h3>Order ${order.id}</h3>
