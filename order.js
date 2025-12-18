@@ -16,6 +16,7 @@ const rowTemplate = document.getElementById("orderRowTemplate");
 const incomingTableBody = document.getElementById("ordersBodyActive");
 const orderBtn = document.getElementById("orderButton");
 const simulateBtn = document.getElementById("simulateBtn");
+const tables = document.getElementsByClassName("tables");
 //Filters
 const filterProvider = document.getElementById("providerFilter");
 const filterStatus = document.getElementById("statusFilter");
@@ -24,14 +25,21 @@ const filterStatus = document.getElementById("statusFilter");
 if (ordersBodyActive) ordersBodyActive.innerHTML = "";
 
 //Popup
-openBtn.onclick = () => popup.style.display = "block";
+openBtn.onclick = () => {
+    popup.style.display = "block";
+    for(var i = 0; i < tables.length; i++)
+    {
+        tables[i].style.display = "none";
+    }
+}
 closeBtn.onclick = () => {
     popup.style.display = "none";
+    for(var i = 0; i < tables.length; i++)
+    {
+        tables[i].style.display = "";
+    }
     cleanForm();
 }
-window.onclick = (event) => {
-    if (event.target === popup) popup.style.display = "none";
-};
 
 orderBtn.onclick = () => validateForm();
 simulateBtn.onclick = () => simulateNewOrder();
@@ -150,7 +158,11 @@ function NewOrder() {
 
     incomingTableBody.appendChild(newRow);
     popup.style.display = "none";
-
+    for(var i = 0; i < tables.length; i++)
+    {
+        tables[i].style.display = "";
+    }
+    
     //Status Buttons
     statusBtn(cells);
 
