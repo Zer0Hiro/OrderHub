@@ -2,7 +2,7 @@
 const ordersBodyActive = document.getElementById("ordersBodyActive");
 const popup = document.getElementById("popup");
 const openBtn = document.getElementById("openBtn");
-const closeBtn = document.getElementsByClassName("closeBtn");
+const closeBtn = document.getElementById("closeBtn");
 //Form
 const orderName = document.getElementById("orderName");
 const orderTel = document.getElementById("orderTel");
@@ -195,7 +195,7 @@ function NewOrder() {
     {
         tables[i].style.display = "";
     }
-    
+
     //Status Buttons
     statusBtn(cells, row, newOrder);
 
