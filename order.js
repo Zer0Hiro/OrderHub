@@ -16,6 +16,8 @@ const rowTemplate = document.getElementById("orderRowTemplate");
 const incomingTableBody = document.getElementById("ordersBodyActive");
 const orderBtn = document.getElementById("orderButton");
 const simulateBtn = document.getElementById("simulateBtn");
+const tables = document.getElementsByClassName("tables");
+const moreDetailsBtn = document.getElementById("moreBtn");
 //Filters
 const filterProvider = document.getElementById("providerFilter");
 const filterStatus = document.getElementById("statusFilter");
@@ -24,14 +26,19 @@ const filterStatus = document.getElementById("statusFilter");
 if (ordersBodyActive) ordersBodyActive.innerHTML = "";
 
 //Popup
-openBtn.onclick = () => popup.style.display = "block";
+openBtn.onclick = () => {
+    popup.style.display = "block";
+    for (var i = 0; i < tables.length; i++) {
+        tables[i].style.display = "none";
+    }
+}
 closeBtn.onclick = () => {
     popup.style.display = "none";
+    for (var i = 0; i < tables.length; i++) {
+        tables[i].style.display = "";
+    }
     cleanForm();
 }
-window.onclick = (event) => {
-    if (event.target === popup) popup.style.display = "none";
-};
 
 orderBtn.onclick = () => validateForm();
 simulateBtn.onclick = () => simulateNewOrder();
@@ -46,6 +53,7 @@ function cleanForm() {
     orderPayment.value = "";
     orderNotes.value = "";
 }
+
 
 //Time func
 function timeATM() {
@@ -84,6 +92,7 @@ function simulateNewOrder() {
 
     const newRow = document.importNode(rowTemplate.content, true);
     const cells = newRow.querySelectorAll('td');
+    const row = newRow.querySelector("tr");
     const simOrder = chooseRandomOrder(orders);
 
     //Time stamp for order
@@ -102,6 +111,21 @@ function simulateNewOrder() {
 
     const orderId = prefix + "-" + Date.now().toString().slice(-6);
 
+    //Create order 
+    const tempOrder = {
+        id: orderId,
+        provider: simOrder.provider,
+        time: timeString,
+        customer: simOrder.customer,
+        phone: simOrder.orderTel,
+        items: simOrder.items,
+        total: simOrder.total.toFixed(2),
+        address: null,
+        paymentMethod: null,
+        notes: null,
+    };
+
+
     cells[0].textContent = timeString;
     cells[1].textContent = simOrder.provider;
     cells[2].textContent = orderId;
@@ -119,7 +143,7 @@ function simulateNewOrder() {
     filter();
 
     //Status Buttons
-    statusBtn(cells);
+    statusBtn(cells, row, tempOrder);
 }
 
 
@@ -127,6 +151,7 @@ function simulateNewOrder() {
 function NewOrder() {
     const newRow = document.importNode(rowTemplate.content, true);
     const cells = newRow.querySelectorAll('td');
+    const row = newRow.querySelector("tr");
 
     //Time stamp for order
     timeString = timeATM();
@@ -134,12 +159,26 @@ function NewOrder() {
     // Generate order ID
     const orderId = "MAN-" + Date.now().toString().slice(-6);
 
-    cells[0].textContent = timeString;
-    cells[1].textContent = "Manual";
-    cells[2].textContent = orderId;
-    cells[3].textContent = orderName.value;
-    cells[4].textContent = orderItems.value;
-    cells[5].textContent = orderTotal.value + "₪";
+    //Create order 
+    const newOrder = {
+        id: orderId,
+        provider: "Manual",
+        time: timeString,
+        customer: orderName.value,
+        phone: orderTel.value,
+        items: orderItems.value,
+        total: orderTotal.value,
+        address: orderAddress.value,
+        paymentMethod: orderPayment.value,
+        notes: orderNotes.value,
+    };
+
+    cells[0].textContent = newOrder.time;
+    cells[1].textContent = newOrder.provider;
+    cells[2].textContent = newOrder.id;
+    cells[3].textContent = newOrder.customer;
+    cells[4].textContent = newOrder.items;
+    cells[5].textContent = newOrder.total + "₪";
     cells[6].innerHTML = '<span class="statusPill statusPending">Pending</span>';
 
 
@@ -150,9 +189,12 @@ function NewOrder() {
 
     incomingTableBody.appendChild(newRow);
     popup.style.display = "none";
+    for (var i = 0; i < tables.length; i++) {
+        tables[i].style.display = "";
+    }
 
     //Status Buttons
-    statusBtn(cells);
+    statusBtn(cells, row, newOrder);
 
     // Clear form fields
     cleanForm();
@@ -193,7 +235,7 @@ function validateForm() {
     }
 }
 
-
+//filter func
 function filter() {
     let provider = filterProvider.value;
     let status = filterStatus.value;
@@ -214,7 +256,7 @@ function filter() {
 }
 
 //Status Buttons
-function statusBtn(cells) {
+function statusBtn(cells, row, order) {
     //Completed Button
     let compbtn = cells[8].querySelector("#completedBtn");
     compbtn.style.display = "none";
@@ -239,4 +281,70 @@ function statusBtn(cells) {
         compbtn.style.display = "none";
         filter();
     }
+    //More Details Button
+    let detbtn = cells[8].querySelector("#moreBtn");
+    detbtn.onclick = () => openOrderDeatil(row, order);
+}
+
+//Order details func
+function openOrderDeatil(row, order) {
+    //If already open, remove
+    if (row.nextElementSibling?.classList.contains("orderDetailsRow")) {
+        row.nextElementSibling.remove();
+        return;
+    }
+
+    const detailsRow = document.createElement("tr");
+    detailsRow.className = "orderDetailsRow";
+
+    const detailsPop = document.createElement("td");
+    //get length of a row
+    detailsPop.colSpan = row.children.length;
+    detailsPop.innerHTML = `
+    <div class="orderDetailsPop fade-in">
+      <div class="orderDetailHeader">
+        <div>
+          <h3>Order ${order.id}</h3>
+          <p class="uppertext">${order.provider} • ${order.time}</p>
+          </div>
+          <button type="button" id="closeDetails">×</button>
+      </div>
+      <div class="orderDetailsGrid">
+        <div>
+          <span class="label">Customer</span>
+          <span class="uppertext">${order.customer}</span>
+        </div>
+        <div>
+          <span class="label">Phone</span>
+          <span>${order.phone}</span>
+        </div>
+        <div>
+          <span class="label">Delivery address</span>
+          <span class="uppertext">${order.address ?? "Not provided"}</span>
+        </div>
+        <div>
+          <span class="label">Items</span>
+          <span class="uppertext">${order.items}</span>
+        </div>
+        <div>
+          <span class="label">Total</span>
+          <span>${order.total + "₪"}</span>
+        </div>
+        <div>
+          <span class="label">Payment</span>
+          <span>${order.paymentMethod ?? "Platform payout"}</span>
+        </div>
+      </div>
+      <div class="orderDetailsNotes">
+        <strong>Special notes:</strong>
+        <p>${order.notes ?? "No special requests."}</p>
+      </div>
+    </div>
+  `;
+
+    detailsRow.appendChild(detailsPop);
+    row.parentElement.insertBefore(detailsRow, row.nextElementSibling);
+
+    const clsBtn = detailsPop.querySelector("#closeDetails");
+    clsBtn.onclick = () => detailsRow.remove();
 }
