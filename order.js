@@ -2,7 +2,7 @@
 const ordersBodyActive = document.getElementById("ordersBodyActive");
 const popup = document.getElementById("popup");
 const openBtn = document.getElementById("openBtn");
-const closeBtn = document.getElementsByClassName("closeBtn");
+const closeBtn = document.getElementById("closeBtn");
 //Form
 const orderName = document.getElementById("orderName");
 const orderTel = document.getElementById("orderTel");
@@ -14,25 +14,39 @@ const orderNotes = document.getElementById("orderNotes");
 //Table
 const rowTemplate = document.getElementById("orderRowTemplate");
 const incomingTableBody = document.getElementById("ordersBodyActive");
+const cancelledTableBody = document.getElementById("ordersBodyCancelled");
+const completedTableBody = document.getElementById("ordersBodyCompleted");
 const orderBtn = document.getElementById("orderButton");
 const simulateBtn = document.getElementById("simulateBtn");
+const tables = document.getElementsByClassName("tables");
 const moreDetailsBtn = document.getElementById("moreBtn");
 //Filters
 const filterProvider = document.getElementById("providerFilter");
 const filterStatus = document.getElementById("statusFilter");
 
-//Empty Table
+//Empty Tables
 if (ordersBodyActive) ordersBodyActive.innerHTML = "";
+if (ordersBodyCancelled) ordersBodyCancelled.innerHTML = "";
+if (ordersBodyCompleted) ordersBodyCompleted.innerHTML = "";
+
 
 //Popup
-openBtn.onclick = () => popup.style.display = "block";
+openBtn.onclick = () => {
+    popup.style.display = "block";
+    for (var i = 0; i < tables.length; i++) {
+        tables[i].style.display = "none";
+    }
+    btnsDiv.style.display = "none";
+
+}
 closeBtn.onclick = () => {
     popup.style.display = "none";
+    for (var i = 0; i < tables.length; i++) {
+        tables[i].style.display = "";
+    }
+    btnsDiv.style.display = "flex";
     cleanForm();
 }
-window.onclick = (event) => {
-    if (event.target === popup) popup.style.display = "none";
-};
 
 orderBtn.onclick = () => validateForm();
 simulateBtn.onclick = () => simulateNewOrder();
@@ -183,6 +197,9 @@ function NewOrder() {
 
     incomingTableBody.appendChild(newRow);
     popup.style.display = "none";
+    for (var i = 0; i < tables.length; i++) {
+        tables[i].style.display = "";
+    }
 
     //Status Buttons
     statusBtn(cells, row, newOrder);
@@ -254,6 +271,8 @@ function statusBtn(cells, row, order) {
     compbtn.onclick = () => {
         cells[6].innerHTML = '<span class="statusPill" id="statusCompleted">Completed</span>';
         cbtn.style.display = "none";
+        completedTableBody.appendChild(row);
+
         filter();
     }
     //Accept Button
@@ -270,6 +289,8 @@ function statusBtn(cells, row, order) {
         cells[6].innerHTML = '<span class="statusPill" id="statusCancelled">Cancelled</span>';
         abtn.style.display = "none";
         compbtn.style.display = "none";
+        cancelledTableBody.appendChild(row);
+
         filter();
     }
     //More Details Button
@@ -280,11 +301,10 @@ function statusBtn(cells, row, order) {
 //Order details func
 function openOrderDeatil(row, order) {
     //If already open, remove
-    if (row.nextElementSibling?.classList.contains("orderDetailsRow")){
+    if (row.nextElementSibling?.classList.contains("orderDetailsRow")) {
         row.nextElementSibling.remove();
         return;
     }
-    //if(!order) return;
 
     const detailsRow = document.createElement("tr");
     detailsRow.className = "orderDetailsRow";
@@ -293,7 +313,7 @@ function openOrderDeatil(row, order) {
     //get length of a row
     detailsPop.colSpan = row.children.length;
     detailsPop.innerHTML = `
-    <div class="orderDetailsPop">
+    <div class="orderDetailsPop fade-in">
       <div class="orderDetailHeader">
         <div>
           <h3>Order ${order.id}</h3>
@@ -340,3 +360,23 @@ function openOrderDeatil(row, order) {
     const clsBtn = detailsPop.querySelector("#closeDetails");
     clsBtn.onclick = () => detailsRow.remove();
 }
+
+// tabs:
+incTabBtn.onclick = () => {
+    incTable.style.display = "block";
+    cancelledTable.style.display = "none";
+    completedTable.style.display = "none";
+}
+
+CancelTabBtn.onclick = () => {
+    incTable.style.display = "none";
+    cancelledTable.style.display = "block";
+    completedTable.style.display = "none";
+}
+
+CompTabBtn.onclick = () => {
+    incTable.style.display = "none";
+    cancelledTable.style.display = "none";
+    completedTable.style.display = "block";
+}
+
