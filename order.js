@@ -151,7 +151,8 @@ function simulateNewOrder() {
 
     const btns = cells[7].querySelectorAll("a");
     btns[0].href = "tel:" + simOrder.orderTel;
-    btns[1].href = "sms:" + simOrder.orderTel;
+    btns[1].href = "https://wa.me/972" + simOrder.orderTel.slice(1) + "?text=Where's my fucking burger?"; // slice removes the first digit
+    btns[1].target = "_blank"; // opens whatapp in a new tab
     incomingTableBody.appendChild(newRow);
 
     //Filter Update
@@ -202,7 +203,8 @@ function NewOrder() {
 
     const btns = cells[7].querySelectorAll("a");
     btns[0].href = "tel:" + orderTel.value;
-    btns[1].href = "sms:" + orderTel.value;
+    btns[1].href = "https://wa.me/972" + simOrder.orderTel.slice(1) + "?text=Where's my fucking burger?"; // slice removes the first digit
+    btns[1].target = "_blank"; // opens whatapp in a new tab
 
 
     incomingTableBody.appendChild(newRow);
@@ -439,7 +441,8 @@ function loadOrders() {
         // Contact buttons
         const btns = cells[7].querySelectorAll("a");
         btns[0].href = "tel:" + order.phone;
-        btns[1].href = "sms:" + order.phone;
+        btns[1].href = "https://wa.me/972" + simOrder.orderTel.slice(1) + "?text=Where's my fucking burger?"; // slice removes the first digit
+        btns[1].target = "_blank"; // opens whatapp in a new tab
 
         // Status Buttons
         statusBtn(cells, row, order);
