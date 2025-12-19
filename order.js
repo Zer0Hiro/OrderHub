@@ -18,6 +18,7 @@ const cancelledTableBody = document.getElementById("ordersBodyCancelled");
 const completedTableBody = document.getElementById("ordersBodyCompleted");
 const orderBtn = document.getElementById("orderButton");
 const simulateBtn = document.getElementById("simulateBtn");
+const clearDataBtn = document.getElementById("clearDataBtn");
 const tables = document.getElementsByClassName("tables");
 const moreDetailsBtn = document.getElementById("moreBtn");
 //Filters
@@ -50,6 +51,10 @@ closeBtn.onclick = () => {
 
 orderBtn.onclick = () => validateForm();
 simulateBtn.onclick = () => simulateNewOrder();
+clearDataBtn.onclick = () => {
+    clearStorage(),
+    location.reload();
+}
 
 //Clean Form
 function cleanForm() {
@@ -131,8 +136,10 @@ function simulateNewOrder() {
         address: null,
         paymentMethod: null,
         notes: null,
+        status: "pending"
     };
 
+    saveOrderToStorage(tempOrder); // Sends the new order to "saveOrderToStorage" in dn.js
 
     cells[0].textContent = timeString;
     cells[1].textContent = simOrder.provider;
@@ -179,7 +186,10 @@ function NewOrder() {
         address: orderAddress.value,
         paymentMethod: orderPayment.value,
         notes: orderNotes.value,
+        status: "pending"
     };
+    
+    saveOrderToStorage(newOrder); // Sends the new order to "saveOrderToStorage" in dn.js
 
     cells[0].textContent = newOrder.time;
     cells[1].textContent = newOrder.provider;
@@ -273,6 +283,9 @@ function statusBtn(cells, row, order) {
         cbtn.style.display = "none";
         completedTableBody.appendChild(row);
 
+        order.status = "completed";
+        updateOrderInStorage(order);
+
         filter();
     }
     //Accept Button
@@ -281,6 +294,10 @@ function statusBtn(cells, row, order) {
         cells[6].innerHTML = '<span class="statusPill" id="statusAccepted">Accepted</span>';
         abtn.style.display = "none";
         compbtn.style.display = "";
+
+        order.status = "accepted";
+        updateOrderInStorage(order);
+
         filter();
     }
     //Cancel Button
@@ -290,6 +307,9 @@ function statusBtn(cells, row, order) {
         abtn.style.display = "none";
         compbtn.style.display = "none";
         cancelledTableBody.appendChild(row);
+
+        order.status = "cancelled";
+        updateOrderInStorage(order);
 
         filter();
     }
@@ -380,3 +400,52 @@ CompTabBtn.onclick = () => {
     completedTable.style.display = "block";
 }
 
+// Function for loading saved data from storage into the page
+function loadOrders() {
+
+    // Retrieves the data array from local storage
+    const orders = getOrdersFromStorage(); 
+
+    orders.forEach(order => {
+
+        // Uses the HTML row template
+        const newRow = document.importNode(rowTemplate.content, true);
+        const cells = newRow.querySelectorAll('td');
+        const row = newRow.querySelector("tr");
+
+        // Fills the cells with the saved order details
+        cells[0].textContent = order.time;
+        cells[1].textContent = order.provider;
+        cells[2].textContent = order.id;
+        cells[3].textContent = order.customer;
+        cells[4].textContent = order.items;
+        cells[5].textContent = order.total + "₪";
+
+        // Defines preset for every status type
+        const statusSettings = {
+            pending: { html: '<span class="statusPill statusPending">Pending</span>', table: incomingTableBody },
+            accepted: { html: '<span class="statusPill" id="statusAccepted">Accepted</span>', table: incomingTableBody },
+            completed: { html: '<span class="statusPill" id="statusCompleted">Completed</span>', table: completedTableBody },
+            cancelled: { html: '<span class="statusPill" id="statusCancelled">Cancelled</span>', table: cancelledTableBody } };
+
+        // Grabs the correct settings based on the order status
+        const currentSetting = statusSettings[order.status];
+
+        // Applies the settings
+        cells[6].innerHTML = currentSetting.html;
+        const targetTable = currentSetting.table;
+
+        // Contact buttons
+        const btns = cells[7].querySelectorAll("a");
+        btns[0].href = "tel:" + order.phone;
+        btns[1].href = "sms:" + order.phone;
+
+        // Status Buttons
+        statusBtn(cells, row, order);
+
+        // Inserts row into table
+        targetTable.appendChild(newRow);
+    });
+}
+// Loads locally stored data
+loadOrders();
