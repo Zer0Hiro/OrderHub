@@ -38,12 +38,24 @@
     </div>
 
     <div class="main">
-    <!-- Incoming Orders part -->
-    <div class="tables">
+    
+     <div id = "btnsDiv">
+      <div id = "tabBtns">
+        <!-- tabs -->
+        <button id="incTabBtn", class = "tabs">Incoming</button>
+        <button id="CancelTabBtn", class = "tabs">Cancelled</button>
+        <button id="CompTabBtn", class = "tabs">Completed</button>
+      </div>
+      <div id = "funcButtons">
+        <button id="openBtn">New Order</button>
+        <button id="simulateBtn">Simulate Order</button>
+        </div>
+     </div>
+     <!-- Incoming Orders part -->
+    <div class="tables", id = "incTable">
       <div class="tableHeader">
         <h1>Incoming Orders</h1>
-        <button id="openBtn">New Order</button>
-        <button id="simulateBtn" onclick="simulateNewOrder()">Simulate Order</button>
+        
       </div>
       <div class="ordersTableWrapper">
         <table class="ordersTable">
@@ -66,7 +78,7 @@
       </div>
     </div>
     <!--Cancelled Orders-->
-    <div class="tables">
+    <div class="tables", id = "cancelledTable">
       <div class="tableHeader">
         <h1>Cancelled Orders</h1>
       </div>
@@ -91,7 +103,7 @@
       </div>
     </div>
     <!-- Completed Orders -->
-    <div class="tables">
+    <div class="tables", id = "completedTable">
       <div class="tableHeader">
         <h1>Completed Orders</h1>
       </div>

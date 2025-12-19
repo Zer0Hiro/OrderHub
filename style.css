@@ -402,3 +402,29 @@ input:focus {
 		opacity: 1;
 	}
 }
+
+#btnsDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  padding: 10px;
+  
+}
+#tabBtns {
+    display:flex;
+    gap: 10px;
+    margin-left:2%;
+}
+.tabs:hover {
+    color: #000000 !important;
+    background-color: #a1bdbd !important;
+
+}
+
+
+#cancelledTable {
+    display:none;
+}
+#completedTable {
+    display:none;
+}
