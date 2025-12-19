@@ -32,6 +32,7 @@ if (ordersBodyCompleted) ordersBodyCompleted.innerHTML = "";
 
 //Popup
 openBtn.onclick = () => {
+    popup.classList.add("fade-in");
     popup.style.display = "block";
     for (var i = 0; i < tables.length; i++) {
         tables[i].style.display = "none";
