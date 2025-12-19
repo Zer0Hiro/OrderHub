@@ -284,6 +284,7 @@ function statusBtn(cells, row, order) {
         completedTableBody.appendChild(row);
 
         order.status = "completed";
+        // Sends the updated order to "updateOrderInStorage" in order_db.js
         updateOrderInStorage(order);
 
         filter();
