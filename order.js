@@ -133,9 +133,9 @@ function simulateNewOrder() {
         phone: simOrder.orderTel,
         items: simOrder.items,
         total: simOrder.total.toFixed(2),
-        address: null,
-        paymentMethod: null,
-        notes: null,
+        address: "",
+        paymentMethod: "",
+        notes: "",
         status: "pending"
     };
 
@@ -353,7 +353,7 @@ function openOrderDeatil(row, order) {
         </div>
         <div>
           <span class="label">Delivery address</span>
-          <span class="uppertext">${order.address ?? "Not provided"}</span>
+          <span class="uppertext">${order.address || "Not provided"}</span>
         </div>
         <div>
           <span class="label">Items</span>
@@ -365,12 +365,12 @@ function openOrderDeatil(row, order) {
         </div>
         <div>
           <span class="label">Payment</span>
-          <span>${order.paymentMethod ?? "Platform payout"}</span>
+          <span>${order.paymentMethod || "Platform payout"}</span>
         </div>
       </div>
       <div class="orderDetailsNotes">
         <strong>Special notes:</strong>
-        <p>${order.notes ?? "No special requests."}</p>
+        <p>${order.notes || "No special requests."}</p>
       </div>
     </div>
   `;
