@@ -151,7 +151,7 @@ function simulateNewOrder() {
 
     const btns = cells[7].querySelectorAll("a");
     btns[0].href = "tel:" + simOrder.orderTel;
-    btns[1].href = "https://wa.me/972" + orderTel.value.slice(1) + "?text=Where's my fucking burger?"; // slice removes the first digit
+    btns[1].href = "https://wa.me/972" + simOrder.orderTel.slice(1) + "?text=Where's my fucking burger?"; // slice removes the first digit
     btns[1].target = "_blank"; // opens whatapp in a new tab
     incomingTableBody.appendChild(newRow);
 
@@ -161,7 +161,6 @@ function simulateNewOrder() {
     //Status Buttons
     statusBtn(cells, row, tempOrder);
 }
-
 
 //Create Order
 function NewOrder() {
@@ -203,7 +202,7 @@ function NewOrder() {
 
     const btns = cells[7].querySelectorAll("a");
     btns[0].href = "tel:" + orderTel.value;
-    btns[1].href = "https://wa.me/972" + orderTel.value.slice(1) + "?text=Where's my fucking burger?"; // slice removes the first digit
+    btns[1].href = "https://wa.me/972" + simOrder.orderTel.slice(1) + "?text=Where's my fucking burger?"; // slice removes the first digit
     btns[1].target = "_blank"; // opens whatapp in a new tab
 
 
