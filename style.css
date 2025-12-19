@@ -81,7 +81,8 @@ input:focus {
 }
 
 .main {
-    padding: 1.5rem 2.75rem 2.75rem;
+    padding-top: 1.5rem;
+    padding-bottom: 2.75rem;
 }
 
 /* Tables layout */
@@ -125,6 +126,7 @@ input:focus {
 }
 
 .ordersTable {
+    text-align: center;
     width: min(100%);
     table-layout: fixed;
     font-size: 13.6px;
@@ -138,45 +140,13 @@ input:focus {
 .ordersTable th:nth-child(3),
 /* Order # */
 .ordersTable th:nth-child(4),
-/* Customer */
-.ordersTable th:nth-child(6) {
-    width: 2%;
-}
-
-/* Items */
-.ordersTable th:nth-child(5) {
-    width: 9%;
-}
-
-/* Customer Name */
-.ordersTable th:nth-child(7) {
-    width: 2.2%;
-    min-width: 90px;
-}
-
-/* Total */
-.ordersTable th:nth-child(8) {
-    width: 2.2%;
-}
-
-/* Status */
-.ordersTable th:nth-child(9) {
-    width: 7%;
-}
-
-/* Actions */
 
 .ordersTable th,
 .ordersTable td {
     padding: 10px 15px 10px 10px;
-
-    text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
-    border-bottom: 1px solid #e0e0e0;
-    border-right: 1px solid #e0e0e0;
 }
 
 .ordersTableColor {
@@ -260,9 +230,9 @@ input:focus {
 }
 
 #popupContent {
-    margin: 0 auto; 
-    
-    width: min(60%,50em);
+    margin: 0 auto;
+
+    width: min(60%, 50em);
     max-height: 80vh;
     padding: 1.5rem;
     overflow-y: auto;
@@ -295,13 +265,13 @@ input:focus {
     resize: vertical;
 }
 
-.orderInput{
+.orderInput {
     clear: both;
     width: 100%;
 }
 
 .inputLabel {
-    font-size: clamp(95%,50em);
+    font-size: clamp(95%, 50em);
 }
 
 #orderButton {
@@ -387,34 +357,38 @@ input:focus {
 
 /*################# ANIMATIONS ####################### */
 .fade-in {
-	opacity: 1;
-	animation-name: fadeInOpacity;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-	animation-duration: 0.1s;
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.1s;
 }
 
 @keyframes fadeInOpacity {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 #btnsDiv {
-  display: flex;
-  justify-content: space-between;
-  align-items: center; 
-  padding: 10px;
-  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1em;
+    padding-right: 2em;
+
 }
+
 #tabBtns {
-    display:flex;
+    display: flex;
     gap: 10px;
-    margin-left:2%;
+    margin-left: 2%;
 }
+
 .tabs:hover {
     color: #000000 !important;
     background-color: #a1bdbd !important;
@@ -423,8 +397,15 @@ input:focus {
 
 
 #cancelledTable {
-    display:none;
+    display: none;
 }
+
 #completedTable {
-    display:none;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .tables {
+        min-width: 95%;
+    }
 }

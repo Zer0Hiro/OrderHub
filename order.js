@@ -137,12 +137,9 @@ function simulateNewOrder() {
     cells[0].textContent = timeString;
     cells[1].textContent = simOrder.provider;
     cells[2].textContent = orderId;
-    cells[3].textContent = simOrder.customer;
-    cells[4].textContent = simOrder.items;
-    cells[5].textContent = simOrder.total.toFixed(2) + "₪";
-    cells[6].innerHTML = '<span class="statusPill statusPending">Pending</span>';
+    cells[3].innerHTML = '<span class="statusPill statusPending">Pending</span>';
 
-    const btns = cells[7].querySelectorAll("a");
+    const btns = cells[4].querySelectorAll("a");
     btns[0].href = "tel:" + simOrder.orderTel;
     btns[1].href = "sms:" + simOrder.orderTel;
     incomingTableBody.appendChild(newRow);
@@ -253,7 +250,7 @@ function filter() {
         const cells = tables[j].querySelectorAll("tr")
         for (let i = 0; i < cells.length; i++) {
             if ((cells[i].querySelectorAll("td")[1].innerHTML == provider || provider == 'all')
-                && (cells[i].querySelectorAll("td")[6].textContent.toLowerCase() == status || status == 'all')) {
+                && (cells[i].querySelectorAll("td")[3].textContent.toLowerCase() == status || status == 'all')) {
                 cells[i].style.display = '';
             }
             else {
@@ -266,27 +263,27 @@ function filter() {
 //Status Buttons
 function statusBtn(cells, row, order) {
     //Completed Button
-    let compbtn = cells[8].querySelector("#completedBtn");
+    let compbtn = cells[5].querySelector("#completedBtn");
     compbtn.style.display = "none";
     compbtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill" id="statusCompleted">Completed</span>';
+        cells[3].innerHTML = '<span class="statusPill" id="statusCompleted">Completed</span>';
         cbtn.style.display = "none";
         completedTableBody.appendChild(row);
 
         filter();
     }
     //Accept Button
-    let abtn = cells[8].querySelector("#acceptBtn");
+    let abtn = cells[5].querySelector("#acceptBtn");
     abtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill" id="statusAccepted">Accepted</span>';
+        cells[3].innerHTML = '<span class="statusPill" id="statusAccepted">Accepted</span>';
         abtn.style.display = "none";
         compbtn.style.display = "";
         filter();
     }
     //Cancel Button
-    let cbtn = cells[8].querySelector("#cancelBtn");
+    let cbtn = cells[5].querySelector("#cancelBtn");
     cbtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill" id="statusCancelled">Cancelled</span>';
+        cells[3].innerHTML = '<span class="statusPill" id="statusCancelled">Cancelled</span>';
         abtn.style.display = "none";
         compbtn.style.display = "none";
         cancelledTableBody.appendChild(row);
@@ -294,7 +291,7 @@ function statusBtn(cells, row, order) {
         filter();
     }
     //More Details Button
-    let detbtn = cells[8].querySelector("#moreBtn");
+    let detbtn = cells[5].querySelector("#moreBtn");
     detbtn.onclick = () => openOrderDeatil(row, order);
 }
 
