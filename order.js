@@ -1,7 +1,7 @@
 //Popup
 const ordersBodyActive = document.getElementById("ordersBodyActive");
 const popup = document.getElementById("popup");
-const openBtn = document.getElementById("openBtn");
+const newOrderBtn = document.getElementById("newOrderBtn");
 const closeBtn = document.getElementById("closeBtn");
 //Form
 const formContent = document.getElementsByClassName("orderInput");
@@ -10,7 +10,7 @@ const rowTemplate = document.getElementById("orderRowTemplate");
 const incomingTableBody = document.getElementById("ordersBodyActive");
 const cancelledTableBody = document.getElementById("ordersBodyCancelled");
 const completedTableBody = document.getElementById("ordersBodyCompleted");
-const orderBtn = document.getElementById("orderButton");
+const createOrderBtn = document.getElementById("createOrderBtn");
 const simulateBtn = document.getElementById("simulateBtn");
 const clearDataBtn = document.getElementById("clearDataBtn");
 const tables = document.getElementsByClassName("tables");
@@ -28,7 +28,7 @@ if (ordersBodyCompleted) ordersBodyCompleted.innerHTML = "";
 
 
 //Popup
-openBtn.onclick = () => changeDisplay(0);
+newOrderBtn.onclick = () => changeDisplay(0);
 
 
 closeBtn.onclick = () => changeDisplay(1);
@@ -47,7 +47,7 @@ function changeDisplay(state) {
         main.style.display = "none"
     }
 }
-orderBtn.onclick = () => validateForm();
+createOrderBtn.onclick = () => validateForm();
 simulateBtn.onclick = () => simulateNewOrder();
 
 clearDataBtn.onclick = () => {
