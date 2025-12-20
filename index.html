@@ -21,7 +21,7 @@
       </div>
       <!-- Filters -->
       <div id="headerActions">
-        <select id="statusFilter" onchange="filter()" class="filterSelect">
+        <select id="statusFilter" onchange="loadOrders()" class="filterSelect">
           <option value="all">All statuses</option>
           <option value="pending">Pending</option>
           <option value="accepted">Accepted</option>
@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <div class="main">
+    <div id="main">
 
       <div id="btnsDiv">
         <div id="tabBtns">
@@ -136,6 +136,7 @@
           </table>
         </div>
       </div>
+      </div>
       <!-- Popup -->
       <div id="popup">
         <div id="popupContent">
@@ -184,7 +185,7 @@
 
         </div>
       </div>
-    </div>
+    
     <!-- Template of table elements -->
     <template id="orderRowTemplate">
       <tr class="orderRow">

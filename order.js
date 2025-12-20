@@ -29,19 +29,17 @@ if (ordersBodyCompleted) ordersBodyCompleted.innerHTML = "";
 
 //Popup
 openBtn.onclick = () => changeDisplay(0);
-    
+
 
 closeBtn.onclick = () => changeDisplay(1);
-    
+
 
 //if state is 0 show popup, if 1 show main screen
-function changeDisplay(state)
-{
-    if(state)
-    {
+function changeDisplay(state) {
+    if (state) {
         popup.classList.add("fade-in");
         popup.style.display = "none";
-        main.style.display ="";
+        main.style.display = "";
         cleanForm();
     }
     else {
@@ -54,13 +52,12 @@ simulateBtn.onclick = () => simulateNewOrder();
 
 clearDataBtn.onclick = () => {
     clearStorage(),
-    location.reload();
+        location.reload();
 }
 
 //Clean Form
 function cleanForm() {
-    for(element of formContent)
-    {
+    for (element of formContent) {
         element.value = "";
     }
 }
@@ -218,17 +215,17 @@ function validateForm() {
 //Status Buttons
 function statusBtn(cells, row, order) {
     //Completed Button
-    let compbtn = cells[8].querySelector("#completedBtn");
+    let compbtn = cells[6].querySelector("#completedBtn");
     compbtn.style.display = order.status == "accepted" ? "" : "none";
     compbtn.onclick = () => statusBtnClick(order, "completed");
     //Accept Button
-    let abtn = cells[8].querySelector("#acceptBtn");
+    let abtn = cells[6].querySelector("#acceptBtn");
     abtn.style.display = order.status == "pending" ? "" : "none";
     abtn.onclick = () => statusBtnClick(order, "accepted");
     //Cancel Button
-    let cbtn = cells[8].querySelector("#cancelBtn");
+    let cbtn = cells[6].querySelector("#cancelBtn");
     cbtn.style.display = (order.status == "completed" || order.status == "cancelled") ? "none" : "";
-    cbtn.onclick = () => statusBtnClick(order, "cancelled");    
+    cbtn.onclick = () => statusBtnClick(order, "cancelled");
     //More Details Button
     let detbtn = cells[0].querySelector("#moreBtn");
     detbtn.onclick = () => openOrderDeatil(row, order, cells);
@@ -326,12 +323,17 @@ CompTabBtn.onclick = () => {
     completedTable.style.display = "block";
 }
 
+function filter() {
+    cleanTables();
+    loadOrders();
+}
+
 // Function for loading saved data from storage into the page
 function loadOrders() {
 
     // Retrieves the data array from local storage
     const provider = filterProvider.value;
-    const orders = getOrdersFromStorage().filter(order => (order.provider == provider || provider == "all")); 
+    const orders = getOrdersFromStorage().filter(order => (order.provider == provider || provider == "all"));
 
     orders.forEach(order => {
 
@@ -341,29 +343,27 @@ function loadOrders() {
         const row = newRow.querySelector("tr");
 
         // Fills the cells with the saved order details
-        cells[0].textContent = order.time;
-        cells[1].textContent = order.provider;
-        cells[2].textContent = order.id;
-        cells[3].textContent = order.customer;
-        cells[4].textContent = order.items;
-        cells[5].textContent = order.total + "₪";
+        cells[1].textContent = order.time;
+        cells[2].textContent = order.provider;
+        cells[3].textContent = order.id;
 
         // Defines preset for every status type
         const statusSettings = {
             pending: { html: '<span class="statusPill statusPending">Pending</span>', table: incomingTableBody },
             accepted: { html: '<span class="statusPill" id="statusAccepted">Accepted</span>', table: incomingTableBody },
             completed: { html: '<span class="statusPill" id="statusCompleted">Completed</span>', table: completedTableBody },
-            cancelled: { html: '<span class="statusPill" id="statusCancelled">Cancelled</span>', table: cancelledTableBody } };
+            cancelled: { html: '<span class="statusPill" id="statusCancelled">Cancelled</span>', table: cancelledTableBody }
+        };
 
         // Grabs the correct settings based on the order status
         const currentSetting = statusSettings[order.status];
 
         // Applies the settings
-        cells[6].innerHTML = currentSetting.html;
+        cells[4].innerHTML = currentSetting.html;
         const targetTable = currentSetting.table;
 
         // Contact buttons
-        const btns = cells[7].querySelectorAll("a");
+        const btns = cells[5].querySelectorAll("a");
         btns[0].href = "tel:" + order.phone;
         btns[1].href = "https://wa.me/972" + order.phone.slice(1) + "?text=Where's my fucking burger?"; // slice removes the first digit
         btns[1].target = "_blank"; // opens whatsapp in a new tab
