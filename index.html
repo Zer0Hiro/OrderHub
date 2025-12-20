@@ -39,16 +39,16 @@
           <button id="CancelTabBtn" , class="tabs">Cancelled</button>
           <button id="CompTabBtn" , class="tabs">Completed</button>
         </div>
-        <!--Order Buttons-->
-        <div id="funcButtons">
-          <button id="openBtn">New Order</button>
-          <button id="simulateBtn">Simulate Order</button>
-        </div>
       </div>
       <!-- Incoming Orders part -->
       <div class="tables" , id="incTable">
         <div class="tableHeader">
           <h1>Incoming Orders</h1>
+          <!--Order Buttons-->
+          <div id="funcButtons">
+            <button id="openBtn">New Order</button>
+            <button id="simulateBtn">Simulate Order</button>
+          </div>
           <select id="providerFilter" onchange="filter()" class="filterSelect">
             <option value="all">All providers</option>
             <option value="Wolt">Wolt</option>
@@ -79,11 +79,19 @@
       <div class="tables" , id="cancelledTable">
         <div class="tableHeader">
           <h1>Cancelled Orders</h1>
+          <select id="providerFilter" onchange="filter()" class="filterSelect">
+            <option value="all">All providers</option>
+            <option value="Wolt">Wolt</option>
+            <option value="Tenbis">TenBis</option>
+            <option value="Mishloha">Mishloha</option>
+            <option value="Manual">Manual</option>
+          </select>
         </div>
         <div class="ordersTableWrapper">
           <table class="ordersTable">
             <thead>
               <tr class="ordersTableColor">
+                <th class="thOrderDetails"></th>
                 <th>Time</th>
                 <th>Provider</th>
                 <th>Order ID</th>
@@ -101,11 +109,19 @@
       <div class="tables" , id="completedTable">
         <div class="tableHeader">
           <h1>Completed Orders</h1>
+          <select id="providerFilter" onchange="filter()" class="filterSelect">
+            <option value="all">All providers</option>
+            <option value="Wolt">Wolt</option>
+            <option value="Tenbis">TenBis</option>
+            <option value="Mishloha">Mishloha</option>
+            <option value="Manual">Manual</option>
+          </select>
         </div>
         <div class="ordersTableWrapper">
           <table class="ordersTable">
             <thead>
               <tr class="ordersTableColor">
+                <th class="thOrderDetails"></th>
                 <th>Time</th>
                 <th>Provider</th>
                 <th>Order ID</th>
@@ -172,7 +188,7 @@
     <template id="orderRowTemplate">
       <tr class="orderRow">
         <td clss="orderInfo">
-          <button class="btn btnMore dontHover" title="More details"
+          <button class="btnMore dontHover" title="More details"
             id="moreBtn">▶</button>
         </td>
         <td class="orderTime"></td>
@@ -200,3 +216,7 @@
   </body>
 
 </html>
+
+
+
+

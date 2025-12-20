@@ -1,63 +1,57 @@
-/* Universal Font & Background */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: #ff990034;
 }
 
-/* Remove underline from links */
 a {
     text-decoration: none;
+    touch-action: manipulation;
 }
 
-/* Universal design for Buttons & Inputs */
 button,
-select,
-.filterSelect {
+select {
     padding: 8px 12px;
-
-    border: 1px solid #616161;
+    border: 1px solid #ffeacb71;
     border-radius: 50px;
-
     cursor: pointer;
     transition: all 0.3s ease;
+    touch-action: manipulation;
 }
 
-/* Button hover effect */
 button:not(.dontHover):hover {
     color: #ffffff;
     border: 1px solid #afafaf7f !important;
-    box-shadow: 0 0 12px #7878787d;
+    box-shadow: 0 0 12px #787878c0;
 }
 
-/* Universal glow for input */
 textarea:focus,
 input:focus {
     box-shadow: 0px 0px 8px 1px #ff99007e;
 }
 
-/* Specific hover color for GREEN action buttons */
 #openBtn:hover,
 #simulateBtn:hover,
 #orderButton:hover {
     color: #000000 !important;
-    background-color: #5cd65c !important;
-
-    border-color: #0f4b0f !important;
+    background-color: #ffd390e0 !important;
+    border-color: #97c1ff !important;
 }
 
 /* Header */
 #header {
-    /* These three tell the header to follow the screen as you scroll */
     position: sticky;
     top: 0;
     z-index: 1;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     padding: 20px 40px 15px 40px;
-
     background-color: #ffffff;
     border-bottom: 2px solid #d1d1d1;
     box-shadow: 0 4px 10px 1px rgba(0, 0, 0, 0.35);
@@ -72,7 +66,6 @@ input:focus {
 #headerText {
     display: flex;
     flex-direction: column;
-
     font-size: 13px;
 }
 
@@ -90,7 +83,6 @@ input:focus {
     width: min(90%, 95%);
     margin: 20px auto;
     padding: 24px 20px 20px;
-
     background: #ffffff;
     border: 1px solid #61616181;
     border-radius: 20px;
@@ -100,8 +92,9 @@ input:focus {
 .tableHeader {
     display: flex;
     align-items: center;
-
+    gap: 15px;
     margin-bottom: 15px;
+    flex-wrap: wrap;
 }
 
 .tables h1 {
@@ -109,15 +102,25 @@ input:focus {
     margin-right: auto;
 }
 
+#providerFilter {
+    margin-left: auto;
+    order: 1;
+}
+
+#funcButtons {
+    display: flex;
+    gap: 10px;
+    order: 2;
+}
+
 #openBtn {
     color: #000000;
-    background-color: #7af57a;
-    border-color: #0f4b0f;
+    background-color: #ffd390e0;
+    border-color: #97c1ff;
 }
 
 #simulateBtn {
-    margin-left: 10px;
-    background-color: #7af57a65;
+    background-color: #ffeacb;
 }
 
 .ordersTableWrapper {
@@ -126,20 +129,12 @@ input:focus {
 }
 
 .ordersTable {
-    text-align: center;
-    width: min(100%);
+    text-align: left;
+    width: 100%;
     table-layout: fixed;
     font-size: 13.6px;
+    border-collapse: collapse;
 }
-
-/* Column widths */
-.ordersTable th:nth-child(1),
-/* Time */
-.ordersTable th:nth-child(2),
-/* Provider */
-.ordersTable th:nth-child(3),
-/* Order # */
-.ordersTable th:nth-child(4),
 
 .ordersTable th,
 .ordersTable td {
@@ -152,19 +147,17 @@ input:focus {
     background-color: #e6e6e6;
 }
 
-.ordersTable td:nth-child(6) {
-    font-weight: 650;
+.thOrderDetails {
+    width: 35px;
+    min-width: 35px;
 }
 
-/* Status pill design */
+/* Status pill */
 .statusPill {
     display: inline-block;
-
     padding: 5px 12px;
-
     font-size: 12px;
     font-weight: 600;
-
     border-radius: 50px;
 }
 
@@ -188,11 +181,19 @@ input:focus {
     background-color: #d4edda;
 }
 
-/* Action buttons */
+/* Action and contact buttons */
+.btn,
 .btnAccept,
 .btnCancel,
 .btnComplete {
-    margin-left: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin-left: 4px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btnAccept {
@@ -214,28 +215,30 @@ input:focus {
 }
 
 .btnMore {
-    float: right;
-
-    color: #000000;
     font-weight: 600;
-
     background-color: transparent;
     border-color: transparent;
+    display: inline-block;
+    font-size: 0.7rem;
+    color: #4e5b31;
+    transition: transform 0.2s ease;
 }
 
-/*################################ Popup modal ###########################*/
+.btnMore.orderUnzipped {
+    transform: rotate(90deg);
+}
+
+/* Popup modal */
 #popup {
     display: none;
 }
 
 #popupContent {
     margin: 0 auto;
-
     width: min(60%, 50em);
     max-height: 80vh;
     padding: 1.5rem;
     overflow-y: auto;
-
     background: #ffffff;
     border-radius: 20px;
 }
@@ -257,116 +260,137 @@ input:focus {
 #popupContent select {
     box-sizing: border-box;
     padding: 10px;
-
     border: 1px solid #cccccc;
     border-radius: 10px;
-
     resize: vertical;
 }
 
 .orderInput {
-    clear: both;
     width: 100%;
 }
 
 .inputLabel {
-    font-size: clamp(95%, 50em);
+    font-size: 0.9rem;
 }
 
 #orderButton {
     display: block;
     margin-left: auto;
-
     background-color: #7af57a;
 }
 
-/*################################Order Details#####################################*/
+/* Order Details */
 .orderDetailsRow td {
-    background: white;
-    padding: 0.9rem 1rem 1.1rem;
+    background-color: #fcfcfc;
+    padding: 20px;
+    white-space: normal;
+    overflow: hidden;
 }
 
-.orderDetailsPop {
-    width: min(60em, 90%);
-    border-radius: 0.85rem;
-    border: 1px solid rgba(78, 91, 49, 0.15);
-    padding: 0.9rem 1rem;
-    background: rgb(250, 231, 193);
-    box-shadow: 0 10px 25px rgba(78, 91, 49, 0.08);
+.detailsWrapper {
+    position: relative;
+    width: 100%;
 }
 
-.orderDetailHeader {
+.detailsCardsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.detailCard {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.orderDetailHeader h3 {
-    margin: 0;
+.detailLabel {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #c18b03;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detailContent {
+    font-size: 0.9rem;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.customerName {
+    font-weight: 600;
     font-size: 1rem;
 }
 
-.orderDetailHeader p {
-    margin: 0.25rem 0 0;
-    font-size: 0.8rem;
-    color: rgba(32, 36, 21, 0.75);
+.cardActions {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
 }
 
-.orderDetailsGrid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.5rem 1.25rem;
-    font-size: 0.85rem;
+.cardActionBtn {
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: transform 0.2s;
+    display: inline-block;
 }
 
-.orderDetailsGrid .label {
-    display: block;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: rgba(32, 36, 21, 0.75);
-    margin-bottom: 0.15rem;
+.cardActionBtn:hover {
+    transform: scale(1.1);
 }
 
-.uppertext {
-    text-transform: uppercase;
+.detailsNotesBox {
+    background-color: #fff8dc;
+    /* Light yellow for notes */
+    border: 1px solid #fae7c1;
+    border-radius: 12px;
+    padding: 15px;
+    font-size: 0.9rem;
+    color: #5a5a5a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.orderDetailsNotes {
-    margin-top: 0.75rem;
-    padding-top: 0.6rem;
-    border-top: 1px dashed rgba(50, 58, 31, 0.25);
-    font-size: 0.85rem;
-}
-
-.orderDetailsNotes p {
-    margin: 0.25rem 0 0;
+.noteLabel {
+    font-weight: 700;
+    color: #d48806;
+    /* Darker yellow/orange for label */
 }
 
 #closeDetails {
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    background: #ff6b6b;
+    color: white;
     border: none;
-    border-radius: 999px;
-    background: rgb(248, 226, 182);
-    color: #0e0c07;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    line-height: 1;
     cursor: pointer;
-    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.expand-chevron {
-  display: inline-block;
-  font-size: 0.7rem;
-  color: #4e5b31;
-  transition: transform 0.2s ease;
-}
-/*################# ANIMATIONS ####################### */
+
+/* Animations */
 .fade-in {
     opacity: 1;
-    animation-name: fadeInOpacity;
-    animation-iteration-count: 1;
-    animation-timing-function: ease-in;
-    animation-duration: 0.2s;
+    animation: fadeInOpacity 0.2s ease-in;
 }
 
 @keyframes fadeInOpacity {
@@ -385,7 +409,6 @@ input:focus {
     align-items: center;
     padding-left: 1em;
     padding-right: 2em;
-
 }
 
 #tabBtns {
@@ -397,20 +420,166 @@ input:focus {
 .tabs:hover {
     color: #000000 !important;
     background-color: #a1bdbd !important;
-
 }
 
-
-#cancelledTable {
-    display: none;
-}
-
+#cancelledTable,
 #completedTable {
     display: none;
 }
 
-@media (max-width: 768px) {
+/* Mobile responsive */
+@media (max-width: 780px) {
+
+    /* Header */
+    #header {
+        gap: 10px;
+        padding: 15px 20px;
+    }
+
+    #headerText {
+        font-size: 11px;
+    }
+
+    #headerText h1 {
+        font-size: 1.3rem;
+    }
+
+    /* Tables */
     .tables {
         min-width: 95%;
+        padding: 15px 10px;
+    }
+
+    .tables h1 {
+        font-size: 1.2rem;
+    }
+
+    .tableHeader {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    #providerFilter {
+        width: 100%;
+        margin-left: 0;
+        order: 1;
+    }
+
+    #funcButtons {
+        display: flex;
+        gap: 8px;
+        order: 2;
+        width: 100%;
+    }
+
+    #openBtn,
+    #simulateBtn {
+        flex: 1;
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+
+    .ordersTable {
+        font-size: 11px;
+    }
+
+
+    /* Reduce Time column width */
+    .ordersTable th:nth-child(2),
+    .ordersTable td:nth-child(2) {
+        width: 40px;
+    }
+
+    .ordersTable th,
+    .ordersTable td {
+        padding: 8px 5px;
+    }
+
+    /* Buttons */
+    #btnsDiv {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    #tabBtns {
+        margin-left: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .tabs {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .btn,
+    .btnAccept,
+    .btnCancel,
+    .btnComplete {
+        width: 28px;
+        height: 28px;
+        margin-left: 2px;
+    }
+
+    /* Status pill */
+    .statusPill {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+
+    /* Popup */
+    #popupContent {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    /* Order details */
+    .orderDetailsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .orderDetailsPop {
+        width: 10%;
+    }
+
+    .filterSelect {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .btnMore {
+        font-size: 0.5rem;
+        padding: 4px 6px;
+    }
+
+    /* Details cards */
+    .detailsCardsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 475px) {
+
+    /* Hide Provider column on mobile */
+    .ordersTable th:nth-child(3),
+    .ordersTable td:nth-child(3) {
+        display: none;
+    }
+
+    /* Hide Contact column on very small screens */
+    .ordersTable th:nth-child(6),
+    .ordersTable td:nth-child(6) {
+        display: none;
+    }
+
+    /* Details cards */
+    .detailsCardsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .orderDetailsRow td {
+        padding: 10px;
     }
 }
