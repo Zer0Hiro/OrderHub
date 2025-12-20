@@ -25,23 +25,32 @@ if (ordersBodyCompleted) ordersBodyCompleted.innerHTML = "";
 
 
 //Popup
-openBtn.onclick = () => {
-    popup.style.display = "block";
-    for (var i = 0; i < tables.length; i++) {
-        tables[i].style.display = "none";
-    }
-    btnsDiv.style.display = "none";
+openBtn.onclick = () => changeDisplay(0);
+    
 
-}
-closeBtn.onclick = () => {
-    popup.style.display = "none";
-    for (var i = 0; i < tables.length; i++) {
-        tables[i].style.display = "";
-    }
-    btnsDiv.style.display = "flex";
-    cleanForm();
-}
+closeBtn.onclick = () => changeDisplay(1);
+    
 
+//if state is 1 show popup, if 0 show main screen
+function changeDisplay(state)
+{
+    if(state)
+    {
+        popup.style.display = "none";
+        for (var i = 0; i < tables.length; i++) {
+            tables[i].style.display = "";
+        }
+        btnsDiv.style.display = "flex";
+        cleanForm();
+    }
+    else {
+        popup.style.display = "block";
+        for (var i = 0; i < tables.length; i++) {
+            tables[i].style.display = "none";
+        }
+        btnsDiv.style.display = "none";
+    }
+}
 orderBtn.onclick = () => validateForm();
 simulateBtn.onclick = () => simulateNewOrder();
 
@@ -187,11 +196,7 @@ function NewOrder() {
 
 
     incomingTableBody.appendChild(newRow);
-    popup.style.display = "none";
-    for (var i = 0; i < tables.length; i++) {
-        tables[i].style.display = "";
-    }
-    btnsDiv.style.display = "flex";
+    changeDisplay(0);
 
     //Status Buttons
     statusBtn(cells, row, newOrder);
