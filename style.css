@@ -16,8 +16,7 @@ a {
 }
 
 button,
-select,
-.filterSelect {
+select {
     padding: 8px 12px;
     border: 1px solid #97c1ff;
     border-radius: 50px;
@@ -286,7 +285,6 @@ input:focus {
 #orderButton {
     display: block;
     margin-left: auto;
-
     background-color: #7af57a;
 }
 

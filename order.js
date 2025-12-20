@@ -68,12 +68,6 @@ function cleanTables() {
     completedTableBody.innerHTML = "";
 }
 
-function cleanTables() {
-    incomingTableBody.innerHTML = "";
-    cancelledTableBody.innerHTML = "";
-    completedTableBody.innerHTML = "";
-}
-
 //Time func
 function timeATM() {
     const now = new Date();
@@ -171,8 +165,6 @@ function NewOrder() {
         status: "pending"
     };
 
-    cleanTables();
-    loadOrders();
 
     saveOrderToStorage(newOrder); // Sends the new order to "saveOrderToStorage" in dn.js
 
