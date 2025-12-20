@@ -22,7 +22,7 @@ function getOrdersFromStorage() {
         // Create an empty object to hold data
         const orderObj = {};
 
-        // ################### LOGIC ###################
+        // ################### LOGIC ################### (this is "Regex-based Pattern Matching")
 
         // pattern:
         // /           -> Start of pattern
