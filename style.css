@@ -15,6 +15,7 @@ a {
     touch-action: manipulation;
 }
 
+/* Global Button & Input Styles */
 button,
 select {
     padding: 8px 12px;
@@ -33,15 +34,7 @@ button:not(.dontHover):hover {
 
 textarea:focus,
 input:focus {
-    box-shadow: 0px 0px 8px 1px #ff99007e;
-}
-
-#openBtn:hover,
-#simulateBtn:hover,
-#orderButton:hover {
-    color: #000000 !important;
-    background-color: #ffd390e0 !important;
-    border-color: #97c1ff !important;
+    box-shadow: 0px 0px 8px 1px #97c1ff;
 }
 
 /* Header */
@@ -79,7 +72,32 @@ input:focus {
     padding-bottom: 2.75rem;
 }
 
-/* Tables layout */
+/* Tabs (Top of Main) */
+#btnsDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1em;
+    padding-right: 2em;
+}
+
+#tabBtns {
+    display: flex;
+    gap: 10px;
+    margin-left: 2%;
+}
+
+.tabs {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+}
+
+.tabs:hover {
+    color: #000000 !important;
+    background-color: #dfdfdf !important;
+}
+
+/* Tables Layout & Header */
 .tables {
     width: min(90%, 95%);
     margin: 20px auto;
@@ -103,19 +121,21 @@ input:focus {
     margin-right: auto;
 }
 
-#providerFilter {
-    margin-left: auto;
-    order: 1;
-    border-color: #97c1ff;
-}
-
 #funcButtons {
     display: flex;
     gap: 10px;
     order: 2;
 }
 
-#openBtn {
+#newOrderBtn:hover,
+#simulateBtn:hover,
+#createOrderBtn:hover {
+    color: #000000 !important;
+    background-color: #ffd390e0 !important;
+    border-color: #97c1ff !important;
+}
+
+#newOrderBtn {
     color: #000000;
     background-color: #ffd390e0;
     border-color: #97c1ff;
@@ -132,6 +152,22 @@ input:focus {
     border-color: #97c1ff;
 }
 
+#clearDataBtn:hover {
+    background-color: #dfdfdf;
+}
+
+#providerFilter {
+    margin-left: auto;
+    order: 1;
+    border-color: #97c1ff;
+}
+
+#cancelledTable,
+#completedTable {
+    display: none;
+}
+
+/* Orders Table Structure */
 .ordersTableWrapper {
     overflow: auto;
     border-radius: 12px;
@@ -223,6 +259,11 @@ input:focus {
     border-color: #155724;
 }
 
+#callBtn,
+#textBtn {
+    border: 1px solid #97c1ff;
+}
+
 .btnMore {
     font-weight: 600;
     background-color: transparent;
@@ -237,58 +278,7 @@ input:focus {
     transform: rotate(90deg);
 }
 
-/* Popup modal */
-#popup {
-    display: none;
-}
-
-#popupContent {
-    margin: 0 auto;
-    width: min(60%, 50em);
-    max-height: 80vh;
-    padding: 1.5rem;
-    overflow-y: auto;
-    background: #ffffff;
-    border-radius: 20px;
-}
-
-#popupContent h2 {
-    margin: 0 auto;
-    text-align: center;
-}
-
-#closeBtn {
-    position: relative;
-    padding-left: 95%;
-    font-size: 22px;
-    cursor: pointer;
-}
-
-#popupContent input,
-#popupContent textarea,
-#popupContent select {
-    box-sizing: border-box;
-    padding: 10px;
-    border: 1px solid #cccccc;
-    border-radius: 10px;
-    resize: vertical;
-}
-
-.orderInput {
-    width: 100%;
-}
-
-.inputLabel {
-    font-size: 0.9rem;
-}
-
-#orderButton {
-    display: block;
-    margin-left: auto;
-    background-color: #7af57a;
-}
-
-/* Order Details */
+/* Order Details (Expanded) */
 .orderDetailsRow td {
     background-color: #fcfcfc;
     padding: 20px;
@@ -395,6 +385,56 @@ input:focus {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* Popup modal */
+#popup {
+    display: none;
+}
+
+#popupContent {
+    margin: 0 auto;
+    width: min(60%, 50em);
+    max-height: 80vh;
+    padding: 1.5rem;
+    overflow-y: auto;
+    background: #ffffff;
+    border-radius: 20px;
+}
+
+#popupContent h2 {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#closeBtn {
+    position: relative;
+    padding-left: 95%;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+#popupContent input,
+#popupContent textarea,
+#popupContent select {
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    resize: vertical;
+}
+
+.orderInput {
+    width: 100%;
+}
+
+.inputLabel {
+    font-size: 0.9rem;
+}
+
+#createOrderBtn {
+    display: block;
+    margin-left: auto;
+    background-color: #ffd390e0;
+}
 
 /* Animations */
 .fade-in {
@@ -410,31 +450,6 @@ input:focus {
     100% {
         opacity: 1;
     }
-}
-
-#btnsDiv {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 1em;
-    padding-right: 2em;
-}
-
-#tabBtns {
-    display: flex;
-    gap: 10px;
-    margin-left: 2%;
-}
-
-.tabs:hover {
-    color: #000000 !important;
-    background-color: #ffd390e0 !important;
-    
-}
-
-#cancelledTable,
-#completedTable {
-    display: none;
 }
 
 /* Mobile responsive */
@@ -483,7 +498,7 @@ input:focus {
         width: 100%;
     }
 
-    #openBtn,
+    #newOrderBtn,
     #simulateBtn {
         flex: 1;
         padding: 10px 12px;
@@ -493,7 +508,6 @@ input:focus {
     .ordersTable {
         font-size: 11px;
     }
-
 
     /* Reduce Time column width */
     .ordersTable th:nth-child(2),
@@ -523,6 +537,8 @@ input:focus {
         padding: 6px 10px;
         font-size: 12px;
         border-color: #97c1ff;
+        color: #000000;
+        background-color: #ffffff;
     }
 
     .btn,
