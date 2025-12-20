@@ -18,7 +18,7 @@ a {
 button,
 select {
     padding: 8px 12px;
-    border: 1px solid #ffeacb71;
+    border: 1px solid #97c1ff;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -26,9 +26,9 @@ select {
 }
 
 button:not(.dontHover):hover {
-    color: #ffffff;
-    border: 1px solid #afafaf7f !important;
-    box-shadow: 0 0 12px #787878c0;
+    color: #724605;
+    border: 1px solid #97c1ff !important;
+    box-shadow: 0 0 12px #97c1ff;
 }
 
 textarea:focus,
@@ -85,7 +85,7 @@ input:focus {
     margin: 20px auto;
     padding: 24px 20px 20px;
     background: #ffffff;
-    border: 1px solid #61616181;
+    border: 1px solid #97c1ff;
     border-radius: 20px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.35);
 }
@@ -106,6 +106,7 @@ input:focus {
 #providerFilter {
     margin-left: auto;
     order: 1;
+    border-color: #97c1ff;
 }
 
 #funcButtons {
@@ -122,11 +123,13 @@ input:focus {
 
 #simulateBtn {
     background-color: #ffeacb;
+    border-color: #97c1ff;
 }
 
 #clearDataBtn {
     margin-left: 5%;
     background-color: #ffffff;
+    border-color: #97c1ff;
 }
 
 .ordersTableWrapper {
@@ -425,7 +428,8 @@ input:focus {
 
 .tabs:hover {
     color: #000000 !important;
-    background-color: #a1bdbd !important;
+    background-color: #ffd390e0 !important;
+    
 }
 
 #cancelledTable,
@@ -518,6 +522,7 @@ input:focus {
     .tabs {
         padding: 6px 10px;
         font-size: 12px;
+        border-color: #97c1ff;
     }
 
     .btn,
