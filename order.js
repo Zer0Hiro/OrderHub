@@ -39,6 +39,7 @@ function changeDisplay(state)
 {
     if(state)
     {
+        popup.classList.add("fade-in");
         popup.style.display = "none";
         main.style.display ="";
         cleanForm();
@@ -229,8 +230,8 @@ function statusBtn(cells, row, order) {
     cbtn.style.display = (order.status == "completed" || order.status == "cancelled") ? "none" : "";
     cbtn.onclick = () => statusBtnClick(order, "cancelled");    
     //More Details Button
-    let detbtn = cells[8].querySelector("#moreBtn");
-    detbtn.onclick = () => openOrderDeatil(row, order);
+    let detbtn = cells[0].querySelector("#moreBtn");
+    detbtn.onclick = () => openOrderDeatil(row, order, cells);
 }
 
 function statusBtnClick(order, status) {
@@ -242,13 +243,16 @@ function statusBtnClick(order, status) {
 }
 
 //Order details func
-function openOrderDeatil(row, order) {
+function openOrderDeatil(row, order, cells) {
+    let btn = cells[0].querySelector("#moreBtn");
     //If already open, remove
     if (row.nextElementSibling?.classList.contains("orderDetailsRow")) {
         row.nextElementSibling.remove();
+        btn.classList.remove("orderUnzipped");
         return;
     }
 
+    btn.classList.add("orderUnzipped");
     const detailsRow = document.createElement("tr");
     detailsRow.className = "orderDetailsRow";
 
@@ -256,52 +260,51 @@ function openOrderDeatil(row, order) {
     //get length of a row
     detailsPop.colSpan = row.children.length;
     detailsPop.innerHTML = `
-    <div class="orderDetailsPop fade-in">
-      <div class="orderDetailHeader">
-        <div>
-          <h3>Order ${order.id}</h3>
-          <p class="uppertext">${order.provider} • ${order.time}</p>
-          </div>
-          <button type="button" id="closeDetails">×</button>
-      </div>
-      <div class="orderDetailsGrid">
-        <div>
-          <span class="label">Customer</span>
-          <span class="uppertext">${order.customer}</span>
+    <div class="detailsWrapper fade-in">
+        <div class="detailsCardsGrid">
+            <div class="detailCard">
+            <span class="detailLabel">CUSTOMER</span>
+            <div class="detailContent">
+                <div class="customerName">${order.customer}</div>
+                <div class="customerPhone">${order.phone}</div>
+                <div class="cardActions">
+                <a href="tel:${order.phone}" class="cardActionBtn" title="Call">📞</a>
+                <a href="sms:${order.phone}" class="cardActionBtn" title="Message">💬</a>
+                </div>
+            </div>
+            </div>
+
+            <div class="detailCard">
+            <span class="detailLabel">DELIVERY</span>
+            <div class="detailContent">
+                <div>${order.address || "No address provided"}</div>
+            </div>
+            </div>
+
+            <div class="detailCard">
+            <span class="detailLabel">ORDER ITEMS</span>
+            <div class="detailContent">
+                <div>${order.items}</div>
+            </div>
+            </div>
+
+            <div class="detailCard">
+            <span class="detailLabel">PAYMENT</span>
+            <div class="detailContent">
+                <div class="totalPrice">${order.total} ₪</div>
+                <div>${order.paymentMethod || "Platform payout"}</div>
+            </div>
+            </div>
         </div>
-        <div>
-          <span class="label">Phone</span>
-          <span>${order.phone}</span>
+        <div class="detailsNotesBox">
+            <span class="noteLabel">Notes:</span>
+            <span>${order.notes || "No special requests."}</span>
         </div>
-        <div>
-          <span class="label">Delivery address</span>
-          <span class="uppertext">${order.address ?? "Not provided"}</span>
-        </div>
-        <div>
-          <span class="label">Items</span>
-          <span class="uppertext">${order.items}</span>
-        </div>
-        <div>
-          <span class="label">Total</span>
-          <span>${order.total + "₪"}</span>
-        </div>
-        <div>
-          <span class="label">Payment</span>
-          <span>${order.paymentMethod ?? "Platform payout"}</span>
-        </div>
-      </div>
-      <div class="orderDetailsNotes">
-        <strong>Special notes:</strong>
-        <p>${order.notes ?? "No special requests."}</p>
-      </div>
     </div>
   `;
 
     detailsRow.appendChild(detailsPop);
     row.parentElement.insertBefore(detailsRow, row.nextElementSibling);
-
-    const clsBtn = detailsPop.querySelector("#closeDetails");
-    clsBtn.onclick = () => detailsRow.remove();
 }
 
 // tabs:
