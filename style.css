@@ -73,7 +73,7 @@ input:focus {
     margin: 0;
 }
 
-.main {
+#main {
     padding-top: 1.5rem;
     padding-bottom: 2.75rem;
 }
@@ -121,6 +121,11 @@ input:focus {
 
 #simulateBtn {
     background-color: #ffeacb;
+}
+
+#clearDataBtn {
+    margin-left: 5%;
+    background-color: #ffffff;
 }
 
 .ordersTableWrapper {

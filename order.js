@@ -4,13 +4,7 @@ const popup = document.getElementById("popup");
 const openBtn = document.getElementById("openBtn");
 const closeBtn = document.getElementById("closeBtn");
 //Form
-const orderName = document.getElementById("orderName");
-const orderTel = document.getElementById("orderTel");
-const orderItems = document.getElementById("orderItems");
-const orderAddress = document.getElementById("orderAddress");
-const orderTotal = document.getElementById("orderTotal");
-const orderPayment = document.getElementById("orderPayment");
-const orderNotes = document.getElementById("orderNotes");
+const formContent = document.getElementsByClassName("orderInput");
 //Table
 const rowTemplate = document.getElementById("orderRowTemplate");
 const incomingTableBody = document.getElementById("ordersBodyActive");
@@ -18,11 +12,14 @@ const cancelledTableBody = document.getElementById("ordersBodyCancelled");
 const completedTableBody = document.getElementById("ordersBodyCompleted");
 const orderBtn = document.getElementById("orderButton");
 const simulateBtn = document.getElementById("simulateBtn");
+const clearDataBtn = document.getElementById("clearDataBtn");
 const tables = document.getElementsByClassName("tables");
 const moreDetailsBtn = document.getElementById("moreBtn");
 //Filters
 const filterProvider = document.getElementById("providerFilter");
 const filterStatus = document.getElementById("statusFilter");
+//all tables
+const main = document.getElementById("main");
 
 //Empty Tables
 if (ordersBodyActive) ordersBodyActive.innerHTML = "";
@@ -31,38 +28,48 @@ if (ordersBodyCompleted) ordersBodyCompleted.innerHTML = "";
 
 
 //Popup
-openBtn.onclick = () => {
-    popup.classList.add("fade-in");
-    popup.style.display = "block";
-    for (var i = 0; i < tables.length; i++) {
-        tables[i].style.display = "none";
-    }
-    btnsDiv.style.display = "none";
+openBtn.onclick = () => changeDisplay(0);
+    
 
-}
-closeBtn.onclick = () => {
-    popup.style.display = "none";
-    for (var i = 0; i < tables.length; i++) {
-        tables[i].style.display = "";
-    }
-    btnsDiv.style.display = "flex";
-    cleanForm();
-}
+closeBtn.onclick = () => changeDisplay(1);
+    
 
+//if state is 0 show popup, if 1 show main screen
+function changeDisplay(state)
+{
+    if(state)
+    {
+        popup.classList.add("fade-in");
+        popup.style.display = "none";
+        main.style.display ="";
+        cleanForm();
+    }
+    else {
+        popup.style.display = "block";
+        main.style.display = "none"
+    }
+}
 orderBtn.onclick = () => validateForm();
 simulateBtn.onclick = () => simulateNewOrder();
 
-//Clean Form
-function cleanForm() {
-    orderName.value = "";
-    orderTel.value = "";
-    orderItems.value = "";
-    orderAddress.value = "";
-    orderTotal.value = "";
-    orderPayment.value = "";
-    orderNotes.value = "";
+clearDataBtn.onclick = () => {
+    clearStorage(),
+    location.reload();
 }
 
+//Clean Form
+function cleanForm() {
+    for(element of formContent)
+    {
+        element.value = "";
+    }
+}
+
+function cleanTables() {
+    incomingTableBody.innerHTML = "";
+    cancelledTableBody.innerHTML = "";
+    completedTableBody.innerHTML = "";
+}
 
 //Time func
 function timeATM() {
@@ -98,10 +105,6 @@ function simulateNewOrder() {
         { provider: "Wolt", customer: "Noa", items: "Pad Thai: 1", total: 58.20, orderTel: "0505256442" }
     ];
 
-
-    const newRow = document.importNode(rowTemplate.content, true);
-    const cells = newRow.querySelectorAll('td');
-    const row = newRow.querySelector("tr");
     const simOrder = chooseRandomOrder(orders);
 
     //Time stamp for order
@@ -129,36 +132,21 @@ function simulateNewOrder() {
         phone: simOrder.orderTel,
         items: simOrder.items,
         total: simOrder.total.toFixed(2),
-        address: null,
-        paymentMethod: null,
-        notes: null,
+        address: "",
+        paymentMethod: "",
+        notes: "",
+        status: "pending"
     };
 
+    saveOrderToStorage(tempOrder); // Sends the new order to "saveOrderToStorage" in dn.js
 
-    cells[1].textContent = timeString;
-    cells[2].textContent = simOrder.provider;
-    cells[3].textContent = orderId;
-    cells[4].innerHTML = '<span class="statusPill statusPending">Pending</span>';
+    cleanTables();
+    loadOrders();
 
-    const btns = cells[5].querySelectorAll("a");
-    btns[0].href = "tel:" + simOrder.orderTel;
-    btns[1].href = "sms:" + simOrder.orderTel;
-    incomingTableBody.appendChild(newRow);
-
-    //Filter Update
-    filter();
-
-    //Status Buttons
-    statusBtn(cells, row, tempOrder);
 }
-
 
 //Create Order
 function NewOrder() {
-    const newRow = document.importNode(rowTemplate.content, true);
-    const cells = newRow.querySelectorAll('td');
-    const row = newRow.querySelector("tr");
-
     //Time stamp for order
     timeString = timeATM();
 
@@ -170,32 +158,23 @@ function NewOrder() {
         id: orderId,
         provider: "Manual",
         time: timeString,
-        customer: orderName.value,
-        phone: orderTel.value,
-        items: orderItems.value,
-        total: orderTotal.value,
-        address: orderAddress.value,
-        paymentMethod: orderPayment.value,
-        notes: orderNotes.value,
+        customer: formContent[0].value,
+        phone: formContent[1].value,
+        items: formContent[2].value,
+        address: formContent[3].value,
+        total: formContent[4].value,
+        paymentMethod: formContent[5].value,
+        notes: formContent[6].value,
+        status: "pending"
     };
 
-    cells[1].textContent = timeString;
-    cells[2].textContent = newOrder.provider;
-    cells[3].textContent = newOrder.id;
-    cells[4].innerHTML = '<span class="statusPill statusPending">Pending</span>';
 
-    const btns = cells[5].querySelectorAll("a");
-    btns[0].href = "tel:" + simOrder.orderTel;
-    btns[1].href = "sms:" + simOrder.orderTel;
-    incomingTableBody.appendChild(newRow);
+    saveOrderToStorage(newOrder); // Sends the new order to "saveOrderToStorage" in dn.js
 
-    popup.style.display = "none";
-    for (var i = 0; i < tables.length; i++) {
-        tables[i].style.display = "";
-    }
+    cleanTables();
+    loadOrders();
 
-    //Status Buttons
-    statusBtn(cells, row, newOrder);
+    changeDisplay(1);
 
     // Clear form fields
     cleanForm();
@@ -207,23 +186,23 @@ function validateForm() {
 
     let alertms = "";
     //Check phone number 
-    if (orderTel.value.trim().length != 10) {
+    if (formContent[1].value.trim().length != 10) {
         alertms = alertms + "Please enter 10 digits phone number\n";
     }
 
     //Check items is not empty
-    if (orderItems.value == "") {
+    if (formContent[2].value == "") {
         alertms = alertms + "Please add any items\n";
     }
 
     //Check price of items
-    const total = parseFloat(orderTotal.value);
-    if (isNaN(total) || (total == 0 && orderItems.value.trim().length != 0)) {
+    const total = parseFloat(formContent[4].value);
+    if (isNaN(total) || (total == 0 && formContent[2].value.trim().length != 0)) {
         alertms = alertms + "Invalid Amount\n";
     }
 
     //Check payment method
-    if (orderPayment.value == "") {
+    if (formContent[5].value == "") {
         alertms = alertms + "Please select a payment method";
     }
 
@@ -236,59 +215,31 @@ function validateForm() {
     }
 }
 
-//filter func
-function filter() {
-    let provider = filterProvider.value;
-    let status = filterStatus.value;
-    const tables = document.getElementsByClassName("orderBody");
-
-    for (let j = 0; j < tables.length; j++) {
-        const cells = tables[j].querySelectorAll("tr")
-        for (let i = 0; i < cells.length; i++) {
-            if ((cells[i].querySelectorAll("td")[2].innerHTML == provider || provider == 'all')
-                && (cells[i].querySelectorAll("td")[4].textContent.toLowerCase() == status || status == 'all')) {
-                cells[i].style.display = '';
-            }
-            else {
-                cells[i].style.display = 'none';
-            }
-        }
-    }
-}
-
 //Status Buttons
 function statusBtn(cells, row, order) {
     //Completed Button
-    let compbtn = cells[6].querySelector("#completedBtn");
-    compbtn.style.display = "none";
-    compbtn.onclick = () => {
-        cells[4].innerHTML = '<span class="statusPill" id="statusCompleted">Completed</span>';
-        cbtn.style.display = "none";
-        completedTableBody.appendChild(row);
-
-        filter();
-    }
+    let compbtn = cells[8].querySelector("#completedBtn");
+    compbtn.style.display = order.status == "accepted" ? "" : "none";
+    compbtn.onclick = () => statusBtnClick(order, "completed");
     //Accept Button
-    let abtn = cells[6].querySelector("#acceptBtn");
-    abtn.onclick = () => {
-        cells[4].innerHTML = '<span class="statusPill" id="statusAccepted">Accepted</span>';
-        abtn.style.display = "none";
-        compbtn.style.display = "";
-        filter();
-    }
+    let abtn = cells[8].querySelector("#acceptBtn");
+    abtn.style.display = order.status == "pending" ? "" : "none";
+    abtn.onclick = () => statusBtnClick(order, "accepted");
     //Cancel Button
-    let cbtn = cells[6].querySelector("#cancelBtn");
-    cbtn.onclick = () => {
-        cells[4].innerHTML = '<span class="statusPill" id="statusCancelled">Cancelled</span>';
-        abtn.style.display = "none";
-        compbtn.style.display = "none";
-        cancelledTableBody.appendChild(row);
-
-        filter();
-    }
+    let cbtn = cells[8].querySelector("#cancelBtn");
+    cbtn.style.display = (order.status == "completed" || order.status == "cancelled") ? "none" : "";
+    cbtn.onclick = () => statusBtnClick(order, "cancelled");    
     //More Details Button
     let detbtn = cells[0].querySelector("#moreBtn");
     detbtn.onclick = () => openOrderDeatil(row, order, cells);
+}
+
+function statusBtnClick(order, status) {
+    order.status = status;
+    updateOrderInStorage(order);
+
+    cleanTables();
+    loadOrders();
 }
 
 //Order details func
@@ -375,3 +326,54 @@ CompTabBtn.onclick = () => {
     completedTable.style.display = "block";
 }
 
+// Function for loading saved data from storage into the page
+function loadOrders() {
+
+    // Retrieves the data array from local storage
+    const provider = filterProvider.value;
+    const orders = getOrdersFromStorage().filter(order => (order.provider == provider || provider == "all")); 
+
+    orders.forEach(order => {
+
+        // Uses the HTML row template
+        const newRow = document.importNode(rowTemplate.content, true);
+        const cells = newRow.querySelectorAll('td');
+        const row = newRow.querySelector("tr");
+
+        // Fills the cells with the saved order details
+        cells[0].textContent = order.time;
+        cells[1].textContent = order.provider;
+        cells[2].textContent = order.id;
+        cells[3].textContent = order.customer;
+        cells[4].textContent = order.items;
+        cells[5].textContent = order.total + "₪";
+
+        // Defines preset for every status type
+        const statusSettings = {
+            pending: { html: '<span class="statusPill statusPending">Pending</span>', table: incomingTableBody },
+            accepted: { html: '<span class="statusPill" id="statusAccepted">Accepted</span>', table: incomingTableBody },
+            completed: { html: '<span class="statusPill" id="statusCompleted">Completed</span>', table: completedTableBody },
+            cancelled: { html: '<span class="statusPill" id="statusCancelled">Cancelled</span>', table: cancelledTableBody } };
+
+        // Grabs the correct settings based on the order status
+        const currentSetting = statusSettings[order.status];
+
+        // Applies the settings
+        cells[6].innerHTML = currentSetting.html;
+        const targetTable = currentSetting.table;
+
+        // Contact buttons
+        const btns = cells[7].querySelectorAll("a");
+        btns[0].href = "tel:" + order.phone;
+        btns[1].href = "https://wa.me/972" + order.phone.slice(1) + "?text=Where's my fucking burger?"; // slice removes the first digit
+        btns[1].target = "_blank"; // opens whatsapp in a new tab
+
+        // Status Buttons
+        statusBtn(cells, row, order);
+
+        // Inserts row into table
+        targetTable.appendChild(newRow);
+    });
+}
+// Loads locally stored data
+loadOrders();
