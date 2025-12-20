@@ -18,6 +18,8 @@ const moreDetailsBtn = document.getElementById("moreBtn");
 //Filters
 const filterProvider = document.getElementById("providerFilter");
 const filterStatus = document.getElementById("statusFilter");
+//all tables
+const main = document.getElementById("main");
 
 //Empty Tables
 if (ordersBodyActive) ordersBodyActive.innerHTML = "";
@@ -38,18 +40,12 @@ function changeDisplay(state)
     if(state)
     {
         popup.style.display = "none";
-        for (var i = 0; i < tables.length; i++) {
-            tables[i].style.display = "";
-        }
-        btnsDiv.style.display = "flex";
+        main.style.display ="";
         cleanForm();
     }
     else {
         popup.style.display = "block";
-        for (var i = 0; i < tables.length; i++) {
-            tables[i].style.display = "none";
-        }
-        btnsDiv.style.display = "none";
+        main.style.display = "none"
     }
 }
 orderBtn.onclick = () => validateForm();
