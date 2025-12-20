@@ -18,11 +18,8 @@ const moreDetailsBtn = document.getElementById("moreBtn");
 //Filters
 const filterProvider = document.getElementById("providerFilter");
 const filterStatus = document.getElementById("statusFilter");
-<<<<<<< HEAD
-=======
 //all tables
 const main = document.getElementById("main");
->>>>>>> ba8c5fce0fb9afa17eed51285624f85dbec0a2ff
 
 //Empty Tables
 if (ordersBodyActive) ordersBodyActive.innerHTML = "";
