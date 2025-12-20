@@ -67,6 +67,11 @@ function cleanForm() {
     orderNotes.value = "";
 }
 
+function cleanTables() {
+    incomingTableBody.innerHTML = "";
+    cancelledTableBody.innerHTML = "";
+    completedTableBody.innerHTML = "";
+}
 
 //Time func
 function timeATM() {
@@ -102,10 +107,6 @@ function simulateNewOrder() {
         { provider: "Wolt", customer: "Noa", items: "Pad Thai: 1", total: 58.20, orderTel: "0505256442" }
     ];
 
-
-    const newRow = document.importNode(rowTemplate.content, true);
-    const cells = newRow.querySelectorAll('td');
-    const row = newRow.querySelector("tr");
     const simOrder = chooseRandomOrder(orders);
 
     //Time stamp for order
@@ -141,33 +142,13 @@ function simulateNewOrder() {
 
     saveOrderToStorage(tempOrder); // Sends the new order to "saveOrderToStorage" in dn.js
 
-    cells[0].textContent = timeString;
-    cells[1].textContent = simOrder.provider;
-    cells[2].textContent = orderId;
-    cells[3].textContent = simOrder.customer;
-    cells[4].textContent = simOrder.items;
-    cells[5].textContent = simOrder.total.toFixed(2) + "₪";
-    cells[6].innerHTML = '<span class="statusPill statusPending">Pending</span>';
+    cleanTables();
+    loadOrders();
 
-    const btns = cells[7].querySelectorAll("a");
-    btns[0].href = "tel:" + simOrder.orderTel;
-    btns[1].href = "https://wa.me/972" + simOrder.orderTel.slice(1) + "?text=Where's my fucking burger?"; // slice removes the first digit
-    btns[1].target = "_blank"; // opens whatapp in a new tab
-    incomingTableBody.appendChild(newRow);
-
-    //Filter Update
-    filter();
-
-    //Status Buttons
-    statusBtn(cells, row, tempOrder);
 }
 
 //Create Order
 function NewOrder() {
-    const newRow = document.importNode(rowTemplate.content, true);
-    const cells = newRow.querySelectorAll('td');
-    const row = newRow.querySelector("tr");
-
     //Time stamp for order
     timeString = timeATM();
 
@@ -191,29 +172,14 @@ function NewOrder() {
     
     saveOrderToStorage(newOrder); // Sends the new order to "saveOrderToStorage" in dn.js
 
-    cells[0].textContent = newOrder.time;
-    cells[1].textContent = newOrder.provider;
-    cells[2].textContent = newOrder.id;
-    cells[3].textContent = newOrder.customer;
-    cells[4].textContent = newOrder.items;
-    cells[5].textContent = newOrder.total + "₪";
-    cells[6].innerHTML = '<span class="statusPill statusPending">Pending</span>';
-
-
-    const btns = cells[7].querySelectorAll("a");
-    btns[0].href = "tel:" + orderTel.value;
-    btns[1].href = "https://wa.me/972" + simOrder.orderTel.slice(1) + "?text=Where's my fucking burger?"; // slice removes the first digit
-    btns[1].target = "_blank"; // opens whatapp in a new tab
-
+    cleanTables();
+    loadOrders();
 
     incomingTableBody.appendChild(newRow);
     popup.style.display = "none";
     for (var i = 0; i < tables.length; i++) {
         tables[i].style.display = "";
     }
-
-    //Status Buttons
-    statusBtn(cells, row, newOrder);
 
     // Clear form fields
     cleanForm();
@@ -254,70 +220,31 @@ function validateForm() {
     }
 }
 
-//filter func
-function filter() {
-    let provider = filterProvider.value;
-    let status = filterStatus.value;
-    const tables = document.getElementsByClassName("orderBody");
-
-    for (let j = 0; j < tables.length; j++) {
-        const cells = tables[j].querySelectorAll("tr")
-        for (let i = 0; i < cells.length; i++) {
-            if ((cells[i].querySelectorAll("td")[1].innerHTML == provider || provider == 'all')
-                && (cells[i].querySelectorAll("td")[6].textContent.toLowerCase() == status || status == 'all')) {
-                cells[i].style.display = '';
-            }
-            else {
-                cells[i].style.display = 'none';
-            }
-        }
-    }
-}
-
 //Status Buttons
 function statusBtn(cells, row, order) {
     //Completed Button
     let compbtn = cells[8].querySelector("#completedBtn");
-    compbtn.style.display = "none";
-    compbtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill" id="statusCompleted">Completed</span>';
-        cbtn.style.display = "none";
-        completedTableBody.appendChild(row);
-
-        order.status = "completed";
-        // Sends the updated order to "updateOrderInStorage" in order_db.js
-        updateOrderInStorage(order);
-
-        filter();
-    }
+    compbtn.style.display = order.status == "accepted" ? "" : "none";
+    compbtn.onclick = () => statusBtnClick(order, "completed");
     //Accept Button
     let abtn = cells[8].querySelector("#acceptBtn");
-    abtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill" id="statusAccepted">Accepted</span>';
-        abtn.style.display = "none";
-        compbtn.style.display = "";
-
-        order.status = "accepted";
-        updateOrderInStorage(order);
-
-        filter();
-    }
+    abtn.style.display = order.status == "pending" ? "" : "none";
+    abtn.onclick = () => statusBtnClick(order, "accepted");
     //Cancel Button
     let cbtn = cells[8].querySelector("#cancelBtn");
-    cbtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill" id="statusCancelled">Cancelled</span>';
-        abtn.style.display = "none";
-        compbtn.style.display = "none";
-        cancelledTableBody.appendChild(row);
-
-        order.status = "cancelled";
-        updateOrderInStorage(order);
-
-        filter();
-    }
+    cbtn.style.display = (order.status == "completed" || order.status == "cancelled") ? "none" : "";
+    cbtn.onclick = () => statusBtnClick(order, "cancelled");    
     //More Details Button
     let detbtn = cells[8].querySelector("#moreBtn");
     detbtn.onclick = () => openOrderDeatil(row, order);
+}
+
+function statusBtnClick(order, status) {
+    order.status = status;
+    updateOrderInStorage(order);
+
+    cleanTables();
+    loadOrders();
 }
 
 //Order details func
@@ -406,7 +333,8 @@ CompTabBtn.onclick = () => {
 function loadOrders() {
 
     // Retrieves the data array from local storage
-    const orders = getOrdersFromStorage(); 
+    const provider = filterProvider.value;
+    const orders = getOrdersFromStorage().filter(order => (order.provider == provider || provider == "all")); 
 
     orders.forEach(order => {
 
