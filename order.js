@@ -12,6 +12,7 @@ const cancelledTableBody = document.getElementById("ordersBodyCancelled");
 const completedTableBody = document.getElementById("ordersBodyCompleted");
 const orderBtn = document.getElementById("orderButton");
 const simulateBtn = document.getElementById("simulateBtn");
+const clearDataBtn = document.getElementById("clearDataBtn");
 const tables = document.getElementsByClassName("tables");
 const moreDetailsBtn = document.getElementById("moreBtn");
 //Filters
@@ -31,7 +32,7 @@ openBtn.onclick = () => changeDisplay(0);
 closeBtn.onclick = () => changeDisplay(1);
     
 
-//if state is 1 show popup, if 0 show main screen
+//if state is 0 show popup, if 1 show main screen
 function changeDisplay(state)
 {
     if(state)
@@ -54,6 +55,11 @@ function changeDisplay(state)
 orderBtn.onclick = () => validateForm();
 simulateBtn.onclick = () => simulateNewOrder();
 
+clearDataBtn.onclick = () => {
+    clearStorage(),
+    location.reload();
+}
+
 //Clean Form
 function cleanForm() {
     for(element of formContent)
@@ -62,6 +68,11 @@ function cleanForm() {
     }
 }
 
+function cleanTables() {
+    incomingTableBody.innerHTML = "";
+    cancelledTableBody.innerHTML = "";
+    completedTableBody.innerHTML = "";
+}
 
 //Time func
 function timeATM() {
@@ -97,10 +108,6 @@ function simulateNewOrder() {
         { provider: "Wolt", customer: "Noa", items: "Pad Thai: 1", total: 58.20, orderTel: "0505256442" }
     ];
 
-
-    const newRow = document.importNode(rowTemplate.content, true);
-    const cells = newRow.querySelectorAll('td');
-    const row = newRow.querySelector("tr");
     const simOrder = chooseRandomOrder(orders);
 
     //Time stamp for order
@@ -128,39 +135,21 @@ function simulateNewOrder() {
         phone: simOrder.orderTel,
         items: simOrder.items,
         total: simOrder.total.toFixed(2),
-        address: null,
-        paymentMethod: null,
-        notes: null,
+        address: "",
+        paymentMethod: "",
+        notes: "",
+        status: "pending"
     };
 
+    saveOrderToStorage(tempOrder); // Sends the new order to "saveOrderToStorage" in dn.js
 
-    cells[0].textContent = timeString;
-    cells[1].textContent = simOrder.provider;
-    cells[2].textContent = orderId;
-    cells[3].textContent = simOrder.customer;
-    cells[4].textContent = simOrder.items;
-    cells[5].textContent = simOrder.total.toFixed(2) + "₪";
-    cells[6].innerHTML = '<span class="statusPill statusPending">Pending</span>';
+    cleanTables();
+    loadOrders();
 
-    const btns = cells[7].querySelectorAll("a");
-    btns[0].href = "tel:" + simOrder.orderTel;
-    btns[1].href = "sms:" + simOrder.orderTel;
-    incomingTableBody.appendChild(newRow);
-
-    //Filter Update
-    filter();
-
-    //Status Buttons
-    statusBtn(cells, row, tempOrder);
 }
-
 
 //Create Order
 function NewOrder() {
-    const newRow = document.importNode(rowTemplate.content, true);
-    const cells = newRow.querySelectorAll('td');
-    const row = newRow.querySelector("tr");
-
     //Time stamp for order
     timeString = timeATM();
 
@@ -179,27 +168,16 @@ function NewOrder() {
         total: formContent[4].value,
         paymentMethod: formContent[5].value,
         notes: formContent[6].value,
+        status: "pending"
     };
 
-    cells[0].textContent = newOrder.time;
-    cells[1].textContent = newOrder.provider;
-    cells[2].textContent = newOrder.id;
-    cells[3].textContent = newOrder.customer;
-    cells[4].textContent = newOrder.items;
-    cells[5].textContent = newOrder.total + "₪";
-    cells[6].innerHTML = '<span class="statusPill statusPending">Pending</span>';
 
+    saveOrderToStorage(newOrder); // Sends the new order to "saveOrderToStorage" in dn.js
 
-    const btns = cells[7].querySelectorAll("a");
-    btns[0].href = "tel:" + formContent[1].value;
-    btns[1].href = "sms:" + formContent[1].value;
+    cleanTables();
+    loadOrders();
 
-
-    incomingTableBody.appendChild(newRow);
-    changeDisplay(0);
-
-    //Status Buttons
-    statusBtn(cells, row, newOrder);
+    changeDisplay(1);
 
     // Clear form fields
     cleanForm();
@@ -240,59 +218,31 @@ function validateForm() {
     }
 }
 
-//filter func
-function filter() {
-    let provider = filterProvider.value;
-    let status = filterStatus.value;
-    const tables = document.getElementsByClassName("orderBody");
-
-    for (let j = 0; j < tables.length; j++) {
-        const cells = tables[j].querySelectorAll("tr")
-        for (let i = 0; i < cells.length; i++) {
-            if ((cells[i].querySelectorAll("td")[1].innerHTML == provider || provider == 'all')
-                && (cells[i].querySelectorAll("td")[6].textContent.toLowerCase() == status || status == 'all')) {
-                cells[i].style.display = '';
-            }
-            else {
-                cells[i].style.display = 'none';
-            }
-        }
-    }
-}
-
 //Status Buttons
 function statusBtn(cells, row, order) {
     //Completed Button
     let compbtn = cells[8].querySelector("#completedBtn");
-    compbtn.style.display = "none";
-    compbtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill" id="statusCompleted">Completed</span>';
-        cbtn.style.display = "none";
-        completedTableBody.appendChild(row);
-
-        filter();
-    }
+    compbtn.style.display = order.status == "accepted" ? "" : "none";
+    compbtn.onclick = () => statusBtnClick(order, "completed");
     //Accept Button
     let abtn = cells[8].querySelector("#acceptBtn");
-    abtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill" id="statusAccepted">Accepted</span>';
-        abtn.style.display = "none";
-        compbtn.style.display = "";
-        filter();
-    }
+    abtn.style.display = order.status == "pending" ? "" : "none";
+    abtn.onclick = () => statusBtnClick(order, "accepted");
     //Cancel Button
     let cbtn = cells[8].querySelector("#cancelBtn");
-    cbtn.onclick = () => {
-        cells[6].innerHTML = '<span class="statusPill" id="statusCancelled">Cancelled</span>';
-        abtn.style.display = "none";
-        compbtn.style.display = "none";
-        cancelledTableBody.appendChild(row);
-
-        filter();
-    }
+    cbtn.style.display = (order.status == "completed" || order.status == "cancelled") ? "none" : "";
+    cbtn.onclick = () => statusBtnClick(order, "cancelled");    
     //More Details Button
     let detbtn = cells[8].querySelector("#moreBtn");
     detbtn.onclick = () => openOrderDeatil(row, order);
+}
+
+function statusBtnClick(order, status) {
+    order.status = status;
+    updateOrderInStorage(order);
+
+    cleanTables();
+    loadOrders();
 }
 
 //Order details func
@@ -377,3 +327,54 @@ CompTabBtn.onclick = () => {
     completedTable.style.display = "block";
 }
 
+// Function for loading saved data from storage into the page
+function loadOrders() {
+
+    // Retrieves the data array from local storage
+    const provider = filterProvider.value;
+    const orders = getOrdersFromStorage().filter(order => (order.provider == provider || provider == "all")); 
+
+    orders.forEach(order => {
+
+        // Uses the HTML row template
+        const newRow = document.importNode(rowTemplate.content, true);
+        const cells = newRow.querySelectorAll('td');
+        const row = newRow.querySelector("tr");
+
+        // Fills the cells with the saved order details
+        cells[0].textContent = order.time;
+        cells[1].textContent = order.provider;
+        cells[2].textContent = order.id;
+        cells[3].textContent = order.customer;
+        cells[4].textContent = order.items;
+        cells[5].textContent = order.total + "₪";
+
+        // Defines preset for every status type
+        const statusSettings = {
+            pending: { html: '<span class="statusPill statusPending">Pending</span>', table: incomingTableBody },
+            accepted: { html: '<span class="statusPill" id="statusAccepted">Accepted</span>', table: incomingTableBody },
+            completed: { html: '<span class="statusPill" id="statusCompleted">Completed</span>', table: completedTableBody },
+            cancelled: { html: '<span class="statusPill" id="statusCancelled">Cancelled</span>', table: cancelledTableBody } };
+
+        // Grabs the correct settings based on the order status
+        const currentSetting = statusSettings[order.status];
+
+        // Applies the settings
+        cells[6].innerHTML = currentSetting.html;
+        const targetTable = currentSetting.table;
+
+        // Contact buttons
+        const btns = cells[7].querySelectorAll("a");
+        btns[0].href = "tel:" + order.phone;
+        btns[1].href = "https://wa.me/972" + order.phone.slice(1) + "?text=Where's my fucking burger?"; // slice removes the first digit
+        btns[1].target = "_blank"; // opens whatsapp in a new tab
+
+        // Status Buttons
+        statusBtn(cells, row, order);
+
+        // Inserts row into table
+        targetTable.appendChild(newRow);
+    });
+}
+// Loads locally stored data
+loadOrders();

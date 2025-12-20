@@ -115,8 +115,13 @@ input:focus {
 }
 
 #simulateBtn {
-    margin-left: 10px;
+    margin-left: 10%;
     background-color: #7af57a65;
+}
+
+#clearDataBtn {
+    margin-left: 5%;
+    background-color: #ffffff;
 }
 
 .ordersTableWrapper {
