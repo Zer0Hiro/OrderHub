@@ -4,13 +4,7 @@ const popup = document.getElementById("popup");
 const openBtn = document.getElementById("openBtn");
 const closeBtn = document.getElementById("closeBtn");
 //Form
-const orderName = document.getElementById("orderName");
-const orderTel = document.getElementById("orderTel");
-const orderItems = document.getElementById("orderItems");
-const orderAddress = document.getElementById("orderAddress");
-const orderTotal = document.getElementById("orderTotal");
-const orderPayment = document.getElementById("orderPayment");
-const orderNotes = document.getElementById("orderNotes");
+const formContent = document.getElementsByClassName("orderInput");
 //Table
 const rowTemplate = document.getElementById("orderRowTemplate");
 const incomingTableBody = document.getElementById("ordersBodyActive");
@@ -53,13 +47,10 @@ simulateBtn.onclick = () => simulateNewOrder();
 
 //Clean Form
 function cleanForm() {
-    orderName.value = "";
-    orderTel.value = "";
-    orderItems.value = "";
-    orderAddress.value = "";
-    orderTotal.value = "";
-    orderPayment.value = "";
-    orderNotes.value = "";
+    for(element of formContent)
+    {
+        element.value = "";
+    }
 }
 
 
@@ -172,13 +163,13 @@ function NewOrder() {
         id: orderId,
         provider: "Manual",
         time: timeString,
-        customer: orderName.value,
-        phone: orderTel.value,
-        items: orderItems.value,
-        total: orderTotal.value,
-        address: orderAddress.value,
-        paymentMethod: orderPayment.value,
-        notes: orderNotes.value,
+        customer: formContent[0].value,
+        phone: formContent[1].value,
+        items: formContent[2].value,
+        address: formContent[3].value,
+        total: formContent[4].value,
+        paymentMethod: formContent[5].value,
+        notes: formContent[6].value,
     };
 
     cells[0].textContent = newOrder.time;
@@ -191,8 +182,8 @@ function NewOrder() {
 
 
     const btns = cells[7].querySelectorAll("a");
-    btns[0].href = "tel:" + orderTel.value;
-    btns[1].href = "sms:" + orderTel.value;
+    btns[0].href = "tel:" + formContent[1].value;
+    btns[1].href = "sms:" + formContent[1].value;
 
 
     incomingTableBody.appendChild(newRow);
@@ -200,6 +191,7 @@ function NewOrder() {
     for (var i = 0; i < tables.length; i++) {
         tables[i].style.display = "";
     }
+    btnsDiv.style.display = "flex";
 
     //Status Buttons
     statusBtn(cells, row, newOrder);
@@ -214,23 +206,23 @@ function validateForm() {
 
     let alertms = "";
     //Check phone number 
-    if (orderTel.value.trim().length != 10) {
+    if (formContent[1].value.trim().length != 10) {
         alertms = alertms + "Please enter 10 digits phone number\n";
     }
 
     //Check items is not empty
-    if (orderItems.value == "") {
+    if (formContent[2].value == "") {
         alertms = alertms + "Please add any items\n";
     }
 
     //Check price of items
-    const total = parseFloat(orderTotal.value);
-    if (isNaN(total) || (total == 0 && orderItems.value.trim().length != 0)) {
+    const total = parseFloat(formContent[4].value);
+    if (isNaN(total) || (total == 0 && formContent[2].value.trim().length != 0)) {
         alertms = alertms + "Invalid Amount\n";
     }
 
     //Check payment method
-    if (orderPayment.value == "") {
+    if (formContent[5].value == "") {
         alertms = alertms + "Please select a payment method";
     }
 
