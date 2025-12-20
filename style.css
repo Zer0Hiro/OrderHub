@@ -146,7 +146,6 @@ input:focus {
     padding: 10px 15px 10px 10px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .ordersTableColor {
@@ -355,6 +354,12 @@ input:focus {
     font-size: 1.1rem;
 }
 
+.expand-chevron {
+  display: inline-block;
+  font-size: 0.7rem;
+  color: #4e5b31;
+  transition: transform 0.2s ease;
+}
 /*################# ANIMATIONS ####################### */
 .fade-in {
     opacity: 1;

@@ -135,12 +135,12 @@ function simulateNewOrder() {
     };
 
 
-    cells[0].textContent = timeString;
-    cells[1].textContent = simOrder.provider;
-    cells[2].textContent = orderId;
-    cells[3].innerHTML = '<span class="statusPill statusPending">Pending</span>';
+    cells[1].textContent = timeString;
+    cells[2].textContent = simOrder.provider;
+    cells[3].textContent = orderId;
+    cells[4].innerHTML = '<span class="statusPill statusPending">Pending</span>';
 
-    const btns = cells[4].querySelectorAll("a");
+    const btns = cells[5].querySelectorAll("a");
     btns[0].href = "tel:" + simOrder.orderTel;
     btns[1].href = "sms:" + simOrder.orderTel;
     incomingTableBody.appendChild(newRow);
@@ -179,21 +179,16 @@ function NewOrder() {
         notes: orderNotes.value,
     };
 
-    cells[0].textContent = newOrder.time;
-    cells[1].textContent = newOrder.provider;
-    cells[2].textContent = newOrder.id;
-    cells[3].textContent = newOrder.customer;
-    cells[4].textContent = newOrder.items;
-    cells[5].textContent = newOrder.total + "₪";
-    cells[6].innerHTML = '<span class="statusPill statusPending">Pending</span>';
+    cells[1].textContent = timeString;
+    cells[2].textContent = newOrder.provider;
+    cells[3].textContent = newOrder.id;
+    cells[4].innerHTML = '<span class="statusPill statusPending">Pending</span>';
 
-
-    const btns = cells[7].querySelectorAll("a");
-    btns[0].href = "tel:" + orderTel.value;
-    btns[1].href = "sms:" + orderTel.value;
-
-
+    const btns = cells[5].querySelectorAll("a");
+    btns[0].href = "tel:" + simOrder.orderTel;
+    btns[1].href = "sms:" + simOrder.orderTel;
     incomingTableBody.appendChild(newRow);
+
     popup.style.display = "none";
     for (var i = 0; i < tables.length; i++) {
         tables[i].style.display = "";
@@ -250,8 +245,8 @@ function filter() {
     for (let j = 0; j < tables.length; j++) {
         const cells = tables[j].querySelectorAll("tr")
         for (let i = 0; i < cells.length; i++) {
-            if ((cells[i].querySelectorAll("td")[1].innerHTML == provider || provider == 'all')
-                && (cells[i].querySelectorAll("td")[3].textContent.toLowerCase() == status || status == 'all')) {
+            if ((cells[i].querySelectorAll("td")[2].innerHTML == provider || provider == 'all')
+                && (cells[i].querySelectorAll("td")[4].textContent.toLowerCase() == status || status == 'all')) {
                 cells[i].style.display = '';
             }
             else {
@@ -264,7 +259,7 @@ function filter() {
 //Status Buttons
 function statusBtn(cells, row, order) {
     //Completed Button
-    let compbtn = cells[5].querySelector("#completedBtn");
+    let compbtn = cells[6].querySelector("#completedBtn");
     compbtn.style.display = "none";
     compbtn.onclick = () => {
         cells[3].innerHTML = '<span class="statusPill" id="statusCompleted">Completed</span>';
@@ -274,7 +269,7 @@ function statusBtn(cells, row, order) {
         filter();
     }
     //Accept Button
-    let abtn = cells[5].querySelector("#acceptBtn");
+    let abtn = cells[6].querySelector("#acceptBtn");
     abtn.onclick = () => {
         cells[3].innerHTML = '<span class="statusPill" id="statusAccepted">Accepted</span>';
         abtn.style.display = "none";
@@ -282,7 +277,7 @@ function statusBtn(cells, row, order) {
         filter();
     }
     //Cancel Button
-    let cbtn = cells[5].querySelector("#cancelBtn");
+    let cbtn = cells[6].querySelector("#cancelBtn");
     cbtn.onclick = () => {
         cells[3].innerHTML = '<span class="statusPill" id="statusCancelled">Cancelled</span>';
         abtn.style.display = "none";
@@ -292,7 +287,7 @@ function statusBtn(cells, row, order) {
         filter();
     }
     //More Details Button
-    let detbtn = cells[5].querySelector("#moreBtn");
+    let detbtn = cells[0].querySelector("#moreBtn");
     detbtn.onclick = () => openOrderDeatil(row, order);
 }
 
