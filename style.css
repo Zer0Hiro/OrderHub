@@ -48,7 +48,7 @@ input:focus {
     padding: 20px 40px 15px 40px;
     background-color: #ffffff;
     border-bottom: 2px solid #d1d1d1;
-    box-shadow: 0 4px 10px 1px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 4px 10px 1px #97c1ff8f;
 }
 
 #siteLogo {
@@ -105,7 +105,7 @@ input:focus {
     background: #ffffff;
     border: 1px solid #97c1ff;
     border-radius: 20px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 4px 6px -1px #97c1ff8f;
 }
 
 .tableHeader {
@@ -227,10 +227,7 @@ input:focus {
 }
 
 /* Action and contact buttons */
-.btn,
-.btnAccept,
-.btnCancel,
-.btnComplete {
+.btn {
     width: 40px;
     height: 40px;
     padding: 0;
@@ -270,7 +267,6 @@ input:focus {
     border-color: transparent;
     display: inline-block;
     font-size: 0.7rem;
-    color: #4e5b31;
     transition: transform 0.2s ease;
 }
 
@@ -278,7 +274,59 @@ input:focus {
     transform: rotate(90deg);
 }
 
-/* Order Details (Expanded) */
+/* Popup modal */
+#popup {
+    display: none;
+}
+
+#popupContent {
+    margin: 0 auto;
+    width: min(60%, 50em);
+    max-height: 80vh;
+    padding: 1.5rem;
+    overflow-y: auto;
+    background: #ffffff;
+    border-radius: 20px;
+}
+
+#popupContent h2 {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#closeBtn {
+    position: relative;
+    padding-left: 95%;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+#popupContent input,
+#popupContent textarea,
+#popupContent select {
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #97c1ff50;
+    ;
+    border-radius: 10px;
+    resize: vertical;
+}
+
+.orderInput {
+    width: 100%;
+}
+
+.inputLabel {
+    font-size: 0.9rem;
+}
+
+#orderButton {
+    display: block;
+    margin-left: auto;
+    background-color: #7af57a;
+}
+
+/* Order Details */
 .orderDetailsRow td {
     background-color: #fcfcfc;
     padding: 20px;
@@ -303,7 +351,8 @@ input:focus {
     border: 1px solid #e0e0e0;
     border-radius: 12px;
     padding: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 2px 4px #97c1ff50;
+    ;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -349,8 +398,7 @@ input:focus {
 
 .detailsNotesBox {
     background-color: #fff8dc;
-    /* Light yellow for notes */
-    border: 1px solid #fae7c1;
+    border: 1px solid #97c1ff50;
     border-radius: 12px;
     padding: 15px;
     font-size: 0.9rem;
@@ -363,7 +411,6 @@ input:focus {
 .noteLabel {
     font-weight: 700;
     color: #d48806;
-    /* Darker yellow/orange for label */
 }
 
 #closeDetails {
@@ -452,7 +499,42 @@ input:focus {
     }
 }
 
-/* Mobile responsive */
+#btnsDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1em;
+    padding-right: 2em;
+}
+
+#tabBtns {
+    display: flex;
+    gap: 10px;
+    margin-left: 2%;
+}
+
+.tabs:hover {
+    color: #000000 !important;
+    background-color: #ffd390e0 !important;
+
+}
+
+
+/* ############################################ TABLES #######################*/
+#cancelledTable,
+#completedTable {
+    display: none;
+}
+
+#completedTable th:nth-child(7),
+#completedTable td:nth-child(7),
+#cancelledTable th:nth-child(7),
+#cancelledTable td:nth-child(7) {
+    display: none;
+}
+
+
+/* ###################################### Mobile responsive ########################### */
 @media (max-width: 800px) {
 
     /* Header */

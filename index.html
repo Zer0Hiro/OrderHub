@@ -98,7 +98,6 @@
                 <th>Order ID</th>
                 <th>Status</th>
                 <th>Contact</th>
-                <th>Actions</th>
               </tr>
             </thead>
             <tbody id="ordersBodyCancelled" class="orderBody">
@@ -128,7 +127,6 @@
                 <th>Order ID</th>
                 <th>Status</th>
                 <th>Contact</th>
-                <th>Actions</th>
               </tr>
             </thead>
             <tbody id="ordersBodyCompleted" class="orderBody">
@@ -142,7 +140,7 @@
         <div id="popupContent">
 
           <div name="NewOrder">
-            <span id="closeBtn">x</span>
+            <span id="closeBtn" class="btn">x</span>
             <h2>Create New Order</h2>
             <br><label class="inputLabel">Customer Name *</label>
             <input class="orderInput" type="text" required
@@ -198,17 +196,17 @@
         <td class="orderId"></td>
         <td class="orderStatus"></td>
         <td class="orderContact">
-          <button class="btn dontHover" id="callBtn"
+          <button class="btn" id="callBtn"
             title="Call customer"><a>📞</a></button>
-          <button class="btn dontHover" id="textBtn"
+          <button class="btn" id="textBtn"
             title="Send message"><a>💬</a></button>
         </td>
         <td class="orderActions">
-          <button class="btn btnAccept dontHover" title="Accept order"
+          <button class="btn btnAccept" title="Accept order"
             id="acceptBtn">✓</button>
-          <button class="btn btnComplete dontHover" title="Complete order"
+          <button class="btn btnComplete" title="Complete order"
             id="completedBtn">✓</button>
-          <button class="btn btnCancel dontHover" title="Cancel order"
+          <button class="btn btnCancel" title="Cancel order"
             id="cancelBtn">✕</button>
         </td>
       </tr>
