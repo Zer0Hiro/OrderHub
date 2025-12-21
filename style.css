@@ -138,12 +138,12 @@ input:focus {
 #newOrderBtn {
     color: #000000;
     background-color: #ffd390e0;
-    border-color: #97c1ff;
+    border-color: #91682ce0;
 }
 
 #simulateBtn {
     background-color: #ffeacb;
-    border-color: #97c1ff;
+    border-color: #91682ce0;
 }
 
 #clearDataBtn {
@@ -186,6 +186,7 @@ input:focus {
     padding: 10px 15px 10px 10px;
     white-space: nowrap;
     overflow: hidden;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .ordersTableColor {
@@ -258,7 +259,7 @@ input:focus {
 
 #callBtn,
 #textBtn {
-    border: 1px solid #97c1ff;
+    border: 1px solid #969696;
 }
 
 .btnMore {
@@ -328,7 +329,7 @@ input:focus {
 
 /* Order Details */
 .orderDetailsRow td {
-    background-color: #fcfcfc;
+    background-color: #f8f8f8;
     padding: 20px;
     white-space: normal;
     overflow: hidden;
@@ -515,7 +516,7 @@ input:focus {
 
 .tabs:hover {
     color: #000000 !important;
-    background-color: #ffd390e0 !important;
+    background-color: #dfdfdf !important;
 
 }
 
