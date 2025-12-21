@@ -90,16 +90,17 @@ function chooseRandomOrder(a) {
 function simulateNewOrder() {
     // adds a new simulated order to the incoming orders list
     let orders = [
-        { provider: "Wolt", customer: "John", items: "Pizza: 2, Coke: 1", total: 89.50, orderTel: "0505256442" },
-        { provider: "Mishloha", customer: "Sarah", items: "Sushi Set: 1", total: 62.20, orderTel: "0505256442" },
-        { provider: "Tenbis", customer: "Adam", items: "Falafel: 3, Water: 2", total: 38.75, orderTel: "0505256442" },
-        { provider: "Wolt", customer: "Emily", items: "Pasta: 1, Salad: 1", total: 72.30, orderTel: "0505256442" },
-        { provider: "Mishloha", customer: "Daniel", items: "Burger: 2, Fries: 1", total: 96.90, orderTel: "0505256442" },
-        { provider: "Tenbis", customer: "Lior", items: "Shawarma: 1", total: 38.40, orderTel: "0505256442" },
-        { provider: "Wolt", customer: "Maya", items: "Sushi: 8 pcs", total: 48.60, orderTel: "0505256442" },
-        { provider: "Mishloha", customer: "Tom", items: "Steak Meal: 1", total: 135.75, orderTel: "0505256442", orderTel: "0505256442" },
-        { provider: "Tenbis", customer: "Omer", items: "Sandwich: 2, Juice: 1", total: 52.50, orderTel: "0505256442" },
-        { provider: "Wolt", customer: "Noa", items: "Pad Thai: 1", total: 58.20, orderTel: "0505256442" }
+        { provider: "Wolt", customer: "John", items: "Pizza: 2, Coke: 1", total: 89.50, orderTel: "0505256442", address: "Dizengoff 50, Tel Aviv", payment: "Cash on delivery"},
+        { provider: "Mishloha", customer: "Sarah", items: "Sushi Set: 1", total: 62.20, orderTel: "0505256442", address: "Herzl 12, Rishon LeZion", payment: "Credit Card"},
+        { provider: "Tenbis", customer: "Adam", items: "Falafel: 3, Water: 2", total: 38.75, orderTel: "0505256442", address: "Jaffa Road 24, Jerusalem", payment: "Apple Pay"},
+        { provider: "Wolt", customer: "Emily", items: "Pasta: 1, Salad: 1", total: 72.30, orderTel: "0505256442", address: "Weizmann 10, Haifa", payment: "Credit Card"},
+        { provider: "Mishloha", customer: "Daniel", items: "Burger: 2, Fries: 1", total: 96.90, orderTel: "0505256442", address: "Bialik 7, Ramat Gan", payment: "Google Pay"},
+        { provider: "Tenbis", customer: "Lior", items: "Shawarma: 1", total: 38.40, orderTel: "0505256442", address: "Sokolov 45, Holon", payment: "Credit Card"},
+        { provider: "Wolt", customer: "Maya", items: "Sushi: 8 pcs", total: 48.60, orderTel: "0505256442", address: "Ben Gurion 100, Be'er Sheva", payment: "Apple Pay"},
+        { provider: "Mishloha", customer: "Tom", items: "Steak Meal: 1", total: 135.75, orderTel: "0505256442", orderTel: "0505256442", address: "Rothschild 15, Tel Aviv", payment: "Cash on delivery"},
+        { provider: "Tenbis", customer: "Omer", items: "Sandwich: 2, Juice: 1", total: 52.50, orderTel: "0505256442", address: "Ahuza 88, Ra'anana", payment: "Credit Card"},
+        { provider: "Wolt", customer: "Noa", items: "Pad Thai: 1", total: 58.20, orderTel: "0505256442", address: "Hanassi 3, Herzliya", payment: "Google Pay"},
+        { provider: "Mishloha", customer: "Itay", items: "Loquat Cake: 1", total: 90.10, orderTel: "0505256442", address: "Hadekel 5, Ramat Yishai", payment: "Google Pay"}
     ];
 
     const simOrder = chooseRandomOrder(orders);
@@ -129,8 +130,8 @@ function simulateNewOrder() {
         phone: simOrder.orderTel,
         items: simOrder.items,
         total: simOrder.total.toFixed(2),
-        address: "",
-        paymentMethod: "",
+        address: simOrder.address,
+        paymentMethod: simOrder.payment || "",
         notes: "",
         status: "pending"
     };
@@ -194,7 +195,7 @@ function validateForm() {
 
     //Check price of items
     const total = parseFloat(formContent[4].value);
-    if (isNaN(total) || (total == 0 && formContent[2].value.trim().length != 0)) {
+    if (isNaN(total) || (total < 0 && formContent[2].value.trim().length != 0)) {
         alertms = alertms + "Invalid Amount\n";
     }
 
