@@ -19,15 +19,14 @@
           <p>Manage food orders from all delivery partners in one place!</p>
         </div>
       </div>
-      <!-- Filters -->
-      <div id="headerActions">
-        <select id="statusFilter" onchange="loadOrders()" class="filterSelect">
-          <option value="all">All statuses</option>
-          <option value="pending">Pending</option>
-          <option value="accepted">Accepted</option>
-          <option value="cancelled">Cancelled</option>
-        </select>
-      </div>
+      <iframe
+        width="30%"
+        height="80"
+        scrolling="no"
+        frameborder="no"
+        allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/jazzplaylist&color=%23ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true">
+      </iframe>      <!-- Filters -->
     </div>
 
     <div id="main">
@@ -80,13 +79,6 @@
       <div class="tables" , id="cancelledTable">
         <div class="tableHeader">
           <h1>Cancelled Orders</h1>
-          <select id="providerFilter" onchange="filter()" class="filterSelect">
-            <option value="all">All providers</option>
-            <option value="Wolt">Wolt</option>
-            <option value="Tenbis">TenBis</option>
-            <option value="Mishloha">Mishloha</option>
-            <option value="Manual">Manual</option>
-          </select>
         </div>
         <div class="ordersTableWrapper">
           <table class="ordersTable">
@@ -109,13 +101,6 @@
       <div class="tables" , id="completedTable">
         <div class="tableHeader">
           <h1>Completed Orders</h1>
-          <select id="providerFilter" onchange="filter()" class="filterSelect">
-            <option value="all">All providers</option>
-            <option value="Wolt">Wolt</option>
-            <option value="Tenbis">TenBis</option>
-            <option value="Mishloha">Mishloha</option>
-            <option value="Manual">Manual</option>
-          </select>
         </div>
         <div class="ordersTableWrapper">
           <table class="ordersTable">
@@ -139,7 +124,7 @@
       <div id="popup">
         <div id="popupContent">
 
-          <div name="NewOrder">
+          <form name="NewOrder">
             <span id="closeBtn" class="btn">x</span>
             <h2>Create New Order</h2>
             <br><label class="inputLabel">Customer Name *</label>
@@ -178,8 +163,8 @@
               placeholder="Do you have any allergies or special requests?"
               rows="3"></textarea><br><br>
 
-            <button type="submit" id="createOrderBtn">Create Order</button>
-          </div>
+            <button type="button" id="createOrderBtn">Create Order</button>
+          </form>
 
         </div>
       </div>
