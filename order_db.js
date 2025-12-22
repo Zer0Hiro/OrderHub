@@ -1,91 +1,51 @@
-const STORAGE_KEY = "orderData"; 
+const STORAGE_KEY = "orderData";
 
-// Stringify helper function
-function stringify(order) {
-    return `{id='${order.id}', time='${order.time}', provider='${order.provider}', customer='${order.customer}', items='${order.items}', total='${order.total}', phone='${order.phone}', address='${order.address}', paymentMethod='${order.paymentMethod}', notes='${order.notes}', status='${order.status}'}`;
-}
-
-// Function for retrieving orders from local storage
+// This function turns locally stored data strings into an array of objects, and returns it.
 function getOrdersFromStorage() {
-    const rawStr = localStorage.getItem(STORAGE_KEY);
-
-    if (!rawStr) return [];
-
-    // Splits the rawStr into individual strings using a separator
-    const orderStr = rawStr.split("|||");
-
-    // Loops over every order string to convert it back into an object
-    return orderStr.map(str => {
-        // Turns the line into null if it's empty
-        if (str.trim() === "") return null;
-
-        // Create an empty object to hold data
-        const orderObj = {};
-
-        // ################### LOGIC ################### (this is "Regex-based Pattern Matching")
-
-        // pattern:
-        // /           -> Start of pattern
-        // ([a-zA-Z]+) -> Capture 1: The Key (letters only, e.g., "items")
-        // ='          -> The separator (equals and open quote)
-        // ([^']*)     -> Capture 2: The Value (grab everything until the next quote)
-        // /g          -> Global flag (find ALL matches, not just the first one)
-
-        // #################################################
-
-        const pattern = /([a-zA-Z]+)='([^']*)'/g;
-        const matches = str.matchAll(pattern);
-
-        for (const i of matches) {
-            const key = i[1]; // key becomes "id" (example)
-            const val = i[2]; // val becomes "101"
-            
-            // Tells the object: "Create a property named 'id' and set it to '101'"
-            orderObj[key] = val;
-        }
-
-        return orderObj;
-
-      // Remove any empty entries created from " if (str.trim() === "") return null; "
-    }).filter(item => item !== null);
+    // Grabs existing data string stored in localStorage
+    const dataStr = localStorage.getItem(STORAGE_KEY);
+    
+    // Converts the data string into an array of objects (if a data exists), and returns it
+    if (dataStr)
+        return JSON.parse(dataStr);
+    
+    // Returns an empty array if else.
+    else
+        return [];
 }
 
+// This function adds a new order to the existing data
 function saveOrderToStorage(newOrder) {
-    let currentOrders = getOrdersFromStorage();
     
-    currentOrders.push(newOrder);
-    
-    // Glues all the order strings back together into one long string for storage
-    const dataStr = currentOrders.map(order => stringify(order)).join("|||\n");
+    // Loads up existing data
+    let currentData = getOrdersFromStorage();
 
-    // Updates storage
-    localStorage.setItem(STORAGE_KEY, dataStr);
+    // Adds the new order to the data string
+    currentData.push(newOrder);
+
+    // Saves the newly pushed order into the existing data
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(currentData));
 }
 
+// Updates the status of orders
 function updateOrderInStorage(updatedOrder) {
+
+    // Loads up existing data
     let orders = getOrdersFromStorage();
 
-    // Use findIndex to locate the order
-    const index = orders.findIndex(order => order.id === updatedOrder.id);
+    // Locates the index that matches the id of the order we want to update
+    let index = orders.findIndex(order => order.id === updatedOrder.id);
 
-    if (index !== -1) {
-        orders[index].status = updatedOrder.status; 
-        
-        // Save back to storage using custom stringify
-        const dataStr = orders.map(order => stringify(order)).join("|||\n");
-
-        // Updates storage
-        localStorage.setItem(STORAGE_KEY, dataStr);
+    // Updates the status of said index
+    if (index != -1) {
+        orders[index].status = updatedOrder.status;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(orders));
     }
 }
 
+// This function deletes locally stored data by removing the storage key
 function clearStorage() {
+    
     // ניקיון פסח
     localStorage.removeItem(STORAGE_KEY);
 }
-
-// .map() = applies a function for each element of an array, then returns a new array
-// .join() = creates a string from an array.
-// .split() = divides a string into sub-strings, and returns them in an array
-// .trim() = removes whitespace from both ends of a string
-// .matchAll() = finds every part of a string that matches a specific pattern
