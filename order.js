@@ -21,12 +21,6 @@ const filterStatus = document.getElementById("statusFilter");
 //all tables
 const main = document.getElementById("main");
 
-//TABS
-const incTable = document.getElementById("incTable");
-const cancelledTable = document.getElementById("cancelledTable");
-const completedTable = document.getElementById("completedTable");
-
-
 //Empty Tables
 if (ordersBodyActive) ordersBodyActive.innerHTML = "";
 if (ordersBodyCancelled) ordersBodyCancelled.innerHTML = "";
@@ -96,17 +90,17 @@ function chooseRandomOrder(a) {
 function simulateNewOrder() {
     // adds a new simulated order to the incoming orders list
     let orders = [
-        { provider: "Wolt", customer: "John", items: "Pizza: 2, Coke: 1", total: 89.50, orderTel: "0505256442", address: "Dizengoff 50, Tel Aviv", payment: "Cash on delivery"},
-        { provider: "Mishloha", customer: "Sarah", items: "Sushi Set: 1", total: 62.20, orderTel: "0505256442", address: "Herzl 12, Rishon LeZion", payment: "Credit Card"},
-        { provider: "Tenbis", customer: "Adam", items: "Falafel: 3, Water: 2", total: 38.75, orderTel: "0505256442", address: "Jaffa Road 24, Jerusalem", payment: "Apple Pay"},
-        { provider: "Wolt", customer: "Emily", items: "Pasta: 1, Salad: 1", total: 72.30, orderTel: "0505256442", address: "Weizmann 10, Haifa", payment: "Credit Card"},
-        { provider: "Mishloha", customer: "Daniel", items: "Burger: 2, Fries: 1", total: 96.90, orderTel: "0505256442", address: "Bialik 7, Ramat Gan", payment: "Google Pay"},
-        { provider: "Tenbis", customer: "Lior", items: "Shawarma: 1", total: 38.40, orderTel: "0505256442", address: "Sokolov 45, Holon", payment: "Credit Card"},
-        { provider: "Wolt", customer: "Maya", items: "Sushi: 8 pcs", total: 48.60, orderTel: "0505256442", address: "Ben Gurion 100, Be'er Sheva", payment: "Apple Pay"},
-        { provider: "Mishloha", customer: "Tom", items: "Steak Meal: 1", total: 135.75, orderTel: "0505256442", orderTel: "0505256442", address: "Rothschild 15, Tel Aviv", payment: "Cash on delivery"},
-        { provider: "Tenbis", customer: "Omer", items: "Sandwich: 2, Juice: 1", total: 52.50, orderTel: "0505256442", address: "Ahuza 88, Ra'anana", payment: "Credit Card"},
-        { provider: "Wolt", customer: "Noa", items: "Pad Thai: 1", total: 58.20, orderTel: "0505256442", address: "Hanassi 3, Herzliya", payment: "Google Pay"},
-        { provider: "Mishloha", customer: "Itay", items: "Loquat Cake: 1", total: 90.10, orderTel: "0505256442", address: "Hadekel 5, Ramat Yishai", payment: "Google Pay"}
+        { provider: "Wolt", customer: "John", items: "Pizza: 2, Coke: 1", total: 89.50, orderTel: "0505256442", address: "Dizengoff 50, Tel Aviv", payment: "Cash on delivery", lat: 32.0778, lon: 34.7738},
+        { provider: "Mishloha", customer: "Sarah", items: "Sushi Set: 1", total: 62.20, orderTel: "0505256442", address: "Herzl 12, Rishon LeZion", payment: "Credit Card", lat: 31.9664, lon: 34.8025},
+        { provider: "Tenbis", customer: "Adam", items: "Falafel: 3, Water: 2", total: 38.75, orderTel: "0505256442", address: "Jaffa Road 24, Jerusalem", payment: "Apple Pay", lat: 31.7801, lon: 35.2212},
+        { provider: "Wolt", customer: "Emily", items: "Pasta: 1, Salad: 1", total: 72.30, orderTel: "0505256442", address: "Weizmann 10, Haifa", payment: "Credit Card", lat: 32.8055, lon: 35.0003},
+        { provider: "Mishloha", customer: "Daniel", items: "Burger: 2, Fries: 1", total: 96.90, orderTel: "0505256442", address: "Bialik 7, Ramat Gan", payment: "Google Pay", lat: 32.0818, lon: 34.8143},
+        { provider: "Tenbis", customer: "Lior", items: "Shawarma: 1", total: 38.40, orderTel: "0505256442", address: "Sokolov 45, Holon", payment: "Credit Card", lat: 32.0167, lon: 34.7794},
+        { provider: "Wolt", customer: "Maya", items: "Sushi: 8 pcs", total: 48.60, orderTel: "0505256442", address: "Ben Gurion 100, Be'er Sheva", payment: "Apple Pay", lat: 31.2468, lon: 34.7937},
+        { provider: "Mishloha", customer: "Tom", items: "Steak Meal: 1", total: 135.75, orderTel: "0505256442", address: "Rothschild 15, Tel Aviv", payment: "Cash on delivery", lat: 32.0632, lon: 34.7706},
+        { provider: "Tenbis", customer: "Omer", items: "Sandwich: 2, Juice: 1", total: 52.50, orderTel: "0505256442", address: "Ahuza 88, Ra'anana", payment: "Credit Card", lat: 32.1833, lon: 34.8714},
+        { provider: "Wolt", customer: "Noa", items: "Pad Thai: 1", total: 58.20, orderTel: "0505256442", address: "Hanassi 3, Herzliya", payment: "Google Pay", lat: 32.1648, lon: 34.8430},
+        { provider: "Mishloha", customer: "Itay", items: "Loquat Cake: 1", total: 90.10, orderTel: "0505256442", address: "Hadekel 5, Ramat Yishai", payment: "Google Pay", lat: 32.7050, lon: 35.1660}
     ];
 
     const simOrder = chooseRandomOrder(orders);
@@ -139,11 +133,14 @@ function simulateNewOrder() {
         address: simOrder.address,
         paymentMethod: simOrder.payment || "",
         notes: "",
+        lat: simOrder.lat,
+        lon: simOrder.lon,
         status: "pending"
     };
 
     saveOrderToStorage(tempOrder); // Sends the new order to "saveOrderToStorage" in dn.js
 
+    cleanTables();
     loadOrders();
 
 }
@@ -155,6 +152,10 @@ function NewOrder() {
 
     // Generate order ID
     const orderId = "MAN-" + Date.now().toString().slice(-6);
+
+    // Random coords
+    const randomLat = (Math.random() * (32.8 - 31.5) + 31.5).toFixed(4);
+    const randomLon = (Math.random() * (35.5 - 34.75) + 34.75).toFixed(4);
 
     //Create order 
     const newOrder = {
@@ -168,12 +169,15 @@ function NewOrder() {
         total: formContent[4].value,
         paymentMethod: formContent[5].value,
         notes: formContent[6].value,
+        lat: randomLat,
+        lon: randomLon,
         status: "pending"
     };
 
 
     saveOrderToStorage(newOrder); // Sends the new order to "saveOrderToStorage" in dn.js
 
+    cleanTables();
     loadOrders();
 
     changeDisplay(1);
@@ -239,10 +243,11 @@ function statusBtn(cells, row, order) {
 function statusBtnClick(order, status) {
     order.status = status;
     updateOrderInStorage(order);
+
+    cleanTables();
     loadOrders();
 }
 
-//Order details func
 function openOrderDeatil(row, order, cells) {
     let btn = cells[0].querySelector("#moreBtn");
     //If already open, remove
@@ -296,6 +301,16 @@ function openOrderDeatil(row, order, cells) {
             </div>
             </div>
         </div>
+
+        <div style="margin: 15px 0; border-radius: 8px; overflow: hidden; border: 1px solid #eee;">
+             <iframe 
+                src="https://embed.waze.com/iframe?zoom=16&lat=${order.lat}&lon=${order.lon}&pin=1" 
+                width="100%" 
+                height="400" 
+                style="border:none;">
+            </iframe>
+        </div>
+
         <div class="detailsNotesBox">
             <span class="noteLabel">Notes:</span>
             <span>${order.notes || "No special requests."}</span>
@@ -308,27 +323,32 @@ function openOrderDeatil(row, order, cells) {
 }
 
 // tabs:
-incTabBtn.onclick = () => chooseTable(incTable);
-
-CancelTabBtn.onclick = () => chooseTable(cancelledTable);
-
-CompTabBtn.onclick = () =>  chooseTable(completedTable);
-
-function chooseTable(table)
-{
-    table.style.display = "block";
-    for(var tables of [incTable, cancelledTable, completedTable])
-    {
-        if(tables != table) tables.style.display = "none";
-    }
+incTabBtn.onclick = () => {
+    incTable.style.display = "block";
+    cancelledTable.style.display = "none";
+    completedTable.style.display = "none";
 }
 
+CancelTabBtn.onclick = () => {
+    incTable.style.display = "none";
+    cancelledTable.style.display = "block";
+    completedTable.style.display = "none";
+}
 
+CompTabBtn.onclick = () => {
+    incTable.style.display = "none";
+    cancelledTable.style.display = "none";
+    completedTable.style.display = "block";
+}
+
+function filter() {
+    cleanTables();
+    loadOrders();
+}
 
 // Function for loading saved data from storage into the page
 function loadOrders() {
-    //you have to clean the tables to load them clean
-    cleanTables();
+
     // Retrieves the data array from local storage
     const provider = filterProvider.value;
     const orders = getOrdersFromStorage().filter(order => (order.provider == provider || provider == "all"));
