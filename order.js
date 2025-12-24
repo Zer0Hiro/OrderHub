@@ -378,7 +378,7 @@ function loadOrders() {
         // Contact buttons
         const btns = cells[5].querySelectorAll("a");
         btns[0].href = "tel:" + order.phone;
-        btns[1].href = "https://wa.me/972" + order.phone.slice(1) + "?text=Where's my fucking burger?"; // slice removes the first digit
+        btns[1].href = "https://wa.me/972" + order.phone.slice(1) + "?text=Where's my burger?!"; // slice removes the first digit
         btns[1].target = "_blank"; // opens whatsapp in a new tab
 
         // Status Buttons
