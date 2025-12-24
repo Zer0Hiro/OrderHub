@@ -21,6 +21,12 @@ const filterStatus = document.getElementById("statusFilter");
 //all tables
 const main = document.getElementById("main");
 
+//TABS
+const incTable = document.getElementById("incTable");
+const cancelledTable = document.getElementById("cancelledTable");
+const completedTable = document.getElementById("completedTable");
+
+
 //Empty Tables
 if (ordersBodyActive) ordersBodyActive.innerHTML = "";
 if (ordersBodyCancelled) ordersBodyCancelled.innerHTML = "";
@@ -140,9 +146,7 @@ function simulateNewOrder() {
 
     saveOrderToStorage(tempOrder); // Sends the new order to "saveOrderToStorage" in dn.js
 
-    cleanTables();
     loadOrders();
-
 }
 
 //Create Order
@@ -177,7 +181,6 @@ function NewOrder() {
 
     saveOrderToStorage(newOrder); // Sends the new order to "saveOrderToStorage" in dn.js
 
-    cleanTables();
     loadOrders();
 
     changeDisplay(1);
@@ -243,11 +246,10 @@ function statusBtn(cells, row, order) {
 function statusBtnClick(order, status) {
     order.status = status;
     updateOrderInStorage(order);
-
-    cleanTables();
     loadOrders();
 }
 
+//Order details func
 function openOrderDeatil(row, order, cells) {
     let btn = cells[0].querySelector("#moreBtn");
     //If already open, remove
@@ -323,32 +325,27 @@ function openOrderDeatil(row, order, cells) {
 }
 
 // tabs:
-incTabBtn.onclick = () => {
-    incTable.style.display = "block";
-    cancelledTable.style.display = "none";
-    completedTable.style.display = "none";
+incTabBtn.onclick = () => chooseTable(incTable);
+
+CancelTabBtn.onclick = () => chooseTable(cancelledTable);
+
+CompTabBtn.onclick = () =>  chooseTable(completedTable);
+
+function chooseTable(table)
+{
+    table.style.display = "block";
+    for(var tables of [incTable, cancelledTable, completedTable])
+    {
+        if(tables != table) tables.style.display = "none";
+    }
 }
 
-CancelTabBtn.onclick = () => {
-    incTable.style.display = "none";
-    cancelledTable.style.display = "block";
-    completedTable.style.display = "none";
-}
 
-CompTabBtn.onclick = () => {
-    incTable.style.display = "none";
-    cancelledTable.style.display = "none";
-    completedTable.style.display = "block";
-}
-
-function filter() {
-    cleanTables();
-    loadOrders();
-}
 
 // Function for loading saved data from storage into the page
 function loadOrders() {
-
+    //you have to clean the tables to load them clean
+    cleanTables();
     // Retrieves the data array from local storage
     const provider = filterProvider.value;
     const orders = getOrdersFromStorage().filter(order => (order.provider == provider || provider == "all"));
@@ -383,7 +380,7 @@ function loadOrders() {
         // Contact buttons
         const btns = cells[5].querySelectorAll("a");
         btns[0].href = "tel:" + order.phone;
-        btns[1].href = "https://wa.me/972" + order.phone.slice(1) + "?text=Where's my fucking burger?"; // slice removes the first digit
+        btns[1].href = "https://wa.me/972" + order.phone.slice(1) + "?text=Where's my burger?!"; // slice removes the first digit
         btns[1].target = "_blank"; // opens whatsapp in a new tab
 
         // Status Buttons
