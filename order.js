@@ -173,6 +173,8 @@ function NewOrder() {
         total: formContent[4].value,
         paymentMethod: formContent[5].value,
         notes: formContent[6].value,
+        lat: randomLat,
+        lon: randomLon,
         status: "pending"
     };
 
