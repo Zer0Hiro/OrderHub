@@ -274,10 +274,6 @@ function openOrderDeatil(row, order, cells) {
             <div class="detailContent">
                 <div class="customerName">${order.customer}</div>
                 <div class="customerPhone">${order.phone}</div>
-                <div class="cardActions">
-                <a href="tel:${order.phone}" class="cardActionBtn" title="Call">📞</a>
-                <a href="sms:${order.phone}" class="cardActionBtn" title="Message">💬</a>
-                </div>
             </div>
             </div>
 

@@ -386,17 +386,6 @@ input:focus {
     margin-top: 5px;
 }
 
-.cardActionBtn {
-    font-size: 1.2rem;
-    text-decoration: none;
-    transition: transform 0.2s;
-    display: inline-block;
-}
-
-.cardActionBtn:hover {
-    transform: scale(1.1);
-}
-
 .detailsNotesBox {
     background-color: #fff8dc;
     border: 1px solid #97c1ff50;
@@ -412,25 +401,6 @@ input:focus {
 .noteLabel {
     font-weight: 700;
     color: #d48806;
-}
-
-#closeDetails {
-    position: absolute;
-    top: -15px;
-    right: -10px;
-    background: #ff6b6b;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    font-size: 16px;
-    line-height: 1;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Popup modal */
