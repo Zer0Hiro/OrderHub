@@ -15,7 +15,7 @@ a {
     touch-action: manipulation;
 }
 
-/* Global Button & Input Styles */
+/*############################ Global Button & Input Styles ##########################*/
 button,
 select {
     padding: 8px 12px;
@@ -37,7 +37,7 @@ input:focus {
     box-shadow: 0px 0px 8px 1px #97c1ff;
 }
 
-/* Header */
+/*####################################### Header #################################*/
 #header {
     position: sticky;
     top: 0;
@@ -72,7 +72,7 @@ input:focus {
     padding-bottom: 2.75rem;
 }
 
-/* Tabs (Top of Main) */
+/*########################## Tabs (Top of Main) ##################################*/
 #btnsDiv {
     display: flex;
     justify-content: space-between;
@@ -97,7 +97,7 @@ input:focus {
     background-color: #dfdfdf !important;
 }
 
-/* Tables Layout & Header */
+/*##################################### Tables Layout & Header ############################*/
 .tables {
     width: min(90%, 95%);
     margin: 20px auto;
@@ -167,7 +167,7 @@ input:focus {
     display: none;
 }
 
-/* Orders Table Structure */
+/*################################### Orders Table Structure ##############################*/
 .ordersTableWrapper {
     overflow: auto;
     border-radius: 12px;
@@ -198,7 +198,7 @@ input:focus {
     min-width: 35px;
 }
 
-/* Status pill */
+/*######################### Status pill ############################*/
 .statusPill {
     display: inline-block;
     padding: 5px 12px;
@@ -227,7 +227,7 @@ input:focus {
     background-color: #d4edda;
 }
 
-/* Action and contact buttons */
+/*############################################ Action and contact buttons #####################*/
 .btn {
     width: 40px;
     height: 40px;
@@ -275,7 +275,7 @@ input:focus {
     transform: rotate(90deg);
 }
 
-/* Popup modal */
+/*################################# Popup modal ########################*/
 #popup {
     display: none;
 }
@@ -327,7 +327,7 @@ input:focus {
     background-color: #7af57a;
 }
 
-/* Order Details */
+/*############################### Order Details #########################*/
 .orderDetailsRow td {
     background-color: #f8f8f8;
     padding: 20px;
@@ -403,7 +403,7 @@ input:focus {
     color: #d48806;
 }
 
-/* Popup modal */
+/*############################# Popup modal ###########################*/
 #popup {
     display: none;
 }
@@ -454,7 +454,7 @@ input:focus {
     background-color: #ffd390e0;
 }
 
-/* Animations */
+/*############################### Animations ##########################*/
 .fade-in {
     opacity: 1;
     animation: fadeInOpacity 0.2s ease-in;
@@ -489,21 +489,6 @@ input:focus {
     background-color: #dfdfdf !important;
 
 }
-
-
-/* ############################################ TABLES #######################*/
-#cancelledTable,
-#completedTable {
-    display: none;
-}
-
-#completedTable th:nth-child(7),
-#completedTable td:nth-child(7),
-#cancelledTable th:nth-child(7),
-#cancelledTable td:nth-child(7) {
-    display: none;
-}
-
 
 /* ###################################### Mobile responsive ########################### */
 @media (max-width: 800px) {
@@ -637,29 +622,5 @@ input:focus {
     /* Details cards */
     .detailsCardsGrid {
         grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 475px) {
-
-    /* Hide Provider column on mobile */
-    .ordersTable th:nth-child(3),
-    .ordersTable td:nth-child(3) {
-        display: none;
-    }
-
-    /* Hide Contact column on very small screens */
-    .ordersTable th:nth-child(6),
-    .ordersTable td:nth-child(6) {
-        display: none;
-    }
-
-    /* Details cards */
-    .detailsCardsGrid {
-        grid-template-columns: 1fr;
-    }
-
-    .orderDetailsRow td {
-        padding: 10px;
     }
 }
