@@ -131,9 +131,19 @@
             <input class="orderInput" type="text" required
               placeholder="Enter customer name"><br>
 
-            <br><label class="inputLabel">Phone Number *</label>
-            <input class="orderInput" type="tel" required
-              placeholder="05x-xxx-xxxx"><br>
+            <br><label class="inputLabel">Phone Number *</label><br>
+            <select class="orderInput" id="phoneSel">
+              <option value = "bad">05</option>
+              <option value = "050">050</option>
+              <option value = "052">052</option>
+              <option value = "053">053</option>
+              <option value = "054">054</option>
+              <option value = "055">055</option>
+              <option value = "057">058</option>
+              <option value = "051">051</option>
+            </select>
+            <input class="orderInput" id="phoneInput" type="tel" required
+              placeholder="xxx-xxxx"><br>
 
             <br><label class="inputLabel">Items *</label>
             <textarea class="orderInput" name="items" required
