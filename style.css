@@ -316,7 +316,12 @@ input:focus {
 .orderInput {
     width: 100%;
 }
-
+#phoneSel {
+    width:15%;
+}
+#phoneInput {
+    width:80%;
+}
 .inputLabel {
     font-size: 0.9rem;
 }

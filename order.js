@@ -167,12 +167,12 @@ function NewOrder() {
         provider: "Manual",
         time: timeString,
         customer: formContent[0].value,
-        phone: formContent[1].value,
-        items: formContent[2].value,
-        address: formContent[3].value,
-        total: formContent[4].value,
-        paymentMethod: formContent[5].value,
-        notes: formContent[6].value,
+        phone: formContent[1].value + formContent[2].value,
+        items: formContent[3].value,
+        address: formContent[4].value,
+        total: formContent[5].value,
+        paymentMethod: formContent[6].value,
+        notes: formContent[7].value,
         lat: randomLat,
         lon: randomLon,
         status: "pending"
@@ -195,23 +195,23 @@ function validateForm() {
 
     let alertms = "";
     //Check phone number 
-    if (formContent[1].value.trim().length != 10) {
-        alertms = alertms + "Please enter 10 digits phone number\n";
-    }
+    if (formContent[2].value.trim().length != 7 || formContent[1].value == "bad") {
+        alertms = alertms + "Please enter a correct phone number\n";
+    }  
 
     //Check items is not empty
-    if (formContent[2].value == "") {
+    if (formContent[3].value == "") {
         alertms = alertms + "Please add any items\n";
     }
 
     //Check price of items
-    const total = parseFloat(formContent[4].value);
-    if (isNaN(total) || (total < 0 && formContent[2].value.trim().length != 0)) {
+    const total = parseFloat(formContent[5].value);
+    if (isNaN(total) || (total < 0 && formContent[3].value.trim().length != 0)) {
         alertms = alertms + "Invalid Amount\n";
     }
 
     //Check payment method
-    if (formContent[5].value == "") {
+    if (formContent[6].value == "") {
         alertms = alertms + "Please select a payment method";
     }
 
